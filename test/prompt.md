@@ -1,0 +1,1 @@
+Please count the apples in the image. Give your answer in the form of a single number. For example: 2

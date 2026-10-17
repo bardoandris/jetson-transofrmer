@@ -1,4 +1,4 @@
-from transformers import AutoModelForCausalLM
+from transformers import pipeline
 import pytest
 import PIL, PIL.Image
 import argparse
@@ -46,8 +46,8 @@ def main():
             raise ValueError(f"Provided folder path '{args.folder}' is not a directory.")
         filelist = [f"{args.folder}/{file}" for file in os.listdir(args.folder) if file.lower().endswith((".png", ".jpg", ".jpeg"))]
 
-    model = AutoModelForCausalLM.from_pretrained(args.model)
-    beginning_time = time.time()
+   
+    model = pipeline("image-text-to-text", model=args.model)
     for image_path in filelist:
 
         image = load_image(image_path, args.resolution)
@@ -55,8 +55,8 @@ def main():
         # For demonstration, we will just print the image size and prompt length
         print(f"Processing image: {image_path}, size: {image.size}, prompt length: {len(prompt)}")
 
-    end_time = time.time()
-    print(f"Total time taken: {end_time - beginning_time} seconds")
+        model(image=image, prompt=prompt)
+    
 
 if __name__ == "__main__":
     main()
