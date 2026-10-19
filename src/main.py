@@ -1,7 +1,7 @@
 import PIL
 import PIL.Image
 import argparse
-import openai as openai
+import ollama
 import sys
 import os
 import base64
@@ -68,9 +68,8 @@ def main():
             for file in os.listdir(args.folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
-    client = openai.OpenAI(base_url='http://127.0.0.1:11434')
-    server_model_name = client.models.list().data[0].id
-    server_model = client.models.retrieve(server_model_name)
+    client = ollama.Client(host="localhost", port=11434)
+    server_model_name = client.list().models[0].model or ""
     print("beginning processing")
     for image_path in filelist:
         image = load_image(image_path, args.resolution)
@@ -78,25 +77,12 @@ def main():
         image.save(image_buffer, format="PNG")
         image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
 
-        response = client.chat.completions.create(
-            model=server_model.id,
-            max_tokens=2048,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/png;base64,{image_base64}"
-                            },
-                        },
-                    ],
-                }
-            ],
+        response = client.generate(
+            model=server_model_name,
+            prompt=f"{prompt}",
+            images=[image_base64]
         )
-        print(f"Image: {image_path}\n{response.choices[0].message.content}")
+        print(f"Response for {image_path}: {response.response}")
 
 
 if __name__ == "__main__":
