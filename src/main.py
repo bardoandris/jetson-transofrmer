@@ -1,12 +1,13 @@
 import PIL
 import PIL.Image
 import argparse
-import typing
-import time
+import openai as openai
 import sys
 import os
 import base64
-import utils.timer_ctx as tctx
+import io
+import utils.timer_ctx.timer_ctx as timer_ctx
+
 
 
 class HelpArgumentParser(argparse.ArgumentParser):
@@ -51,7 +52,7 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
     with PIL.Image.open(image_path) as img:
         if resolution != 0:
             img.thumbnail((resolution, resolution), PIL.Image.Resampling.BICUBIC)
-        return img
+        return img.copy()
 
 
 def main():
@@ -70,16 +71,35 @@ def main():
             for file in os.listdir(args.folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
+    client = openai.OpenAI(base_url='http://127.0.0.1:11434')
+    server_model_name = client.models.list().data[0].id
+    server_model = client.models.retrieve(server_model_name)
     print("beginning processing")
     for image_path in filelist:
         image = load_image(image_path, args.resolution)
-        # Here you would typically process the image and prompt with the model
-        # For demonstration, we will just print the image size and prompt length
-        print(
-            f"Processing image: {image_path}, size: {image.size}, prompt length: {
-                len(prompt)
-            }"
+        image_buffer = io.BytesIO()
+        image.save(image_buffer, format="PNG")
+        image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
+
+        response = client.chat.completions.create(
+            model=server_model.id,
+            max_tokens=2048,
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{image_base64}"
+                            },
+                        },
+                    ],
+                }
+            ],
         )
+        print(f"Image: {image_path}\n{response.choices[0].message.content}")
 
 
 if __name__ == "__main__":

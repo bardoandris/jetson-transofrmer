@@ -1,0 +1,7 @@
+[project]
+name = "VLM-utils"
+version = "0.0.1"
+authors = [
+  { name="Andras Bardonicsek", email="bardoandris07@gmail.com" },
+]
+description = "A small example package"
