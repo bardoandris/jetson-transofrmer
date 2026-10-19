@@ -79,7 +79,8 @@ def main():
 
         response = client.generate(
             model=server_model_name,
-            prompt=f"{prompt}",
+            prompt=f"{prompt}\n \
+            Return the answer in JSON format with keys 'answer' and 'confidence'.",
             images=[image_base64]
         )
         print(f"Response for {image_path}: {response.response}")
