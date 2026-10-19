@@ -1,5 +1,3 @@
-from transformers import AutoModelForCausalLM
-import pytest
 import PIL
 import PIL.Image
 import argparse
@@ -7,7 +5,9 @@ import typing
 import time
 import sys
 import os
-import torch
+import base64
+import utils.timer_ctx as tctx
+
 
 class HelpArgumentParser(argparse.ArgumentParser):
     def error(self, message):
@@ -70,12 +70,6 @@ def main():
             for file in os.listdir(args.folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
-
-    model = AutoModelForCausalLM.from_pretrained(
-    "vikhyatk/moondream2",
-    trust_remote_code=True,
-    dtype=torch.bfloat16)
-    model.compile()
     print("beginning processing")
     for image_path in filelist:
         image = load_image(image_path, args.resolution)
@@ -86,8 +80,6 @@ def main():
                 len(prompt)
             }"
         )
-
-        print(model(image=image, prompt=prompt))
 
 
 if __name__ == "__main__":
