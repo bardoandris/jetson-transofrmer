@@ -79,7 +79,7 @@ def main():
         response = client.generate(
             model=server_model_name,
             prompt=f"{prompt}\
-             Return the count in the required JSON format.",
+             return text in the following schema: {schemas.category_schema}",
             images=[image_base64],
             format=schemas.category_schema,
             options={"temperature": 0},
