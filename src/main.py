@@ -76,7 +76,7 @@ def main():
         image_buffer = io.BytesIO()
         image.save(image_buffer, format="PNG")
         image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
-
+        print (f"Length of base64 image for {image_path}: {len(image_base64)}")
         response = client.generate(
             model=server_model_name,
             prompt=f"{prompt}\n \
