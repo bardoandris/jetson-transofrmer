@@ -68,7 +68,7 @@ def main():
             for file in os.listdir(args.folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
-    client = ollama.Client(host="localhost", port=11434)
+    client = ollama.Client(host="localhost")
     server_model_name = client.list().models[0].model or ""
     print("beginning processing")
     for image_path in filelist:
