@@ -83,7 +83,7 @@ def main():
             Return the answer in JSON format with keys 'answer' and 'confidence'.",
             images=[image_base64]
         )
-        print(f"Response for {image_path}: {response.response}")
+        print(f"Response for {image_path}: {str(response.model_dump())}")
 
 
 if __name__ == "__main__":
