@@ -82,7 +82,9 @@ def main():
              return text in the following schema: {schemas.category_schema}",
             images=[image_base64],
             format=schemas.category_schema,
-            options={"temperature": 0},
+            options={"temperature": 0, "num_ctx": 500},
+            context=[]
+            
         )
         print(f"Response for {image_path}: {str(response.response)}")
 
