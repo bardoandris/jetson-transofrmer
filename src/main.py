@@ -81,7 +81,7 @@ def main():
             prompt=f"{prompt}\
              Return the count in the required JSON format.",
             images=[image_base64],
-            format=schemas.defect_schema,
+            format=schemas.category_schema,
             options={"temperature": 0},
         )
         print(f"Response for {image_path}: {str(response.response)}")
