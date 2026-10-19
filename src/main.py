@@ -39,9 +39,6 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to the file containing the VLM prompt",
     )
-    parser.add_argument(
-        "-m", "--model", required=True, type=str, help="Name of the VLM model to use"
-    )
     return parser.parse_args()
 
 
