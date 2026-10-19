@@ -78,6 +78,7 @@ def main():
         image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         print (f"Length of base64 image for {image_path}: {len(image_base64)}")
         response = client.generate(
+            
             model=server_model_name,
             prompt=f"{prompt}\n \
             Return the answer in JSON format with keys 'answer' and 'confidence'.",
