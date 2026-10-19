@@ -1,1 +1,1 @@
-Please count the apples in the image.
+Identify defects in the following image.

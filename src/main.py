@@ -7,18 +7,7 @@ import os
 import base64
 import io
 import utils.timer_ctx.timer_ctx as timer_ctx
-
-count_schema = {
-    "type": "object",
-    "properties": {
-        "count": {
-            "type": "integer",
-            "minimum": 0,
-        }
-    },
-    "required": ["count"],
-    "additionalProperties": False,
-}
+import schemas
 
 class HelpArgumentParser(argparse.ArgumentParser):
     def error(self, message):
@@ -89,10 +78,10 @@ def main():
         print (f"Length of base64 image for {image_path}: {len(image_base64)}")
         response = client.generate(
             model=server_model_name,
-            prompt="Count the apples in the image.\
+            prompt=f"{prompt}\
              Return the count in the required JSON format.",
             images=[image_base64],
-            format=count_schema,
+            format=schemas.defect_schema,
             options={"temperature": 0},
         )
         print(f"Response for {image_path}: {str(response.response)}")
