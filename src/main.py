@@ -73,7 +73,7 @@ def main():
     for image_path in filelist:
         image = load_image(image_path, args.resolution)
         image_buffer = io.BytesIO()
-        image.save(image_buffer, format="PNG")
+        image.save(image_buffer, format="jpeg")
         image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         print (f"Length of base64 image for {image_path}: {len(image_base64)}")
         response = client.generate(
