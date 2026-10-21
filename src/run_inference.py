@@ -107,11 +107,11 @@ def run_inference(
             format=vlm_schemas.category_schema,
             options={"temperature": 0, "num_ctx": 4096},
             context=[])
-            results.append({"image_path": image_path, 
-                            "response": response.response, 
-                            "inference_time": inference_timer.elapsed_time.__str__(),
-                            "processing_time": processing_timer.elapsed_time.__str__(),
-                            "image_size": image.size.__str__()})
+        results.append({"image_path": image_path, 
+                        "response": response.response, 
+                        "inference_time": inference_timer.elapsed_time.__str__(),
+                        "processing_time": processing_timer.elapsed_time.__str__(),
+                        "image_size": image.size.__str__()})
 
     return results
 
