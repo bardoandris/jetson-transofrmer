@@ -1,1 +1,0 @@
-Identify defects in the following image.

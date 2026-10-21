@@ -57,8 +57,8 @@ def run_inference(
     folder: str | None = None,
     resolution: int | None = None,
     prompt_file: str | None = None,
-) -> None:
-    if folder is None and resolution is None and prompt_file is None:
+) -> list[dict[str, str]]:
+    if __name__ == "__main__":
         args = parse_args()
         folder = args.folder
         resolution = args.resolution
@@ -68,7 +68,7 @@ def run_inference(
         raise ValueError(
             "folder, resolution, and prompt_file must be provided together."
         )
-
+    results = []
     processing_timer = timer_ctx.Timer()
     inference_timer = timer_ctx.Timer()
 
@@ -107,6 +107,13 @@ def run_inference(
             format=vlm_schemas.category_schema,
             options={"temperature": 0, "num_ctx": 4096},
             context=[])
+            results.append({"image_path": image_path, 
+                            "response": response.response, 
+                            "inference_time": inference_timer.elapsed_time.__str__(),
+                            "processing_time": processing_timer.elapsed_time.__str__(),
+                            "image_size": image.size.__str__()})
+
+    return results
 
 if __name__ == "__main__":
     run_inference()
