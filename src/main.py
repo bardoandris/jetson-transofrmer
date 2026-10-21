@@ -7,7 +7,8 @@ import os
 import base64
 import io
 import utils.timer_ctx.timer_ctx as timer_ctx
-import schemas
+import vlm_schemas
+import json
 
 
 class HelpArgumentParser(argparse.ArgumentParser):
@@ -101,9 +102,9 @@ def main(
             response = client.generate(
             model=server_model_name,
             prompt=f"{prompt}\
-                 return text in the following schema: {schemas.category_schema}",
+                 return text in the following schema: {vlm_schemas.category_schema}",
             images=[image_base64],
-            format=schemas.category_schema,
+            format=vlm_schemas.category_schema,
             options={"temperature": 0, "num_ctx": 4096},
             context=[])
 
