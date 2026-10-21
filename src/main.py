@@ -9,6 +9,7 @@ import io
 import utils.timer_ctx.timer_ctx as timer_ctx
 import schemas
 
+
 class HelpArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         self.print_help(sys.stderr)
@@ -51,43 +52,60 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
         return img.copy()
 
 
-def main():
-    args = parse_args()
+def main(
+    folder: str | None = None,
+    resolution: int | None = None,
+    prompt_file: str | None = None,
+) -> None:
+    if folder is None and resolution is None and prompt_file is None:
+        args = parse_args()
+        folder = args.folder
+        resolution = args.resolution
+        prompt_file = args.prompt_file
+
+    if folder is None or resolution is None or prompt_file is None:
+        raise ValueError(
+            "folder, resolution, and prompt_file must be provided together."
+        )
+
+    processing_timer = timer_ctx.Timer()
+    inference_timer = timer_ctx.Timer()
+
     prompt = ""
     # open images and prompt file, check if folder exists and is a directory
-    with open(args.prompt_file, encoding="utf-8") as prompt_file:
-        prompt = prompt_file.read()
+    with open(prompt_file, encoding="utf-8") as prompt_file_handle:
+        prompt = prompt_file_handle.read()
 
-        if not os.path.isdir(args.folder):
+        if not os.path.isdir(folder):
             raise ValueError(
-                f"Provided folder path '{args.folder}' is not a directory."
+                f"Provided folder path '{folder}' is not a directory."
             )
         filelist = [
-            f"{args.folder}/{file}"
-            for file in os.listdir(args.folder)
+            f"{folder}/{file}"
+            for file in os.listdir(folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
+
     client = ollama.Client(host="localhost")
     server_model_name = client.list().models[0].model or ""
-    print("beginning processing")
+    print("beginning processing" + f" with model: {server_model_name}"
+           + "@resolution: " + str(resolution))
     for image_path in filelist:
-        image = load_image(image_path, args.resolution)
-        image_buffer = io.BytesIO()
-        image.save(image_buffer, format="jpeg")
-        image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
-        print (f"Length of base64 image for {image_path}: {len(image_base64)}")
-        response = client.generate(
+        #image processing
+        with processing_timer:
+                    image = load_image(image_path, resolution)
+                    image_buffer = io.BytesIO()
+                    image.save(image_buffer, format="jpeg")
+                    image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
+        with inference_timer:
+            response = client.generate(
             model=server_model_name,
             prompt=f"{prompt}\
-             return text in the following schema: {schemas.category_schema}",
+                 return text in the following schema: {schemas.category_schema}",
             images=[image_base64],
             format=schemas.category_schema,
             options={"temperature": 0, "num_ctx": 4096},
-            context=[]
-            
-        )
-        print(f"Response for {image_path}: {str(response.response)}")
-
+            context=[])
 
 if __name__ == "__main__":
     main()
