@@ -32,7 +32,7 @@ export OLLAMA_CONTEXT_LENGTH="8192"
 
 # Number of parallel requests each model processes simultaneously (Default: 1)
 # Note: Scales required memory by (OLLAMA_NUM_PARALLEL * OLLAMA_CONTEXT_LENGTH)
-export OLLAMA_NUM_PARALLEL="2"
+export OLLAMA_NUM_PARALLEL="1"
 
 # Max models concurrently kept in memory (Default: auto, 3 per GPU / 3 for CPU)
 export OLLAMA_MAX_LOADED_MODELS="1"
@@ -58,4 +58,4 @@ export OLLAMA_KV_CACHE_TYPE="q4_0"
 export OLLAMA_DEBUG="0"
 
 # Keep prompt history in interactive CLI mode (1 = disable history)
-export OLLAMA_NOHISTORY="0"
+export OLLAMA_NOHISTORY="1"
