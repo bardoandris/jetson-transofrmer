@@ -7,7 +7,7 @@ import os
 import base64
 import io
 import utils.timer_ctx.timer_ctx as timer_ctx
-import vlm_schemas
+import utils.vlm_schemas as vlm_schemas
 import json
 
 
@@ -53,7 +53,7 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
         return img.copy()
 
 
-def main(
+def run_inference(
     folder: str | None = None,
     resolution: int | None = None,
     prompt_file: str | None = None,
@@ -109,4 +109,4 @@ def main(
             context=[])
 
 if __name__ == "__main__":
-    main()
+    run_inference()

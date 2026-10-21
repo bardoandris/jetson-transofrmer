@@ -1,3 +1,4 @@
+import pydantic
 defect_schema = {
     "type": "object",
     "properties": {
