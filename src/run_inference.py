@@ -50,7 +50,7 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
     with PIL.Image.open(image_path) as img:
         if resolution != 0:
             img.thumbnail((resolution, resolution), PIL.Image.Resampling.BICUBIC)
-        return img.copy()
+        return img
 
 
 def run_inference(
@@ -117,6 +117,7 @@ def run_inference(
                         "inference_time": inference_timer.elapsed_time.__str__(),
                         "processing_time": processing_timer.elapsed_time.__str__(),
                         "image_size": image.size.__str__()})
+        del image, image_base64, response
 
     return results
 
