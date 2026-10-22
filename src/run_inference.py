@@ -99,16 +99,21 @@ def run_inference(
                     image.save(image_buffer, format="jpeg")
                     image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         with inference_timer:
-            response = client.generate(
+            response = client.chat(
             model=server_model_name,
-            prompt=f"{prompt}\
-                 return text in the following schema: {vlm_schemas.category_schema}",
-            images=[image_base64],
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{prompt}\
+                         return text in the following schema: {vlm_schemas.category_schema}",
+                    "images": [image_base64]
+                }
+            ],
             format=vlm_schemas.category_schema,
             options={"temperature": 0, "num_ctx": 4096},
-            context=[])
+            )
         results.append({"image_path": image_path, 
-                        "response": response.response, 
+                        "response": response.message.content.__str__(), 
                         "inference_time": inference_timer.elapsed_time.__str__(),
                         "processing_time": processing_timer.elapsed_time.__str__(),
                         "image_size": image.size.__str__()})
