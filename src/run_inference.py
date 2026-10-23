@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 import PIL
 import PIL.Image
 import argparse
@@ -116,7 +118,7 @@ def run_inference(
                             {
                                 "type": "text",
                                 "text": (
-                                    f"{prompt}\n\n"
+                                    f"{uuid4()}\n{prompt}\n\n"
                                     "Return a JSON object matching this schema:\n"
                                     f"{json.dumps(vlm_schemas.category_schema)}"
                                 ),
