@@ -1,3 +1,5 @@
+import uuid
+
 import PIL
 import PIL.Image
 import argparse
@@ -101,7 +103,7 @@ def run_inference(
         with inference_timer:
             response = client.generate(
             model=server_model_name,
-            prompt=f"{prompt}\
+            prompt=f"{uuid.uuid4()}\n{prompt}\
                  return text in the following schema: {vlm_schemas.category_schema}",
             images=[image_base64],
             format=vlm_schemas.category_schema,
