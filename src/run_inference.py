@@ -1,14 +1,14 @@
 import PIL
 import PIL.Image
 import argparse
-import ollama
 import sys
 import os
 import base64
 import io
+import json
+from openai import OpenAI
 import utils.timer_ctx.timer_ctx as timer_ctx
 import utils.vlm_schemas as vlm_schemas
-import json
 
 
 class HelpArgumentParser(argparse.ArgumentParser):
@@ -87,8 +87,16 @@ def run_inference(
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
 
-    client = ollama.Client(host="localhost")
-    server_model_name = client.list().models[0].model or ""
+    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:11434/v1")
+    api_key = os.getenv("OPENAI_API_KEY", "ollama")
+    client = OpenAI(base_url=base_url, api_key=api_key)
+    server_model_name = os.getenv("OPENAI_MODEL")
+    if server_model_name is None:
+        available_models = client.models.list().data
+        if not available_models:
+            raise RuntimeError(f"No models are available from the API at {base_url}.")
+        server_model_name = available_models[0].id
+
     print("beginning processing" + f" with model: {server_model_name}"
            + "@resolution: " + str(resolution))
     for image_path in filelist:
@@ -99,21 +107,41 @@ def run_inference(
                     image.save(image_buffer, format="jpeg")
                     image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         with inference_timer:
-            response = client.chat(
-            model=server_model_name,
-            messages=[
-                {
-                    "role": "user",
-                    "content": f"{prompt}\
-                         return text in the following schema: {vlm_schemas.category_schema}",
-                    "images": [image_base64]
-                }
-            ],
-            format=vlm_schemas.category_schema,
-            options={"temperature": 0, "num_ctx": 4096},
+            response = client.chat.completions.create(
+                model=server_model_name,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": (
+                                    f"{prompt}\n\n"
+                                    "Return a JSON object matching this schema:\n"
+                                    f"{json.dumps(vlm_schemas.category_schema)}"
+                                ),
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{image_base64}"
+                                },
+                            },
+                        ],
+                    }
+                ],
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "category",
+                        "strict": True,
+                        "schema": vlm_schemas.category_schema,
+                    },
+                },
+                temperature=0,
             )
         results.append({"image_path": image_path, 
-                        "response": response.message.content.__str__(), 
+                        "response": str(response.choices[0].message.content),
                         "inference_time": inference_timer.elapsed_time.__str__(),
                         "processing_time": processing_timer.elapsed_time.__str__(),
                         "image_size": image.size.__str__()})
