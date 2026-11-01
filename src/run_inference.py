@@ -92,12 +92,13 @@ def run_inference(
     base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:11434/v1")
     api_key = os.getenv("OPENAI_API_KEY", "ollama")
     client = OpenAI(base_url=base_url, api_key=api_key)
-    server_model_name = os.getenv("OPENAI_MODEL")
-    if server_model_name is None:
-        available_models = client.models.list().data
-        if not available_models:
-            raise RuntimeError(f"No models are available from the API at {base_url}.")
-        server_model_name = available_models[0].id
+
+    available_models = client.models.list().data
+    if not available_models:
+        raise RuntimeError(f"No models are available from the API at {base_url}.")
+    else:
+        print(f"Available models: {[model.id for model in available_models]}")
+    server_model_name = available_models[0].id
 
     print("beginning processing" + f" with model: {server_model_name}"
            + "@resolution: " + str(resolution))
