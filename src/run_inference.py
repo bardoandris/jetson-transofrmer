@@ -42,6 +42,13 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to the file containing the VLM prompt",
     )
+    parser.add_argument(
+        "-m",
+        "--model",
+        required=True,
+        type=str,
+        help="Model ID to use for inference",
+    )
     return parser.parse_args()
 
 
@@ -59,16 +66,18 @@ def run_inference(
     folder: str | None = None,
     resolution: int | None = None,
     prompt_file: str | None = None,
+    model: str | None = None,
 ) -> list[dict[str, str]]:
     if __name__ == "__main__":
         args = parse_args()
         folder = args.folder
         resolution = args.resolution
         prompt_file = args.prompt_file
+        model = args.model
 
-    if folder is None or resolution is None or prompt_file is None:
+    if folder is None or resolution is None or prompt_file is None or model is None:
         raise ValueError(
-            "folder, resolution, and prompt_file must be provided together."
+            "folder, resolution, prompt_file, and model must be provided together."
         )
     results = []
     processing_timer = timer_ctx.Timer()
@@ -93,14 +102,7 @@ def run_inference(
     api_key = os.getenv("OPENAI_API_KEY", "ollama")
     client = OpenAI(base_url=base_url, api_key=api_key)
 
-    available_models = client.models.list().data
-    if not available_models:
-        raise RuntimeError(f"No models are available from the API at {base_url}.")
-    else:
-        print(f"Available models: {[model.id for model in available_models]}")
-    server_model_name = available_models[0].id
-
-    print("beginning processing" + f" with model: {server_model_name}"
+    print("beginning processing" + f" with model: {model}"
            + "@resolution: " + str(resolution))
     for image_path in filelist:
         #image processing
@@ -111,7 +113,7 @@ def run_inference(
                     image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         with inference_timer:
             response = client.chat.completions.create(
-                model=server_model_name,
+                model=model,
                 messages=[
                     {
                         "role": "user",
