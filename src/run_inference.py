@@ -96,7 +96,8 @@ def run_inference(
     available_models = client.models.list().data
     if not available_models:
         raise RuntimeError(f"No models are available from the API at {base_url}.")
-
+    else:
+        print(f"Available models: {[model.id for model in available_models]}")
     server_model_name = available_models[0].id
 
     print("beginning processing" + f" with model: {server_model_name}"
