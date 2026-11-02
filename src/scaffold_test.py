@@ -55,7 +55,7 @@ def choose_model(model: str | None = None) -> str:
             raise ValueError("Model ID must not be empty.")
         return model
 
-    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:11434/v1")
+    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
     api_key = os.getenv("OPENAI_API_KEY", "ollama")
     available_models = OpenAI(base_url=base_url, api_key=api_key).models.list().data
     if not available_models:
