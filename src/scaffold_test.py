@@ -1,4 +1,5 @@
 import argparse
+import csv
 import json
 import os
 from itertools import product
@@ -40,11 +41,20 @@ def parse_args() -> argparse.Namespace:
         "--model",
         help="Model ID to use; choose from available models if omitted.",
     )
-    parser.add_argument(
+    output_group = parser.add_mutually_exclusive_group()
+    output_group.add_argument(
         "-o",
+        "--json",
         "--output",
-        default="scaffold_test_results.json",
+        dest="json_output",
+        metavar="FILE",
         help="Path to the JSON file where scenario results will be saved.",
+    )
+    output_group.add_argument(
+        "--csv",
+        dest="csv_output",
+        metavar="FILE",
+        help="Path to the CSV file where image results will be saved.",
     )
     return parser.parse_args()
 
@@ -100,9 +110,34 @@ def main() -> None:
             }
         )
 
-    with open(args.output, "w", encoding="utf-8") as output_file:
-        json.dump(scenarios, output_file, indent=2)
-        output_file.write("\n")
+    if args.csv_output is not None:
+        fieldnames = [
+            "folder",
+            "resolution",
+            "prompt_file",
+            "model",
+            "image_path",
+            "response",
+            "inference_time",
+            "processing_time",
+            "image_size",
+        ]
+        with open(args.csv_output, "w", encoding="utf-8", newline="") as output_file:
+            writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+            writer.writeheader()
+            for scenario in scenarios:
+                metadata = scenario["metadata"]
+                for result in scenario["results"]:
+                    writer.writerow({**metadata, **result})
+    else:
+        output_path = (
+            args.json_output
+            if args.json_output is not None
+            else "scaffold_test_results.json"
+        )
+        with open(output_path, "w", encoding="utf-8") as output_file:
+            json.dump(scenarios, output_file, indent=2)
+            output_file.write("\n")
 
 
 if __name__ == "__main__":

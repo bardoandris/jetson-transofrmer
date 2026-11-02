@@ -3,6 +3,7 @@ from uuid import uuid4
 import PIL
 import PIL.Image
 import argparse
+import csv
 import sys
 import os
 import base64
@@ -49,6 +50,18 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Model ID to use for inference",
     )
+    output_group = parser.add_mutually_exclusive_group()
+    output_group.add_argument(
+        "--json",
+        dest="json_output",
+        metavar="FILE",
+        help="Path to the JSON file where inference results will be saved.",
+    )
+    output_group.add_argument(
+        "--csv",
+        metavar="FILE",
+        help="Path to the CSV file where inference results will be saved.",
+    )
     return parser.parse_args()
 
 
@@ -68,13 +81,6 @@ def run_inference(
     prompt_file: str | None = None,
     model: str | None = None,
 ) -> list[dict[str, str]]:
-    if __name__ == "__main__":
-        args = parse_args()
-        folder = args.folder
-        resolution = args.resolution
-        prompt_file = args.prompt_file
-        model = args.model
-
     if folder is None or resolution is None or prompt_file is None or model is None:
         raise ValueError(
             "folder, resolution, prompt_file, and model must be provided together."
@@ -161,5 +167,27 @@ def run_inference(
     return results
 
 
+def main() -> None:
+    args = parse_args()
+    results = run_inference(args.folder, args.resolution, args.prompt_file, args.model)
+
+    if args.json_output is not None:
+        with open(args.json_output, "w", encoding="utf-8") as output_file:
+            json.dump(results, output_file, indent=2)
+            output_file.write("\n")
+    elif args.csv is not None:
+        fieldnames = [
+            "image_path",
+            "response",
+            "inference_time",
+            "processing_time",
+            "image_size",
+        ]
+        with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
+            writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(results)
+
+
 if __name__ == "__main__":
-    run_inference()
+    main()
