@@ -89,28 +89,30 @@ def run_inference(
         prompt = prompt_file_handle.read()
 
         if not os.path.isdir(folder):
-            raise ValueError(
-                f"Provided folder path '{folder}' is not a directory."
-            )
+            raise ValueError(f"Provided folder path '{folder}' is not a directory.")
         filelist = [
             f"{folder}/{file}"
             for file in os.listdir(folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
 
-    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:11434/v1")
+    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
     api_key = os.getenv("OPENAI_API_KEY", "ollama")
     client = OpenAI(base_url=base_url, api_key=api_key)
 
-    print("beginning processing" + f" with model: {model}"
-           + "@resolution: " + str(resolution))
+    print(
+        "beginning processing"
+        + f" with model: {model}"
+        + "@resolution: "
+        + str(resolution)
+    )
     for image_path in filelist:
-        #image processing
+        # image processing
         with processing_timer:
-                    image = load_image(image_path, resolution)
-                    image_buffer = io.BytesIO()
-                    image.save(image_buffer, format="jpeg")
-                    image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
+            image = load_image(image_path, resolution)
+            image_buffer = io.BytesIO()
+            image.save(image_buffer, format="jpeg")
+            image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         with inference_timer:
             response = client.chat.completions.create(
                 model=model,
@@ -145,14 +147,19 @@ def run_inference(
                 },
                 temperature=0,
             )
-        results.append({"image_path": image_path, 
-                        "response": str(response.choices[0].message.content),
-                        "inference_time": inference_timer.elapsed_time.__str__(),
-                        "processing_time": processing_timer.elapsed_time.__str__(),
-                        "image_size": image.size.__str__()})
+        results.append(
+            {
+                "image_path": image_path,
+                "response": str(response.choices[0].message.content),
+                "inference_time": inference_timer.elapsed_time.__str__(),
+                "processing_time": processing_timer.elapsed_time.__str__(),
+                "image_size": image.size.__str__(),
+            }
+        )
         del image, image_base64, response
 
     return results
+
 
 if __name__ == "__main__":
     run_inference()

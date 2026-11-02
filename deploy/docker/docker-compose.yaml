@@ -20,7 +20,9 @@ services:
       - "--temp"
       - "0.2"
       - "-hf"
-      - "ngxson/SmolLM2-1.7B-Instruct-Q4_K_M-GGUF:Q4_K_M"
+      - "ggml-org/SmolVLM2-2.2B-Instruct-GGUF:Q4_K_M"
+      - "--verbosity"
+      - "4"
 
 
 
