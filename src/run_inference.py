@@ -80,7 +80,7 @@ def run_inference(
     resolution: int | None = None,
     prompt_file: str | None = None,
     model: str | None = None,
-) -> list[dict[str, str]]:
+) -> list[dict[str, str | int]]:
     if folder is None or resolution is None or prompt_file is None or model is None:
         raise ValueError(
             "folder, resolution, prompt_file, and model must be provided together."
@@ -153,13 +153,20 @@ def run_inference(
                 },
                 temperature=0,
             )
+        response_text = str(response.choices[0].message.content)
+        width, height = image.size
         results.append(
             {
                 "image_path": image_path,
-                "response": str(response.choices[0].message.content),
+                "response": (
+                    response_text.replace("\r\n", " ")
+                    .replace("\r", " ")
+                    .replace("\n", " ")
+                ),
                 "inference_time": inference_timer.elapsed_time.__str__(),
                 "processing_time": processing_timer.elapsed_time.__str__(),
-                "image_size": image.size.__str__(),
+                "width": width,
+                "height": height,
             }
         )
         del image, image_base64, response
@@ -181,7 +188,8 @@ def main() -> None:
             "response",
             "inference_time",
             "processing_time",
-            "image_size",
+            "width",
+            "height",
         ]
         with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)
