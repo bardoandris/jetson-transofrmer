@@ -20,7 +20,7 @@ services:
       - "--temp"
       - "0.2"
       - "-hf"
-      - "Qwen/Qwen3-VL-4B-Instruct-GGUF:Q4_K_M"
+      - "ngxson/SmolLM2-1.7B-Instruct-Q4_K_M-GGUF:Q4_K_M"
 
 
 
