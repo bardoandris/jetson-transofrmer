@@ -120,7 +120,8 @@ def main() -> None:
             "response",
             "inference_time",
             "processing_time",
-            "image_size",
+            "width",
+            "height",
         ]
         with open(args.csv_output, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)
