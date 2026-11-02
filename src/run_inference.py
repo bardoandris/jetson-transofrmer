@@ -1,16 +1,17 @@
-import uuid
+from uuid import uuid4
 
 import PIL
 import PIL.Image
 import argparse
-import ollama
+import csv
 import sys
 import os
 import base64
 import io
+import json
+from openai import OpenAI
 import utils.timer_ctx.timer_ctx as timer_ctx
 import utils.vlm_schemas as vlm_schemas
-import json
 
 
 class HelpArgumentParser(argparse.ArgumentParser):
@@ -42,6 +43,25 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to the file containing the VLM prompt",
     )
+    parser.add_argument(
+        "-m",
+        "--model",
+        required=True,
+        type=str,
+        help="Model ID to use for inference",
+    )
+    output_group = parser.add_mutually_exclusive_group()
+    output_group.add_argument(
+        "--json",
+        dest="json_output",
+        metavar="FILE",
+        help="Path to the JSON file where inference results will be saved.",
+    )
+    output_group.add_argument(
+        "--csv",
+        metavar="FILE",
+        help="Path to the CSV file where inference results will be saved.",
+    )
     return parser.parse_args()
 
 
@@ -52,23 +72,18 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
     with PIL.Image.open(image_path) as img:
         if resolution != 0:
             img.thumbnail((resolution, resolution), PIL.Image.Resampling.BICUBIC)
-        return img.copy()
+        return img
 
 
 def run_inference(
     folder: str | None = None,
     resolution: int | None = None,
     prompt_file: str | None = None,
-) -> list[dict[str, str]]:
-    if __name__ == "__main__":
-        args = parse_args()
-        folder = args.folder
-        resolution = args.resolution
-        prompt_file = args.prompt_file
-
-    if folder is None or resolution is None or prompt_file is None:
+    model: str | None = None,
+) -> list[dict[str, str | int]]:
+    if folder is None or resolution is None or prompt_file is None or model is None:
         raise ValueError(
-            "folder, resolution, and prompt_file must be provided together."
+            "folder, resolution, prompt_file, and model must be provided together."
         )
     results = []
     processing_timer = timer_ctx.Timer()
@@ -80,42 +95,107 @@ def run_inference(
         prompt = prompt_file_handle.read()
 
         if not os.path.isdir(folder):
-            raise ValueError(
-                f"Provided folder path '{folder}' is not a directory."
-            )
+            raise ValueError(f"Provided folder path '{folder}' is not a directory.")
         filelist = [
             f"{folder}/{file}"
             for file in os.listdir(folder)
             if file.lower().endswith((".png", ".jpg", ".jpeg"))
         ]
 
-    client = ollama.Client(host="localhost")
-    server_model_name = client.list().models[0].model or ""
-    print("beginning processing" + f" with model: {server_model_name}"
-           + "@resolution: " + str(resolution))
+    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
+    api_key = os.getenv("OPENAI_API_KEY", "ollama")
+    client = OpenAI(base_url=base_url, api_key=api_key)
+
+    print(
+        "beginning processing"
+        + f" with model: {model}"
+        + "@resolution: "
+        + str(resolution)
+    )
     for image_path in filelist:
-        #image processing
+        # image processing
         with processing_timer:
-                    image = load_image(image_path, resolution)
-                    image_buffer = io.BytesIO()
-                    image.save(image_buffer, format="jpeg")
-                    image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
+            image = load_image(image_path, resolution)
+            image_buffer = io.BytesIO()
+            image.save(image_buffer, format="jpeg")
+            image_base64 = base64.b64encode(image_buffer.getvalue()).decode("utf-8")
         with inference_timer:
-            response = client.generate(
-            model=server_model_name,
-            prompt=f"{uuid.uuid4()}\n{prompt}\
-                 return text in the following schema: {vlm_schemas.category_schema}",
-            images=[image_base64],
-            format=vlm_schemas.category_schema,
-            options={"temperature": 0, "num_ctx": 4096},
-            context=[])
-            results.append({"image_path": image_path, 
-                            "response": response.response, 
-                            "inference_time": inference_timer.elapsed_time.__str__(),
-                            "processing_time": processing_timer.elapsed_time.__str__(),
-                            "image_size": image.size.__str__()})
+            response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": (
+                                    f"{prompt}\n\n"
+                                    "Return a JSON object matching this schema:\n"
+                                    f"{json.dumps(vlm_schemas.category_schema)}"
+                                ),
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{image_base64}"
+                                },
+                            },
+                        ],
+                    }
+                ],
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "category",
+                        "strict": True,
+                        "schema": vlm_schemas.category_schema,
+                    },
+                },
+                temperature=0,
+            )
+        response_text = str(response.choices[0].message.content)
+        width, height = image.size
+        results.append(
+            {
+                "image_path": image_path,
+                "response": (
+                    response_text.replace("\r\n", " ")
+                    .replace("\r", " ")
+                    .replace("\n", " ")
+                ),
+                "inference_time": inference_timer.elapsed_time.__str__(),
+                "processing_time": processing_timer.elapsed_time.__str__(),
+                "width": width,
+                "height": height,
+            }
+        )
+        del image, image_base64, response
 
     return results
 
+
+def main() -> None:
+    args = parse_args()
+    results = run_inference(args.folder, args.resolution, args.prompt_file, args.model)
+
+    if args.json_output is not None:
+        with open(args.json_output, "w", encoding="utf-8") as output_file:
+            json.dump(results, output_file, indent=2)
+            output_file.write("\n")
+    elif args.csv is not None:
+        fieldnames = [
+            "image_path",
+            "response",
+            "inference_time",
+            "processing_time",
+            "width",
+            "height",
+        ]
+        with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
+            writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(results)
+
+
 if __name__ == "__main__":
-    run_inference()
+    main()

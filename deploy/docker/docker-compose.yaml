@@ -1,0 +1,33 @@
+services:
+  llama:
+    build: .
+    runtime: nvidia
+    network_mode: host
+    volumes:
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      - ${HOME}/.model-config:/root/.model-config
+      
+    # Pass your custom llama-server arguments here
+    command: 
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8080"
+      - "-cram"
+      - "1500"
+      - "-np"
+      - "1"
+      - "--temp"
+      - "0.2"
+      - "-hf"
+      - "ggml-org/SmolVLM2-2.2B-Instruct-GGUF:Q4_K_M"
+      - "--verbosity"
+      - "4"
+
+
+
+      # Example: add model load parameters
+      # - "--hf-rep
+      # - "ggml-org/gemma-3-4b-it-GGUF"
+      # - "--hf-file"
+      # - "gemma-3-4b-it-Q4_K_M.gguf"
