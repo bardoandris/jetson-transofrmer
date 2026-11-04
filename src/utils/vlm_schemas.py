@@ -18,7 +18,7 @@ category_schema = {
         },
         "defect_category": {
             "type": "string",
-            "enum": ["leads", "casing", "misplaced", "other", "none"],
+            "enum": ["leads", "casing", "misplaced", "none"],
         },
     },
     "required": ["contains_defect", "defect_category"],
