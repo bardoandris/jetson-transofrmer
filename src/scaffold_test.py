@@ -2,7 +2,6 @@ import argparse
 import csv
 import json
 import os
-from itertools import product
 from typing import Any
 
 from openai import OpenAI
@@ -92,27 +91,32 @@ def main() -> None:
     model = choose_model(args.model)
     scenarios: list[dict[str, Any]] = []
 
-    for folder, resolution, prompt_file in product(
-        args.folder, args.resolution, args.prompt_file
-    ):
-        results = run_inference.run_inference(
-            folder, resolution, prompt_file, model
-        )
-        scenarios.append(
-            {
-                "metadata": {
-                    "folder": folder,
-                    "resolution": resolution,
-                    "prompt_file": prompt_file,
-                    "model": model,
-                },
-                "results": results,
-            }
-        )
+    for prompt_file in args.prompt_file:
+        with open(prompt_file, encoding="utf-8") as prompt_file_handle:
+            prompt = prompt_file_handle.read()
+        inference = run_inference.RunInference(prompt, model)
+        for folder in args.folder:
+            inference.add_folder(folder)
+        for resolution in args.resolution:
+            inference.add_resolution(resolution)
+        for scenario in inference.run_inference():
+            scenarios.append(
+                {
+                    "metadata": {
+                        "case_label": os.path.basename(
+                            os.path.normpath(scenario["folder"])
+                        ),
+                        "resolution": scenario["resolution"],
+                        "prompt_file": prompt_file,
+                        "model": model,
+                    },
+                    "results": scenario["results"],
+                }
+            )
 
     if args.csv_output is not None:
         fieldnames = [
-            "folder",
+            "case_label",
             "resolution",
             "prompt_file",
             "model",
