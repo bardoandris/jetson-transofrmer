@@ -1,4 +1,23 @@
 import pydantic
+
+
+def create_category_schema(defect_categories: list[str]) -> dict:
+    return {
+        "type": "object",
+        "properties": {
+            "contains_defect": {
+                "type": "boolean",
+            },
+            "defect_category": {
+                "type": "string",
+                "enum": [*sorted(set(defect_categories)), "none"],
+            },
+        },
+        "required": ["contains_defect", "defect_category"],
+        "additionalProperties": False,
+    }
+
+
 defect_schema = {
     "type": "object",
     "properties": {

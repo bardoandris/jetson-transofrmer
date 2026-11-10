@@ -1,14 +1,8 @@
-# Transistor detection Guide
-## Normal Case (good)
-You should see a rectangular TO-92 cased electronic component with three leads in a THT circuit board. These three leads should al be put through the via holes at the bottom of the image.
-## Failure modes (anomaly)
-Failure modes include, but not limited to:
-- Bent leads
-- Missing (or cut) leads 
-- misplaced transistor
-- damaged case
+# MVTec-AD Transistor - Zero-Shot Inspection
 
-If you encounter a predict which you cannot fit within these categories, you should mark the defect category as "other"
-## Output 
-You will mark the field "contains_defect" true, if the product is defective
-if defect category is desired, "none" will apply to non-defective products, otherwise, pick the most appropriate label
+Inspect the supplied image of a transistor and its leads for visible defects.
+
+Anomaly categories: `bent_lead`, `cut_lead`, `damaged_case`, `misplaced`.
+Use `contains_defect: false` and `defect_category: "none"` for a normal transistor. For a defect, set `contains_defect: true` and choose the matching category exactly. Do not invent labels.
+
+Judge the query image on its own; no reference images are provided. Return only the JSON object matching the schema supplied with the request.

@@ -139,7 +139,11 @@ def main() -> None:
     for prompt_file in args.prompt_file:
         with open(prompt_file, encoding="utf-8") as prompt_file_handle:
             prompt = prompt_file_handle.read()
-        inference = run_inference.RunInference(prompt, model)
+        inference = run_inference.RunInference(
+            prompt,
+            model,
+            run_inference.prompt_uses_one_shot_examples(prompt_file),
+        )
         for folder in args.folder:
             inference.add_folder(folder)
         for resolution in args.resolution:
