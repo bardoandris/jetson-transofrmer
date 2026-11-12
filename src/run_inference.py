@@ -358,6 +358,7 @@ def main() -> None:
             output_file.write("\n")
     elif args.csv is not None:
         fieldnames = [
+            "model",
             "image_path",
             "response",
             "inference_time",
@@ -368,7 +369,7 @@ def main() -> None:
         with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(results)
+            writer.writerows({"model": args.model, **result} for result in results)
 
 
 if __name__ == "__main__":

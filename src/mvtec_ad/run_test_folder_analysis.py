@@ -81,6 +81,7 @@ def build_analysis_row(
     folder: str,
     resolution: int,
     prompt_file: str,
+    model: str,
     result: run_inference.InferenceResult,
 ) -> dict[str, str | int]:
     response_text = result["response"]
@@ -103,12 +104,14 @@ def build_analysis_row(
         "height": result["height"],
         "prompt_file": Path(prompt_file).name,
         "resolution": resolution,
+        "model": model,
     }
 
 
 def write_results_csv(
     output_path: str,
     scenarios: list[tuple[str, int, str, list[run_inference.InferenceResult]]],
+    model: str,
 ) -> None:
     fieldnames = [
         "true_category",
@@ -120,6 +123,7 @@ def write_results_csv(
         "height",
         "prompt_file",
         "resolution",
+        "model",
     ]
 
     with open(output_path, "w", encoding="utf-8", newline="") as output_file:
@@ -128,7 +132,7 @@ def write_results_csv(
         for folder, resolution, prompt_file, results in scenarios:
             for result in results:
                 writer.writerow(
-                    build_analysis_row(folder, resolution, prompt_file, result)
+                    build_analysis_row(folder, resolution, prompt_file, model, result)
                 )
 
 
@@ -157,7 +161,7 @@ def main() -> None:
                     scenario["results"],
                 )
             )
-    write_results_csv(args.csv, scenarios)
+    write_results_csv(args.csv, scenarios, model)
 
 
 if __name__ == "__main__":
