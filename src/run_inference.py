@@ -153,7 +153,7 @@ def example_images_for_folder(folder: str, query_image_path: str) -> list[tuple[
                 f"No example image available in '{category_directory}' "
                 "after excluding the query image."
             )
-        label = "none" if category_directory.name == "good" else category_directory.name
+        label = category_directory.name
         example_images.append((label, example_path))
     return example_images
 

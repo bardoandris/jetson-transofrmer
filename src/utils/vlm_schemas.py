@@ -10,7 +10,7 @@ def create_category_schema(defect_categories: list[str]) -> dict:
             },
             "defect_category": {
                 "type": "string",
-                "enum": [*sorted(set(defect_categories)), "none"],
+                "enum": [*sorted(set(defect_categories)), "good"],
             },
         },
         "required": ["contains_defect", "defect_category"],
@@ -37,7 +37,7 @@ category_schema = {
         },
         "defect_category": {
             "type": "string",
-            "enum": ["leads", "casing", "misplaced", "none"],
+            "enum": ["leads", "casing", "misplaced", "good"],
         },
     },
     "required": ["contains_defect", "defect_category"],
