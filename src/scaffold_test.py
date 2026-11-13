@@ -1,10 +1,7 @@
 import argparse
 import csv
 import json
-import os
 from typing import Any
-
-from openai import OpenAI
 
 import run_inference
 
@@ -38,7 +35,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-m",
         "--model",
-        help="Model ID to use; choose from available models if omitted.",
+        help="Model ID to use; defaults to the first model available from the API.",
+    )
+    parser.add_argument(
+        "--power-mode",
+        required=True,
+        help="Power mode used during inference.",
     )
     output_group = parser.add_mutually_exclusive_group()
     output_group.add_argument(
@@ -58,37 +60,9 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def choose_model(model: str | None = None) -> str:
-    if model is not None:
-        if not model:
-            raise ValueError("Model ID must not be empty.")
-        return model
-
-    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
-    api_key = os.getenv("OPENAI_API_KEY", "ollama")
-    available_models = OpenAI(base_url=base_url, api_key=api_key).models.list().data
-    if not available_models:
-        raise RuntimeError(f"No models are available from the API at {base_url}.")
-
-    print("Available models:")
-    for index, available_model in enumerate(available_models, start=1):
-        print(f"{index}. {available_model.id}")
-
-    while True:
-        choice = input("Choose a model by number: ")
-        try:
-            model_index = int(choice) - 1
-        except ValueError:
-            print("Enter a number from the list.")
-            continue
-        if 0 <= model_index < len(available_models):
-            return available_models[model_index].id
-        print(f"Choose a number between 1 and {len(available_models)}.")
-
-
 def main() -> None:
     args = parse_args()
-    model = choose_model(args.model)
+    model = run_inference.choose_model(args.model)
     scenarios: list[dict[str, Any]] = []
 
     for prompt_file in args.prompt_file:
@@ -124,6 +98,8 @@ def main() -> None:
             "resolution",
             "prompt_file",
             "model",
+            "power_mode",
+            "shot_mode",
             "image_path",
             "response",
             "inference_time",
@@ -137,7 +113,20 @@ def main() -> None:
             for scenario in scenarios:
                 metadata = scenario["metadata"]
                 for result in scenario["results"]:
-                    writer.writerow({**metadata, **result})
+                    writer.writerow(
+                        {
+                            **metadata,
+                            "power_mode": args.power_mode,
+                            "shot_mode": (
+                                "one-shot"
+                                if run_inference.prompt_uses_one_shot_examples(
+                                    metadata["prompt_file"]
+                                )
+                                else "zero-shot"
+                            ),
+                            **result,
+                        }
+                    )
     else:
         output_path = (
             args.json_output

@@ -64,9 +64,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-m",
         "--model",
+        type=str,
+        help="Model ID to use; defaults to the first model available from the API",
+    )
+    parser.add_argument(
+        "--power-mode",
         required=True,
         type=str,
-        help="Model ID to use for inference",
+        help="Power mode used during inference",
     )
     output_group = parser.add_mutually_exclusive_group()
     output_group.add_argument(
@@ -96,6 +101,23 @@ def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
 
 def prompt_uses_one_shot_examples(prompt_file: str) -> bool:
     return Path(prompt_file).stem.endswith("_oneshot")
+
+
+def choose_model(model: str | None = None) -> str:
+    if model is not None:
+        if not model:
+            raise ValueError("Model ID must not be empty.")
+        return model
+
+    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
+    api_key = os.getenv("OPENAI_API_KEY", "ollama")
+    available_models = OpenAI(base_url=base_url, api_key=api_key).models.list().data
+    if not available_models:
+        raise RuntimeError(f"No models are available from the API at {base_url}.")
+
+    selected_model = available_models[0].id
+    print(f"Using available model: {selected_model}")
+    return selected_model
 
 
 def find_test_root(folder: str) -> Path | None:
@@ -259,6 +281,29 @@ class RunInference:
         ]
         return messages
 
+    def request_completion(
+        self,
+        image_data: str,
+        category_schema: dict,
+        example_images: list[tuple[str, str]] | None,
+    ) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=self.create_messages(
+                image_data, category_schema, example_images
+            ),
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "category",
+                    "strict": True,
+                    "schema": category_schema,
+                },
+            },
+            temperature=0,
+        )
+        return str(response.choices[0].message.content)
+
     def run_inference(self) -> list[InferenceScenario]:
         if not self.folders:
             raise ValueError("Add at least one folder before running inference.")
@@ -284,6 +329,27 @@ class RunInference:
                     + "@resolution: "
                     + str(resolution)
                 )
+                if filelist:
+                    warmup_image_path = filelist[0]
+                    warmup_image_data = self.encode_image(
+                        Path(warmup_image_path), resolution
+                    )
+                    warmup_examples = None
+                    if self.one_shot:
+                        warmup_examples = [
+                            (label, self.encode_image(path, resolution))
+                            for label, path in example_images_for_folder(
+                                folder, warmup_image_path
+                            )
+                        ]
+                    print(
+                        f"warming up with prompt and "
+                        f"{'examples' if self.one_shot else 'no examples'}"
+                    )
+                    self.request_completion(
+                        warmup_image_data, category_schema, warmup_examples
+                    )
+
                 for image_path in filelist:
                     processing_timer = timer_ctx.Timer()
                     inference_timer = timer_ctx.Timer()
@@ -303,22 +369,9 @@ class RunInference:
                                 )
                             ]
                     with inference_timer:
-                        response = self.client.chat.completions.create(
-                            model=self.model,
-                            messages=self.create_messages(
-                                image_base64, category_schema, example_images
-                            ),
-                            response_format={
-                                "type": "json_schema",
-                                "json_schema": {
-                                    "name": "category",
-                                    "strict": True,
-                                    "schema": category_schema,
-                                },
-                            },
-                            temperature=0,
+                        response_text = self.request_completion(
+                            image_base64, category_schema, example_images
                         )
-                    response_text = str(response.choices[0].message.content)
                     width, height = image.size
                     results.append(
                         {
@@ -343,10 +396,11 @@ class RunInference:
 
 def main() -> None:
     args = parse_args()
+    model = choose_model(args.model)
     with open(args.prompt_file, encoding="utf-8") as prompt_file_handle:
         prompt = prompt_file_handle.read()
     inference = RunInference(
-        prompt, args.model, prompt_uses_one_shot_examples(args.prompt_file)
+        prompt, model, prompt_uses_one_shot_examples(args.prompt_file)
     )
     inference.add_folder(args.folder)
     inference.add_resolution(args.resolution)
@@ -359,6 +413,8 @@ def main() -> None:
     elif args.csv is not None:
         fieldnames = [
             "model",
+            "power_mode",
+            "shot_mode",
             "image_path",
             "response",
             "inference_time",
@@ -369,7 +425,20 @@ def main() -> None:
         with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows({"model": args.model, **result} for result in results)
+            shot_mode = (
+                "one-shot"
+                if prompt_uses_one_shot_examples(args.prompt_file)
+                else "zero-shot"
+            )
+            writer.writerows(
+                {
+                "model": model,
+                    "power_mode": args.power_mode,
+                    "shot_mode": shot_mode,
+                    **result,
+                }
+                for result in results
+            )
 
 
 if __name__ == "__main__":

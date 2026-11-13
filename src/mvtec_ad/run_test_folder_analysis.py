@@ -1,10 +1,7 @@
 import argparse
 import csv
 import json
-import os
 from pathlib import Path
-
-from openai import OpenAI
 
 import run_inference
 
@@ -38,7 +35,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-m",
         "--model",
-        help="Model ID to use; choose from available models if omitted.",
+        help="Model ID to use; defaults to the first model available from the API.",
+    )
+    parser.add_argument(
+        "--power-mode",
+        required=True,
+        help="Power mode used during inference.",
     )
     parser.add_argument(
         "--csv",
@@ -49,39 +51,12 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def choose_model(model: str | None = None) -> str:
-    if model is not None:
-        if not model:
-            raise ValueError("Model ID must not be empty.")
-        return model
-
-    base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
-    api_key = os.getenv("OPENAI_API_KEY", "ollama")
-    available_models = OpenAI(base_url=base_url, api_key=api_key).models.list().data
-    if not available_models:
-        raise RuntimeError(f"No models are available from the API at {base_url}.")
-
-    print("Available models:")
-    for index, available_model in enumerate(available_models, start=1):
-        print(f"{index}. {available_model.id}")
-
-    while True:
-        choice = input("Choose a model by number: ")
-        try:
-            model_index = int(choice) - 1
-        except ValueError:
-            print("Enter a number from the list.")
-            continue
-        if 0 <= model_index < len(available_models):
-            return available_models[model_index].id
-        print(f"Choose a number between 1 and {len(available_models)}.")
-
-
 def build_analysis_row(
     folder: str,
     resolution: int,
     prompt_file: str,
     model: str,
+    power_mode: str,
     result: run_inference.InferenceResult,
 ) -> dict[str, str | int]:
     response_text = result["response"]
@@ -105,6 +80,12 @@ def build_analysis_row(
         "prompt_file": Path(prompt_file).name,
         "resolution": resolution,
         "model": model,
+        "power_mode": power_mode,
+        "shot_mode": (
+            "one-shot"
+            if run_inference.prompt_uses_one_shot_examples(prompt_file)
+            else "zero-shot"
+        ),
     }
 
 
@@ -112,6 +93,7 @@ def write_results_csv(
     output_path: str,
     scenarios: list[tuple[str, int, str, list[run_inference.InferenceResult]]],
     model: str,
+    power_mode: str,
 ) -> None:
     fieldnames = [
         "true_category",
@@ -124,6 +106,8 @@ def write_results_csv(
         "prompt_file",
         "resolution",
         "model",
+        "power_mode",
+        "shot_mode",
     ]
 
     with open(output_path, "w", encoding="utf-8", newline="") as output_file:
@@ -132,13 +116,15 @@ def write_results_csv(
         for folder, resolution, prompt_file, results in scenarios:
             for result in results:
                 writer.writerow(
-                    build_analysis_row(folder, resolution, prompt_file, model, result)
+                    build_analysis_row(
+                        folder, resolution, prompt_file, model, power_mode, result
+                    )
                 )
 
 
 def main() -> None:
     args = parse_args()
-    model = choose_model(args.model)
+    model = run_inference.choose_model(args.model)
     scenarios: list[tuple[str, int, str, list[run_inference.InferenceResult]]] = []
     for prompt_file in args.prompt_file:
         with open(prompt_file, encoding="utf-8") as prompt_file_handle:
@@ -161,7 +147,7 @@ def main() -> None:
                     scenario["results"],
                 )
             )
-    write_results_csv(args.csv, scenarios, model)
+    write_results_csv(args.csv, scenarios, model, args.power_mode)
 
 
 if __name__ == "__main__":
