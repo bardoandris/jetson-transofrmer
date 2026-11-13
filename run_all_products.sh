@@ -118,7 +118,7 @@ cd "$script_dir"
 
 [[ -d "$dataset_dir" ]] || fail "Dataset directory does not exist: $dataset_dir"
 [[ -d "$prompt_dir" ]] || fail "Prompt directory does not exist: $prompt_dir"
-dataset_dir="$(cd -- "$dataset_dir" && pwd)"
+dataset_dir="$(cd -P -- "$dataset_dir" && pwd)"
 prompt_dir="$(cd -- "$prompt_dir" && pwd)"
 
 if [[ -z "$output_dir" ]]; then
