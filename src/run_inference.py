@@ -3,8 +3,11 @@ import base64
 import csv
 import io
 import json
+import math
 import os
+import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import TypedDict
 
@@ -15,6 +18,13 @@ from openai.types.chat import ChatCompletionContentPartParam, ChatCompletionMess
 
 import utils.timer_ctx.timer_ctx as timer_ctx
 import utils.vlm_schemas as vlm_schemas
+
+
+THERMAL_LIMIT_C = 70.0
+THERMAL_CHECK_INTERVAL_SECONDS = 30
+THERMAL_MONITOR_SCRIPT = (
+    Path(__file__).resolve().parents[1] / "conf" / "tegra-thermal.sh"
+)
 
 
 class InferenceResult(TypedDict):
@@ -118,6 +128,42 @@ def choose_model(model: str | None = None) -> str:
     selected_model = available_models[0].id
     print(f"Using available model: {selected_model}")
     return selected_model
+
+
+def read_system_temperature() -> float:
+    try:
+        result = subprocess.run(
+            ["bash", str(THERMAL_MONITOR_SCRIPT), "--once"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        raise RuntimeError("Unable to read the system temperature.") from error
+
+    try:
+        temperature = float(result.stdout.strip())
+    except ValueError as error:
+        raise RuntimeError(
+            f"Temperature monitor returned invalid output: {result.stdout!r}"
+        ) from error
+    if not math.isfinite(temperature):
+        raise RuntimeError(
+            f"Temperature monitor returned a non-finite value: {temperature!r}"
+        )
+    return temperature
+
+
+def wait_for_safe_temperature() -> None:
+    temperature = read_system_temperature()
+    while temperature > THERMAL_LIMIT_C:
+        print(
+            f"System temperature is {temperature:.1f}C; "
+            f"pausing inference until it is at or below {THERMAL_LIMIT_C:.0f}C."
+        )
+        time.sleep(THERMAL_CHECK_INTERVAL_SECONDS)
+        temperature = read_system_temperature()
 
 
 def find_test_root(folder: str) -> Path | None:
@@ -346,6 +392,7 @@ class RunInference:
                         f"warming up with prompt and "
                         f"{'examples' if self.one_shot else 'no examples'}"
                     )
+                    wait_for_safe_temperature()
                     self.request_completion(
                         warmup_image_data, category_schema, warmup_examples
                     )
@@ -368,6 +415,7 @@ class RunInference:
                                     folder, image_path
                                 )
                             ]
+                    wait_for_safe_temperature()
                     with inference_timer:
                         response_text = self.request_completion(
                             image_base64, category_schema, example_images

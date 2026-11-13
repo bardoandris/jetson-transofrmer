@@ -1,5 +1,25 @@
 #!/bin/bash
 # from https://rmauro.dev/monitor-jetson-orin-nano-temperature-in-real-time-with-a-bash-script/
+
+if [[ "${1:-}" == "--once" ]]; then
+    line=$(tegrastats | {
+        IFS= read -r first_line || exit 1
+        printf '%s\n' "$first_line"
+    })
+
+    highest_temp=$(printf '%s\n' "$line" |
+        grep -oPi '(?:cpu|gpu|soc[0-2]|tj)@\K[0-9]+(?:\.[0-9]+)?' |
+        LC_ALL=C awk 'NR == 1 || $1 > highest { highest = $1 } END { if (NR) print highest }')
+
+    if [[ -z "$highest_temp" ]]; then
+        echo "Unable to read a temperature from tegrastats." >&2
+        exit 1
+    fi
+
+    printf '%s\n' "$highest_temp"
+    exit 0
+fi
+
 # Restore the cursor on exit
 trap 'tput cnorm' EXIT
 
