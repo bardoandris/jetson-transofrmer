@@ -25,6 +25,7 @@ THERMAL_CHECK_INTERVAL_SECONDS = 30
 THERMAL_MONITOR_SCRIPT = (
     Path(__file__).resolve().parents[1] / "conf" / "tegra-thermal.sh"
 )
+THERMAL_ZONES_DIR = Path("/sys/devices/virtual/thermal")
 
 
 class InferenceResult(TypedDict):
@@ -54,8 +55,9 @@ def parse_args() -> argparse.Namespace:
         "-f",
         "--folder",
         required=True,
+        nargs="+",
         type=str,
-        help="Path to the directory containing images",
+        help="Path(s) to directory containing images",
     )
     parser.add_argument(
         "-r",
@@ -99,14 +101,22 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
-    """
-    Loads the image and optionally scales it while maintaining aspect ratio.
-    """
     with PIL.Image.open(image_path) as source:
-        img = source.copy()
+        img = source.convert("RGB")
         if resolution != 0:
             img.thumbnail((resolution, resolution), PIL.Image.Resampling.BICUBIC)
     return img
+
+
+def encode_pil_jpeg_b64(image: PIL.Image.Image) -> str:
+    image_buffer = io.BytesIO()
+    image.save(image_buffer, format="jpeg", quality=90)
+    return base64.b64encode(image_buffer.getvalue()).decode("ascii")
+
+
+def make_dummy_jpeg_b64() -> str:
+    img = PIL.Image.new("RGB", (16, 16), color=(0, 0, 0))
+    return encode_pil_jpeg_b64(img)
 
 
 def prompt_uses_one_shot_examples(prompt_file: str) -> bool:
@@ -131,6 +141,22 @@ def choose_model(model: str | None = None) -> str:
 
 
 def read_system_temperature() -> float:
+    # Fast sysfs read (avoids spawning bash subprocess on every image)
+    if THERMAL_ZONES_DIR.is_dir():
+        temps_c: list[float] = []
+        for temp_file in THERMAL_ZONES_DIR.glob("thermal_zone*/temp"):
+            try:
+                raw = temp_file.read_text(encoding="utf-8").strip()
+                val = float(raw)
+                if val > 1000.0:
+                    val /= 1000.0
+                if math.isfinite(val):
+                    temps_c.append(val)
+            except OSError:
+                continue
+        if temps_c:
+            return max(temps_c)
+
     try:
         result = subprocess.run(
             ["bash", str(THERMAL_MONITOR_SCRIPT), "--once"],
@@ -142,16 +168,9 @@ def read_system_temperature() -> float:
     except (OSError, subprocess.SubprocessError) as error:
         raise RuntimeError("Unable to read the system temperature.") from error
 
-    try:
-        temperature = float(result.stdout.strip())
-    except ValueError as error:
-        raise RuntimeError(
-            f"Temperature monitor returned invalid output: {result.stdout!r}"
-        ) from error
+    temperature = float(result.stdout.strip())
     if not math.isfinite(temperature):
-        raise RuntimeError(
-            f"Temperature monitor returned a non-finite value: {temperature!r}"
-        )
+        raise RuntimeError(f"Non-finite temperature: {temperature!r}")
     return temperature
 
 
@@ -187,16 +206,14 @@ def category_schema_for_folder(folder: str) -> dict:
     return vlm_schemas.create_category_schema(categories)
 
 
-def example_images_for_folder(folder: str, query_image_path: str) -> list[tuple[str, Path]]:
+def fixed_example_images_for_folder(folder: str) -> list[tuple[str, Path]]:
+    """Selects a deterministic, fixed support image (index 0) per category."""
     test_root = find_test_root(folder)
     if test_root is None:
         raise ValueError(
-            f"One-shot examples require an image folder under a MVTec-AD test directory: "
-            f"'{folder}'."
+            f"One-shot examples require an image folder under a MVTec-AD test directory: '{folder}'."
         )
 
-    query_path = Path(query_image_path).resolve()
-    example_images: list[tuple[str, Path]] = []
     category_directories = sorted(
         (path for path in test_root.iterdir() if path.is_dir()),
         key=lambda path: path.name,
@@ -204,6 +221,7 @@ def example_images_for_folder(folder: str, query_image_path: str) -> list[tuple[
     if not category_directories:
         raise ValueError(f"No test-category folders found in '{test_root}'.")
 
+    example_images: list[tuple[str, Path]] = []
     for category_directory in category_directories:
         image_paths = sorted(
             (
@@ -213,16 +231,9 @@ def example_images_for_folder(folder: str, query_image_path: str) -> list[tuple[
             ),
             key=lambda path: path.name,
         )
-        example_path = next(
-            (path for path in image_paths if path.resolve() != query_path), None
-        )
-        if example_path is None:
-            raise ValueError(
-                f"No example image available in '{category_directory}' "
-                "after excluding the query image."
-            )
-        label = category_directory.name
-        example_images.append((label, example_path))
+        if not image_paths:
+            raise ValueError(f"No images found in '{category_directory}'.")
+        example_images.append((category_directory.name, image_paths[0].resolve()))
     return example_images
 
 
@@ -236,6 +247,7 @@ class RunInference:
         self.folders: list[str] = []
         self.resolutions: list[int] = []
         self._encoded_example_cache: dict[tuple[str, int], str] = {}
+        self._warmed_prefix_key: tuple[str, int] | None = None
         base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
         api_key = os.getenv("OPENAI_API_KEY", "ollama")
         self.client = OpenAI(base_url=base_url, api_key=api_key)
@@ -250,40 +262,30 @@ class RunInference:
         if resolution not in self.resolutions:
             self.resolutions.append(resolution)
 
-    def encode_image(self, image_path: Path, resolution: int) -> str:
+    def encode_example(self, image_path: Path, resolution: int) -> str:
         cache_key = (str(image_path.resolve()), resolution)
         if cache_key not in self._encoded_example_cache:
             image = load_image(str(image_path), resolution)
-            image_buffer = io.BytesIO()
-            image.save(image_buffer, format="jpeg")
-            self._encoded_example_cache[cache_key] = base64.b64encode(
-                image_buffer.getvalue()
-            ).decode("utf-8")
+            self._encoded_example_cache[cache_key] = encode_pil_jpeg_b64(image)
         return self._encoded_example_cache[cache_key]
 
-    def create_messages(
+    def build_static_user_prefix(
         self,
-        image_data: str,
-        category_schema: dict | None = None,
-        example_images: list[tuple[str, str]] | None = None,
-    ) -> list[ChatCompletionMessageParam]:
-        schema = (
-            vlm_schemas.category_schema
-            if category_schema is None
-            else category_schema
-        )
-        user_content: list[ChatCompletionContentPartParam] = []
+        example_images: list[tuple[str, str]] | None,
+    ) -> list[ChatCompletionContentPartParam]:
+        """Builds the byte-identical prefix shared across all query images."""
+        prefix_content: list[ChatCompletionContentPartParam] = []
         if self.one_shot:
             if not example_images:
                 raise ValueError("One-shot inference requires labeled example images.")
-            user_content.append(
+            prefix_content.append(
                 {
                     "type": "text",
                     "text": "Use these labeled reference images as examples when classifying the query image.",
                 }
             )
             for label, example_data in example_images:
-                user_content.extend(
+                prefix_content.extend(
                     [
                         {
                             "type": "text",
@@ -298,23 +300,21 @@ class RunInference:
                     ]
                 )
 
-        user_content.extend(
-            [
-                {
-                    "type": "text",
-                    "text": (
-                        "Classify the query image. Return a JSON object matching this schema:\n"
-                        f"{json.dumps(schema)}"
-                    ),
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/jpeg;base64,{image_data}"
-                    },
-                },
-            ]
+        prefix_content.append(
+            {
+                "type": "text",
+                "text": "Classify the query image according to the required JSON schema.",
+            }
         )
+        return prefix_content
+
+    def request_completion(
+        self,
+        static_user_prefix: list[ChatCompletionContentPartParam],
+        query_image_b64: str,
+        category_schema: dict,
+        max_tokens: int = 64,
+    ) -> tuple[str, dict]:
         messages: list[ChatCompletionMessageParam] = [
             {
                 "role": "system",
@@ -322,22 +322,20 @@ class RunInference:
             },
             {
                 "role": "user",
-                "content": user_content,
+                "content": [
+                    *static_user_prefix,
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{query_image_b64}"
+                        },
+                    },
+                ],
             },
         ]
-        return messages
-
-    def request_completion(
-        self,
-        image_data: str,
-        category_schema: dict,
-        example_images: list[tuple[str, str]] | None,
-    ) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
-            messages=self.create_messages(
-                image_data, category_schema, example_images
-            ),
+            messages=messages,
             response_format={
                 "type": "json_schema",
                 "json_schema": {
@@ -347,8 +345,15 @@ class RunInference:
                 },
             },
             temperature=0,
+            max_tokens=max_tokens,
+            extra_body={
+                "cache_prompt": True,
+                "id_slot": 0,
+            },
         )
-        return str(response.choices[0].message.content)
+        raw = response.model_dump()
+        timings = raw.get("timings") or {}
+        return str(response.choices[0].message.content), timings
 
     def run_inference(self) -> list[InferenceScenario]:
         if not self.folders:
@@ -357,70 +362,79 @@ class RunInference:
             raise ValueError("Add at least one resolution before running inference.")
 
         scenarios: list[InferenceScenario] = []
-        for folder in self.folders:
-            if not os.path.isdir(folder):
-                raise ValueError(f"Provided folder path '{folder}' is not a directory.")
-            category_schema = category_schema_for_folder(folder)
-            filelist = [
-                os.path.join(folder, file)
-                for file in os.listdir(folder)
-                if file.lower().endswith((".png", ".jpg", ".jpeg"))
-            ]
+        dummy_b64 = make_dummy_jpeg_b64()
 
-            for resolution in self.resolutions:
+        for resolution in self.resolutions:
+            for folder in self.folders:
+                if not os.path.isdir(folder):
+                    raise ValueError(f"Provided folder path '{folder}' is not a directory.")
+
+                test_root = find_test_root(folder)
+                prefix_scope = str(test_root) if test_root is not None else str(Path(folder).resolve())
+                category_schema = category_schema_for_folder(folder)
+
+                support_paths: set[Path] = set()
+                encoded_examples: list[tuple[str, str]] | None = None
+                if self.one_shot:
+                    fixed_examples = fixed_example_images_for_folder(folder)
+                    support_paths = {path for _, path in fixed_examples}
+                    encoded_examples = [
+                        (label, self.encode_example(path, resolution))
+                        for label, path in fixed_examples
+                    ]
+
+                static_user_prefix = self.build_static_user_prefix(encoded_examples)
+
+                filelist = sorted(
+                    os.path.join(folder, file)
+                    for file in os.listdir(folder)
+                    if file.lower().endswith((".png", ".jpg", ".jpeg"))
+                    and Path(folder, file).resolve() not in support_paths
+                )
+
                 results: list[InferenceResult] = []
                 print(
-                    "beginning processing"
-                    + f" with model: {self.model}"
-                    + "@resolution: "
-                    + str(resolution)
+                    f"beginning processing folder={folder} model={self.model} @resolution={resolution}"
                 )
-                if filelist:
-                    warmup_image_path = filelist[0]
-                    warmup_image_data = self.encode_image(
-                        Path(warmup_image_path), resolution
-                    )
-                    warmup_examples = None
-                    if self.one_shot:
-                        warmup_examples = [
-                            (label, self.encode_image(path, resolution))
-                            for label, path in example_images_for_folder(
-                                folder, warmup_image_path
-                            )
-                        ]
-                    print(
-                        f"warming up with prompt and "
-                        f"{'examples' if self.one_shot else 'no examples'}"
-                    )
+
+                # Pre-warm Slot 0 once per (test_root, resolution) with a 1-token dummy query
+                prefix_key = (prefix_scope, resolution)
+                if filelist and self._warmed_prefix_key != prefix_key:
+                    print("pre-warming KV prefix cache in slot 0...")
                     wait_for_safe_temperature()
-                    self.request_completion(
-                        warmup_image_data, category_schema, warmup_examples
+                    _, warm_timings = self.request_completion(
+                        static_user_prefix,
+                        dummy_b64,
+                        category_schema,
+                        max_tokens=1,
                     )
+                    print(
+                        f"warmup complete (prompt_n={warm_timings.get('prompt_n')}, "
+                        f"cache_n={warm_timings.get('cache_n')})"
+                    )
+                    self._warmed_prefix_key = prefix_key
 
                 for image_path in filelist:
                     processing_timer = timer_ctx.Timer()
                     inference_timer = timer_ctx.Timer()
                     with processing_timer:
                         image = load_image(image_path, resolution)
-                        image_buffer = io.BytesIO()
-                        image.save(image_buffer, format="jpeg")
-                        image_base64 = base64.b64encode(
-                            image_buffer.getvalue()
-                        ).decode("utf-8")
-                        example_images = None
-                        if self.one_shot:
-                            example_images = [
-                                (label, self.encode_image(path, resolution))
-                                for label, path in example_images_for_folder(
-                                    folder, image_path
-                                )
-                            ]
+                        image_base64 = encode_pil_jpeg_b64(image)
+                        width, height = image.size
+
                     wait_for_safe_temperature()
                     with inference_timer:
-                        response_text = self.request_completion(
-                            image_base64, category_schema, example_images
+                        response_text, timings = self.request_completion(
+                            static_user_prefix,
+                            image_base64,
+                            category_schema,
+                            max_tokens=64,
                         )
-                    width, height = image.size
+
+                    print(
+                        f"{Path(image_path).name}: {inference_timer.elapsed_time:.3f}s "
+                        f"(cache_n={timings.get('cache_n')}, prompt_n={timings.get('prompt_n')})"
+                    )
                     results.append(
                         {
                             "image_path": image_path,
@@ -450,9 +464,11 @@ def main() -> None:
     inference = RunInference(
         prompt, model, prompt_uses_one_shot_examples(args.prompt_file)
     )
-    inference.add_folder(args.folder)
+    for folder in args.folder:
+        inference.add_folder(folder)
     inference.add_resolution(args.resolution)
-    results = inference.run_inference()[0]["results"]
+    scenarios = inference.run_inference()
+    results = [item for scenario in scenarios for item in scenario["results"]]
 
     if args.json_output is not None:
         with open(args.json_output, "w", encoding="utf-8") as output_file:
@@ -480,7 +496,7 @@ def main() -> None:
             )
             writer.writerows(
                 {
-                "model": model,
+                    "model": model,
                     "power_mode": args.power_mode,
                     "shot_mode": shot_mode,
                     **result,
