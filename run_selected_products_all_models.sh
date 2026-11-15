@@ -22,6 +22,7 @@ Options:
       --dataset-dir DIR     Dataset root (default: res/mvtec-ad).
       --prompt-dir DIR      Prompt root (default: res/prompts).
       --shot-mode MODE      Prompt variant: zero or one (default: zero).
+      --exclude-model REGEX Skip served model IDs matching ERE pattern.
   -o, --output-dir DIR      Results root (default: a timestamped directory
                             under test/test-result).
   -h, --help                Show this help and exit.
@@ -30,14 +31,6 @@ Environment:
   PYTHON              Python executable (default: .venv/bin/python, then python3).
   OPENAI_BASE_URL     OpenAI-compatible API URL (default: http://localhost:8080/v1).
   OPENAI_API_KEY      API key (default: ollama).
-
-Example:
-  bash run_selected_products_all_models.sh \
-    --product bottle --product cable --resolution 256 --power-mode 25w
-
-The script queries the API once for its model list, then runs every requested
-product and category with each model. Each product/model pair gets a separate
-results directory. The API must be running before you start the script.
 EOF
 }
 
@@ -52,6 +45,7 @@ power_mode=""
 dataset_dir="res/mvtec-ad"
 prompt_dir="res/prompts"
 shot_mode="zero"
+exclude_model_regex=""
 output_dir=""
 
 while (($#)); do
@@ -85,6 +79,11 @@ while (($#)); do
         --shot-mode)
             (($# >= 2)) || fail "Missing value for $1."
             shot_mode="$2"
+            shift 2
+            ;;
+        --exclude-model)
+            (($# >= 2)) || fail "Missing value for $1."
+            exclude_model_regex="$2"
             shift 2
             ;;
         -o|--output-dir)
@@ -156,13 +155,21 @@ fi
 
 models=()
 while IFS= read -r model; do
-    [[ -n "$model" ]] && models+=("$model")
+    [[ -z "$model" ]] && continue
+    if [[ -n "$exclude_model_regex" && "$model" =~ $exclude_model_regex ]]; then
+        printf 'Skipping excluded model: %s\n' "$model"
+        continue
+    fi
+    models+=("$model")
 done <<< "$model_output"
-((${#models[@]})) || fail "The inference API returned no model IDs."
-printf 'Found %d served model(s): %s\n' "${#models[@]}" "${models[*]}"
+((${#models[@]})) || fail "No runnable models remain after filtering."
+printf 'Running %d served model(s): %s\n' "${#models[@]}" "${models[*]}"
 
+# Pre-validate all product paths and prompts before starting model runs
 image_extensions=( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' )
-run_count=0
+declare -A product_prompt_files=()
+declare -A product_folder_lists=()
+
 for product in "${products[@]}"; do
     test_dir="$dataset_dir/$product/test"
     [[ -d "$test_dir" ]] || fail "Product test directory not found: $test_dir"
@@ -180,23 +187,43 @@ for product in "${products[@]}"; do
     ((${#folders[@]})) || fail "No category image folders found for '$product' under: $test_dir"
 
     printf 'Product %s: found %d image category folder(s).\n' "$product" "${#folders[@]}"
-    for model_index in "${!models[@]}"; do
-        model="${models[$model_index]}"
-        model_slug="$(printf '%s' "$model" | sed 's/[^[:alnum:]._-]/_/g')"
+    product_prompt_files["$product"]="$prompt_file"
+    # Store newline-delimited folder paths per product
+    product_folder_lists["$product"]="$(printf '%s\n' "${folders[@]}")"
+done
+
+# Outer loop over models avoids unloading/reloading weights on every product
+run_count=0
+for model_index in "${!models[@]}"; do
+    model="${models[$model_index]}"
+    model_slug="$(printf '%s' "$model" | sed 's/[^[:alnum:]._-]/_/g')"
+
+    for product in "${products[@]}"; do
         model_dir="$output_dir/$product/model-$((model_index + 1))-$model_slug"
         args=()
-        for folder in "${folders[@]}"; do
-            args+=(--folder "$folder")
-        done
+
+        while IFS= read -r folder; do
+            [[ -n "$folder" ]] && args+=(--folder "$folder")
+        done <<< "${product_folder_lists[$product]}"
+
         for resolution in "${resolutions[@]}"; do
             args+=(--resolution "$resolution")
         done
-        args+=(--prompt-file "$prompt_file" --model "$model" --power-mode "$power_mode")
 
-        printf 'Running product %s with model %s...\n' "$product" "$model"
+        args+=(
+            --prompt-file "${product_prompt_files[$product]}"
+            --model "$model"
+            --power-mode "$power_mode"
+        )
+
+        start_ts=$SECONDS
+        printf 'Running model [%s] on product [%s] (all folders & resolutions in one batch)...\n' \
+            "$model" "$product"
         ./run_tests.sh "${args[@]}" --output-dir "$model_dir"
+        elapsed=$((SECONDS - start_ts))
+        printf 'Finished [%s] on [%s] in %ds.\n' "$model" "$product" "$elapsed"
         run_count=$((run_count + 1))
     done
 done
 
-printf 'Completed %d product/model run(s). Results: %s\n' "$run_count" "$output_dir"
+printf 'Completed %d model/product run(s). Results: %s\n' "$run_count" "$output_dir"
