@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 usage() {
-    cat <<'EOF'
+  cat <<'EOF'
 Run both inference test workflows from the project root.
 
 Usage:
@@ -38,8 +38,8 @@ EOF
 }
 
 fail() {
-    printf 'Error: %s\n' "$*" >&2
-    exit 2
+  printf 'Error: %s\n' "$*" >&2
+  exit 2
 }
 
 folders=()
@@ -51,47 +51,47 @@ power_mode=""
 output_dir=""
 
 while (($#)); do
-    case "$1" in
-        -f|--folder)
-            (($# >= 2)) || fail "Missing value for $1."
-            folders+=("$2")
-            shift 2
-            ;;
-        -r|--resolution)
-            (($# >= 2)) || fail "Missing value for $1."
-            [[ "$2" =~ ^[0-9]+$ ]] || fail "Resolution must be a non-negative integer: $2"
-            resolutions+=("$2")
-            shift 2
-            ;;
-        -p|--prompt-file)
-            (($# >= 2)) || fail "Missing value for $1."
-            prompt_files+=("$2")
-            shift 2
-            ;;
-        -m|--model)
-            (($# >= 2)) || fail "Missing value for $1."
-            model="$2"
-            model_set=1
-            shift 2
-            ;;
-        --power-mode)
-            (($# >= 2)) || fail "Missing value for $1."
-            power_mode="$2"
-            shift 2
-            ;;
-        -o|--output-dir)
-            (($# >= 2)) || fail "Missing value for $1."
-            output_dir="$2"
-            shift 2
-            ;;
-        -h|--help)
-            usage
-            exit 0
-            ;;
-        *)
-            fail "Unknown option: $1 (use --help for usage)."
-            ;;
-    esac
+  case "$1" in
+  -f | --folder)
+    (($# >= 2)) || fail "Missing value for $1."
+    folders+=("$2")
+    shift 2
+    ;;
+  -r | --resolution)
+    (($# >= 2)) || fail "Missing value for $1."
+    [[ "$2" =~ ^[0-9]+$ ]] || fail "Resolution must be a non-negative integer: $2"
+    resolutions+=("$2")
+    shift 2
+    ;;
+  -p | --prompt-file)
+    (($# >= 2)) || fail "Missing value for $1."
+    prompt_files+=("$2")
+    shift 2
+    ;;
+  -m | --model)
+    (($# >= 2)) || fail "Missing value for $1."
+    model="$2"
+    model_set=1
+    shift 2
+    ;;
+  --power-mode)
+    (($# >= 2)) || fail "Missing value for $1."
+    power_mode="$2"
+    shift 2
+    ;;
+  -o | --output-dir)
+    (($# >= 2)) || fail "Missing value for $1."
+    output_dir="$2"
+    shift 2
+    ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  *)
+    fail "Unknown option: $1 (use --help for usage)."
+    ;;
+  esac
 done
 
 ((${#folders[@]})) || fail "Provide at least one --folder."
@@ -99,67 +99,62 @@ done
 ((${#prompt_files[@]})) || fail "Provide at least one --prompt-file."
 [[ -n "$power_mode" ]] || fail "Provide --power-mode."
 if ((model_set)) && [[ -z "$model" ]]; then
-    fail "--model must not be empty."
+  fail "--model must not be empty."
 fi
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir"
 
 for folder in "${folders[@]}"; do
-    [[ -d "$folder" ]] || fail "Image folder does not exist: $folder"
-    if ! find "$folder" -maxdepth 1 -type f \( \
-        -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \
+  [[ -d "$folder" ]] || fail "Image folder does not exist: $folder"
+  if ! find "$folder" -maxdepth 1 -type f \( \
+    -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \
     \) -print -quit | grep -q .; then
-        fail "Image folder contains no PNG/JPG/JPEG files: $folder"
-    fi
+    fail "Image folder contains no PNG/JPG/JPEG files: $folder"
+  fi
 done
 
 for prompt_file in "${prompt_files[@]}"; do
-    [[ -f "$prompt_file" ]] || fail "Prompt file does not exist: $prompt_file"
+  [[ -f "$prompt_file" ]] || fail "Prompt file does not exist: $prompt_file"
 done
 
 if [[ -z "$output_dir" ]]; then
-    output_dir="test/test-result/automated-run-$(date +%Y%m%d-%H%M%S)"
+  output_dir="test/test-result/automated-run-$(date +%Y%m%d-%H%M%S)"
 fi
 
 if [[ -z "${PYTHON:-}" ]]; then
-    if [[ -x "$script_dir/.venv/bin/python" ]]; then
-        PYTHON="$script_dir/.venv/bin/python"
-    else
-        PYTHON="python3"
-    fi
+  if [[ -x "$script_dir/.venv/bin/python" ]]; then
+    PYTHON="$script_dir/.venv/bin/python"
+  else
+    PYTHON="python3"
+  fi
 fi
 if [[ "$PYTHON" == */* ]]; then
-    [[ -x "$PYTHON" ]] || fail "Python executable is not executable: $PYTHON"
+  [[ -x "$PYTHON" ]] || fail "Python executable is not executable: $PYTHON"
 else
-    command -v "$PYTHON" >/dev/null 2>&1 || fail "Python executable not found: $PYTHON"
+  command -v "$PYTHON" >/dev/null 2>&1 || fail "Python executable not found: $PYTHON"
 fi
 mkdir -p "$output_dir"
 
 common_args=()
 for folder in "${folders[@]}"; do
-    common_args+=(--folder "$folder")
+  common_args+=(--folder "$folder")
 done
 for resolution in "${resolutions[@]}"; do
-    common_args+=(--resolution "$resolution")
+  common_args+=(--resolution "$resolution")
 done
 for prompt_file in "${prompt_files[@]}"; do
-    common_args+=(--prompt-file "$prompt_file")
+  common_args+=(--prompt-file "$prompt_file")
 done
 if ((model_set)); then
-    common_args+=(--model "$model")
+  common_args+=(--model "$model")
 fi
 common_args+=(--power-mode "$power_mode")
 
-printf 'Running scaffold results workflow...\n'
-"$PYTHON" src/scaffold_test.py \
-    "${common_args[@]}" \
-    --csv "$output_dir/scaffold-results.csv"
-
 printf 'Running MVTec folder analysis workflow...\n'
 PYTHONPATH="$script_dir/src${PYTHONPATH:+:$PYTHONPATH}" \
-    "$PYTHON" src/mvtec_ad/run_test_folder_analysis.py \
-    "${common_args[@]}" \
-    --csv "$output_dir/folder-analysis.csv"
+  "$PYTHON" src/mvtec_ad/run_test_folder_analysis.py \
+  "${common_args[@]}" \
+  --csv "$output_dir/folder-analysis.csv"
 
 printf 'Both workflows completed. Results: %s\n' "$output_dir"

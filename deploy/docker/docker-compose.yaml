@@ -19,8 +19,10 @@ services:
       - "1"
       - "--temp"
       - "0.2"
-      - "-hf"
-      - "ggml-org/SmolVLM2-2.2B-Instruct-GGUF:Q4_K_M"
+      - "models-max"
+      - "1"
+#      - "-hf"
+#     - "ggml-org/SmolVLM2-2.2B-Instruct-GGUF:Q4_K_M"
       - "--verbosity"
       - "4"
 
