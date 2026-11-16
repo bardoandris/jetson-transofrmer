@@ -313,7 +313,7 @@ class RunInference:
         static_user_prefix: list[ChatCompletionContentPartParam],
         query_image_b64: str,
         category_schema: dict,
-        max_tokens: int = 64,
+        max_tokens: int = 2048,
     ) -> tuple[str, dict]:
         messages: list[ChatCompletionMessageParam] = [
             {
@@ -406,7 +406,7 @@ class RunInference:
                         static_user_prefix,
                         dummy_b64,
                         category_schema,
-                        max_tokens=1,
+                        max_tokens=16,
                     )
                     print(
                         f"warmup complete (prompt_n={warm_timings.get('prompt_n')}, "
@@ -428,7 +428,7 @@ class RunInference:
                             static_user_prefix,
                             image_base64,
                             category_schema,
-                            max_tokens=64,
+                            max_tokens=2048,
                         )
 
                     print(
