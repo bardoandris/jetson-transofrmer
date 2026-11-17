@@ -1,0 +1,4559 @@
+
+=== [2026-11-16 21:32:52] Switching Jetson power mode (nvpmodel -m 0 -> 15W) ===
+Error: /root/.jetsonclocks_conf.txt file not found !
+NV Power Mode: 15W
+0
+
+=== [2026-11-16 21:32:52] Starting 15w benchmark -> test/test-result/15W-multimodel-with-2B-models-optimized ===
+Running 2 served model(s): ggml-org/gemma-4-E2B-it-GGUF:Q4_0 unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL
+Product bottle: found 4 image category folder(s).
+Product cable: found 9 image category folder(s).
+Product transistor: found 5 image category folder(s).
+Running model [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on product [bottle] (all folders & resolutions in one batch)...
+Running MVTec folder analysis workflow...
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=647, cache_n=0)
+0.07 seconds elapsed
+2.47 seconds elapsed
+001.png: 2.466s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+002.png: 2.436s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.45 seconds elapsed
+003.png: 2.455s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.44 seconds elapsed
+004.png: 2.442s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.44 seconds elapsed
+005.png: 2.438s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+006.png: 2.438s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.44 seconds elapsed
+007.png: 2.439s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.432s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.44 seconds elapsed
+009.png: 2.438s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.43 seconds elapsed
+010.png: 2.430s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.45 seconds elapsed
+011.png: 2.446s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.45 seconds elapsed
+012.png: 2.446s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.47 seconds elapsed
+013.png: 2.468s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+014.png: 2.433s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+015.png: 2.431s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.43 seconds elapsed
+016.png: 2.430s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+017.png: 2.432s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.45 seconds elapsed
+018.png: 2.452s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.43 seconds elapsed
+019.png: 2.435s (cache_n=560, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.07 seconds elapsed
+2.43 seconds elapsed
+001.png: 2.431s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.46 seconds elapsed
+002.png: 2.462s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+003.png: 2.433s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.44 seconds elapsed
+004.png: 2.444s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+005.png: 2.422s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.44 seconds elapsed
+006.png: 2.444s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.421s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.434s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.44 seconds elapsed
+009.png: 2.436s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+010.png: 2.422s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+011.png: 2.429s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.44 seconds elapsed
+012.png: 2.442s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.43 seconds elapsed
+013.png: 2.427s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.45 seconds elapsed
+014.png: 2.447s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.48 seconds elapsed
+015.png: 2.480s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+016.png: 2.438s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+017.png: 2.422s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.42 seconds elapsed
+018.png: 2.422s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.46 seconds elapsed
+019.png: 2.462s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.43 seconds elapsed
+020.png: 2.427s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+021.png: 2.413s (cache_n=560, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.33 seconds elapsed
+001.png: 2.332s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.31 seconds elapsed
+002.png: 2.307s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+003.png: 2.313s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+004.png: 2.308s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+005.png: 2.406s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.30 seconds elapsed
+006.png: 2.301s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.424s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.45 seconds elapsed
+008.png: 2.448s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+009.png: 2.414s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.39 seconds elapsed
+010.png: 2.388s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.30 seconds elapsed
+011.png: 2.302s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.32 seconds elapsed
+012.png: 2.323s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.42 seconds elapsed
+013.png: 2.418s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+014.png: 2.441s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.42 seconds elapsed
+015.png: 2.418s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.32 seconds elapsed
+016.png: 2.316s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+017.png: 2.400s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.43 seconds elapsed
+018.png: 2.428s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+019.png: 2.424s (cache_n=560, prompt_n=87)
+0.07 seconds elapsed
+2.30 seconds elapsed
+020.png: 2.303s (cache_n=560, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.32 seconds elapsed
+001.png: 2.322s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.30 seconds elapsed
+002.png: 2.301s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+003.png: 2.308s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+004.png: 2.308s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.33 seconds elapsed
+005.png: 2.334s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.31 seconds elapsed
+006.png: 2.310s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.31 seconds elapsed
+007.png: 2.305s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.32 seconds elapsed
+008.png: 2.315s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.31 seconds elapsed
+009.png: 2.309s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.32 seconds elapsed
+010.png: 2.317s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+011.png: 2.313s (cache_n=560, prompt_n=87)
+0.06 seconds elapsed
+2.30 seconds elapsed
+012.png: 2.302s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+013.png: 2.313s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.32 seconds elapsed
+014.png: 2.317s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.28 seconds elapsed
+015.png: 2.278s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.28 seconds elapsed
+016.png: 2.280s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.30 seconds elapsed
+017.png: 2.296s (cache_n=560, prompt_n=87)
+0.08 seconds elapsed
+2.31 seconds elapsed
+018.png: 2.307s (cache_n=560, prompt_n=87)
+0.05 seconds elapsed
+2.31 seconds elapsed
+019.png: 2.311s (cache_n=560, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=623, cache_n=184)
+0.05 seconds elapsed
+2.68 seconds elapsed
+001.png: 2.678s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.66 seconds elapsed
+002.png: 2.660s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.70 seconds elapsed
+003.png: 2.698s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.71 seconds elapsed
+004.png: 2.708s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.70 seconds elapsed
+005.png: 2.699s (cache_n=720, prompt_n=127)
+0.08 seconds elapsed
+2.70 seconds elapsed
+006.png: 2.695s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.72 seconds elapsed
+007.png: 2.722s (cache_n=720, prompt_n=127)
+0.08 seconds elapsed
+2.71 seconds elapsed
+008.png: 2.705s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.66 seconds elapsed
+009.png: 2.663s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.69 seconds elapsed
+010.png: 2.691s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.62 seconds elapsed
+011.png: 2.615s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+012.png: 2.708s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+013.png: 2.711s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.73 seconds elapsed
+014.png: 2.727s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.72 seconds elapsed
+015.png: 2.717s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.66 seconds elapsed
+016.png: 2.662s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.67 seconds elapsed
+017.png: 2.673s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.70 seconds elapsed
+018.png: 2.704s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.68 seconds elapsed
+019.png: 2.677s (cache_n=720, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.07 seconds elapsed
+2.69 seconds elapsed
+001.png: 2.688s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+002.png: 2.707s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.69 seconds elapsed
+003.png: 2.693s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.67 seconds elapsed
+004.png: 2.667s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.67 seconds elapsed
+005.png: 2.673s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.71 seconds elapsed
+006.png: 2.712s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.67 seconds elapsed
+007.png: 2.673s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.68 seconds elapsed
+008.png: 2.685s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+009.png: 2.705s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+010.png: 2.709s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.67 seconds elapsed
+011.png: 2.668s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.67 seconds elapsed
+012.png: 2.669s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.73 seconds elapsed
+013.png: 2.730s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.68 seconds elapsed
+014.png: 2.676s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.65 seconds elapsed
+015.png: 2.654s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.70 seconds elapsed
+016.png: 2.698s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.70 seconds elapsed
+017.png: 2.699s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.66 seconds elapsed
+018.png: 2.658s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.68 seconds elapsed
+019.png: 2.681s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.72 seconds elapsed
+020.png: 2.722s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.68 seconds elapsed
+021.png: 2.683s (cache_n=720, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.07 seconds elapsed
+2.55 seconds elapsed
+001.png: 2.552s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.61 seconds elapsed
+002.png: 2.613s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.58 seconds elapsed
+003.png: 2.575s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.59 seconds elapsed
+004.png: 2.588s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.54 seconds elapsed
+005.png: 2.538s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.60 seconds elapsed
+006.png: 2.605s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.69 seconds elapsed
+007.png: 2.693s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.57 seconds elapsed
+008.png: 2.569s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.66 seconds elapsed
+009.png: 2.659s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.68 seconds elapsed
+010.png: 2.677s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.54 seconds elapsed
+011.png: 2.540s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.60 seconds elapsed
+012.png: 2.603s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.69 seconds elapsed
+013.png: 2.687s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.72 seconds elapsed
+014.png: 2.723s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+015.png: 2.715s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.59 seconds elapsed
+016.png: 2.592s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.59 seconds elapsed
+017.png: 2.590s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.70 seconds elapsed
+018.png: 2.699s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.58 seconds elapsed
+019.png: 2.580s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.57 seconds elapsed
+020.png: 2.569s (cache_n=720, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.05 seconds elapsed
+2.58 seconds elapsed
+001.png: 2.578s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.61 seconds elapsed
+002.png: 2.615s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.61 seconds elapsed
+003.png: 2.606s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.54 seconds elapsed
+004.png: 2.543s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.56 seconds elapsed
+005.png: 2.562s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.60 seconds elapsed
+006.png: 2.596s (cache_n=720, prompt_n=127)
+0.07 seconds elapsed
+2.62 seconds elapsed
+007.png: 2.623s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.57 seconds elapsed
+008.png: 2.575s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.55 seconds elapsed
+009.png: 2.546s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.56 seconds elapsed
+010.png: 2.562s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.61 seconds elapsed
+011.png: 2.611s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.61 seconds elapsed
+012.png: 2.607s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.57 seconds elapsed
+013.png: 2.568s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.56 seconds elapsed
+014.png: 2.560s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.60 seconds elapsed
+015.png: 2.603s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.58 seconds elapsed
+016.png: 2.580s (cache_n=720, prompt_n=127)
+0.05 seconds elapsed
+2.54 seconds elapsed
+017.png: 2.545s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.56 seconds elapsed
+018.png: 2.563s (cache_n=720, prompt_n=127)
+0.06 seconds elapsed
+2.60 seconds elapsed
+019.png: 2.605s (cache_n=720, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=1583, cache_n=184)
+0.05 seconds elapsed
+4.19 seconds elapsed
+001.png: 4.187s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.19 seconds elapsed
+002.png: 4.194s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.13 seconds elapsed
+003.png: 4.131s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.10 seconds elapsed
+004.png: 4.104s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.13 seconds elapsed
+005.png: 4.133s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.14 seconds elapsed
+006.png: 4.139s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.11 seconds elapsed
+007.png: 4.108s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.17 seconds elapsed
+008.png: 4.165s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.17 seconds elapsed
+009.png: 4.173s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.11 seconds elapsed
+010.png: 4.108s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.11 seconds elapsed
+011.png: 4.105s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.10 seconds elapsed
+012.png: 4.103s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.10 seconds elapsed
+013.png: 4.097s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.14 seconds elapsed
+014.png: 4.139s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.16 seconds elapsed
+015.png: 4.156s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.12 seconds elapsed
+016.png: 4.115s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.15 seconds elapsed
+017.png: 4.149s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.17 seconds elapsed
+018.png: 4.170s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.14 seconds elapsed
+019.png: 4.136s (cache_n=1680, prompt_n=367)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.04 seconds elapsed
+4.10 seconds elapsed
+001.png: 4.104s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.14 seconds elapsed
+002.png: 4.138s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.11 seconds elapsed
+003.png: 4.111s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.12 seconds elapsed
+004.png: 4.115s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.15 seconds elapsed
+005.png: 4.146s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.17 seconds elapsed
+006.png: 4.171s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.17 seconds elapsed
+007.png: 4.169s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.11 seconds elapsed
+008.png: 4.110s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.14 seconds elapsed
+009.png: 4.138s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.09 seconds elapsed
+010.png: 4.094s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.13 seconds elapsed
+011.png: 4.126s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.09 seconds elapsed
+012.png: 4.094s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.14 seconds elapsed
+013.png: 4.139s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.01 seconds elapsed
+014.png: 4.005s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.10 seconds elapsed
+015.png: 4.098s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.12 seconds elapsed
+016.png: 4.119s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.13 seconds elapsed
+017.png: 4.132s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.11 seconds elapsed
+018.png: 4.111s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.13 seconds elapsed
+019.png: 4.129s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.13 seconds elapsed
+020.png: 4.134s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.17 seconds elapsed
+021.png: 4.173s (cache_n=1680, prompt_n=367)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.05 seconds elapsed
+4.00 seconds elapsed
+001.png: 4.004s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.02 seconds elapsed
+002.png: 4.021s (cache_n=1680, prompt_n=367)
+0.06 seconds elapsed
+4.15 seconds elapsed
+003.png: 4.155s (cache_n=1680, prompt_n=367)
+0.06 seconds elapsed
+4.03 seconds elapsed
+004.png: 4.032s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.04 seconds elapsed
+005.png: 4.040s (cache_n=1680, prompt_n=367)
+0.06 seconds elapsed
+4.03 seconds elapsed
+006.png: 4.034s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.15 seconds elapsed
+007.png: 4.149s (cache_n=1680, prompt_n=367)
+0.06 seconds elapsed
+4.01 seconds elapsed
+008.png: 4.008s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+009.png: 4.026s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.04 seconds elapsed
+010.png: 4.044s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+011.png: 4.033s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+012.png: 4.028s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.02 seconds elapsed
+013.png: 4.018s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+3.99 seconds elapsed
+014.png: 3.989s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.12 seconds elapsed
+015.png: 4.123s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.02 seconds elapsed
+016.png: 4.015s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.00 seconds elapsed
+017.png: 4.001s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.15 seconds elapsed
+018.png: 4.148s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+019.png: 4.029s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.05 seconds elapsed
+020.png: 4.047s (cache_n=1680, prompt_n=367)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.04 seconds elapsed
+4.02 seconds elapsed
+001.png: 4.018s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.03 seconds elapsed
+002.png: 4.032s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+3.98 seconds elapsed
+003.png: 3.978s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+3.98 seconds elapsed
+004.png: 3.984s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.02 seconds elapsed
+005.png: 4.020s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.01 seconds elapsed
+006.png: 4.008s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.00 seconds elapsed
+007.png: 3.996s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+3.98 seconds elapsed
+008.png: 3.981s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.02 seconds elapsed
+009.png: 4.020s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.01 seconds elapsed
+010.png: 4.008s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+011.png: 4.033s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+3.99 seconds elapsed
+012.png: 3.995s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+3.97 seconds elapsed
+013.png: 3.972s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.00 seconds elapsed
+014.png: 3.996s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+015.png: 4.030s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+4.03 seconds elapsed
+016.png: 4.035s (cache_n=1680, prompt_n=367)
+0.05 seconds elapsed
+3.98 seconds elapsed
+017.png: 3.982s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+3.97 seconds elapsed
+018.png: 3.965s (cache_n=1680, prompt_n=367)
+0.04 seconds elapsed
+4.00 seconds elapsed
+019.png: 4.002s (cache_n=1680, prompt_n=367)
+Both workflows completed. Results: test/test-result/15W-multimodel-with-2B-models-optimized/bottle/model-1-ggml-org_gemma-4-E2B-it-GGUF_Q4_0
+Finished [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on [bottle] in 803s.
+Running model [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on product [cable] (all folders & resolutions in one batch)...
+Running MVTec folder analysis workflow...
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=1152, cache_n=12)
+0.09 seconds elapsed
+2.59 seconds elapsed
+001.png: 2.587s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.45 seconds elapsed
+002.png: 2.448s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.52 seconds elapsed
+003.png: 2.521s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.54 seconds elapsed
+004.png: 2.538s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.52 seconds elapsed
+005.png: 2.524s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.53 seconds elapsed
+006.png: 2.530s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.421s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+008.png: 2.398s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.41 seconds elapsed
+009.png: 2.409s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.52 seconds elapsed
+010.png: 2.519s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.54 seconds elapsed
+011.png: 2.539s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.55 seconds elapsed
+012.png: 2.552s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cable_swap model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.42 seconds elapsed
+001.png: 2.423s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+002.png: 2.419s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+003.png: 2.425s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+004.png: 2.424s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+005.png: 2.433s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+006.png: 2.453s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.422s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.39 seconds elapsed
+008.png: 2.386s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+009.png: 2.424s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.41 seconds elapsed
+010.png: 2.405s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+011.png: 2.419s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/combined model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.07 seconds elapsed
+2.54 seconds elapsed
+001.png: 2.537s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+002.png: 2.422s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.44 seconds elapsed
+003.png: 2.444s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+004.png: 2.419s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.53 seconds elapsed
+005.png: 2.528s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.55 seconds elapsed
+006.png: 2.546s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+007.png: 2.426s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.434s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.45 seconds elapsed
+009.png: 2.448s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.70 seconds elapsed
+010.png: 2.699s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_inner_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.40 seconds elapsed
+001.png: 2.400s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.40 seconds elapsed
+002.png: 2.404s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+003.png: 2.416s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+004.png: 2.452s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.42 seconds elapsed
+005.png: 2.417s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.41 seconds elapsed
+006.png: 2.408s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.423s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.433s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+009.png: 2.429s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+010.png: 2.418s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+011.png: 2.431s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+012.png: 2.409s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+013.png: 2.423s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_outer_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.09 seconds elapsed
+2.71 seconds elapsed
+001.png: 2.707s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.44 seconds elapsed
+002.png: 2.437s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+003.png: 2.422s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+004.png: 2.441s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+005.png: 2.413s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+006.png: 2.419s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+007.png: 2.429s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.433s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.46 seconds elapsed
+009.png: 2.458s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.40 seconds elapsed
+001.png: 2.405s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+002.png: 2.422s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+003.png: 2.424s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.46 seconds elapsed
+004.png: 2.463s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.43 seconds elapsed
+005.png: 2.431s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+006.png: 2.445s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.425s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+008.png: 2.436s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+009.png: 2.405s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+010.png: 2.450s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.43 seconds elapsed
+011.png: 2.428s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+012.png: 2.439s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+013.png: 2.411s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+014.png: 2.438s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+015.png: 2.434s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+016.png: 2.434s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+017.png: 2.417s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+018.png: 2.437s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+019.png: 2.433s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+020.png: 2.431s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.44 seconds elapsed
+021.png: 2.435s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+022.png: 2.418s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.44 seconds elapsed
+023.png: 2.438s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+024.png: 2.449s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+025.png: 2.410s (cache_n=1077, prompt_n=87)
+0.07 seconds elapsed
+2.42 seconds elapsed
+026.png: 2.424s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+027.png: 2.417s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+028.png: 2.434s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+029.png: 2.423s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+030.png: 2.416s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+031.png: 2.422s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.45 seconds elapsed
+032.png: 2.448s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+033.png: 2.431s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+034.png: 2.404s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+035.png: 2.420s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+036.png: 2.416s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+037.png: 2.424s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+038.png: 2.424s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+039.png: 2.418s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.44 seconds elapsed
+040.png: 2.435s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+041.png: 2.443s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+042.png: 2.403s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+043.png: 2.429s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+044.png: 2.415s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+045.png: 2.451s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+046.png: 2.444s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+047.png: 2.414s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+048.png: 2.442s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+049.png: 2.422s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+050.png: 2.422s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+051.png: 2.408s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+052.png: 2.442s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+053.png: 2.437s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.42 seconds elapsed
+054.png: 2.422s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+055.png: 2.418s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+056.png: 2.439s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+057.png: 2.414s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_cable model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.10 seconds elapsed
+2.71 seconds elapsed
+001.png: 2.710s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.71 seconds elapsed
+002.png: 2.706s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.43 seconds elapsed
+003.png: 2.426s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+004.png: 2.426s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.42 seconds elapsed
+005.png: 2.417s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.74 seconds elapsed
+006.png: 2.737s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.50 seconds elapsed
+007.png: 2.501s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.73 seconds elapsed
+008.png: 2.731s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.54 seconds elapsed
+009.png: 2.542s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+010.png: 2.441s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.53 seconds elapsed
+011.png: 2.532s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.09 seconds elapsed
+2.43 seconds elapsed
+001.png: 2.429s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.41 seconds elapsed
+002.png: 2.411s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+003.png: 2.431s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.39 seconds elapsed
+004.png: 2.390s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.42 seconds elapsed
+005.png: 2.421s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.40 seconds elapsed
+006.png: 2.405s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+007.png: 2.425s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.42 seconds elapsed
+008.png: 2.421s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.45 seconds elapsed
+009.png: 2.451s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/poke_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.07 seconds elapsed
+2.41 seconds elapsed
+001.png: 2.415s (cache_n=1077, prompt_n=87)
+0.10 seconds elapsed
+2.44 seconds elapsed
+002.png: 2.440s (cache_n=1077, prompt_n=87)
+0.09 seconds elapsed
+2.43 seconds elapsed
+003.png: 2.431s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.44 seconds elapsed
+004.png: 2.441s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+005.png: 2.411s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.41 seconds elapsed
+006.png: 2.408s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+007.png: 2.428s (cache_n=1077, prompt_n=87)
+0.11 seconds elapsed
+2.43 seconds elapsed
+008.png: 2.433s (cache_n=1077, prompt_n=87)
+0.08 seconds elapsed
+2.43 seconds elapsed
+009.png: 2.428s (cache_n=1077, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=1305, cache_n=219)
+0.13 seconds elapsed
+2.91 seconds elapsed
+001.png: 2.911s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.80 seconds elapsed
+002.png: 2.799s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.74 seconds elapsed
+003.png: 2.737s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.86 seconds elapsed
+004.png: 2.862s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.89 seconds elapsed
+005.png: 2.893s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.87 seconds elapsed
+006.png: 2.874s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.75 seconds elapsed
+007.png: 2.754s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.78 seconds elapsed
+008.png: 2.777s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.88 seconds elapsed
+009.png: 2.883s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.87 seconds elapsed
+010.png: 2.867s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.89 seconds elapsed
+011.png: 2.888s (cache_n=1437, prompt_n=127)
+0.16 seconds elapsed
+2.87 seconds elapsed
+012.png: 2.875s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cable_swap model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.11 seconds elapsed
+2.79 seconds elapsed
+001.png: 2.795s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+002.png: 2.771s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.76 seconds elapsed
+003.png: 2.760s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.77 seconds elapsed
+004.png: 2.769s (cache_n=1437, prompt_n=127)
+0.17 seconds elapsed
+2.79 seconds elapsed
+005.png: 2.789s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.76 seconds elapsed
+006.png: 2.757s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.77 seconds elapsed
+007.png: 2.771s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.73 seconds elapsed
+008.png: 2.734s (cache_n=1437, prompt_n=127)
+0.16 seconds elapsed
+2.76 seconds elapsed
+009.png: 2.759s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.79 seconds elapsed
+010.png: 2.795s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.76 seconds elapsed
+011.png: 2.760s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/combined model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.14 seconds elapsed
+2.87 seconds elapsed
+001.png: 2.867s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+002.png: 2.771s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+003.png: 2.770s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.79 seconds elapsed
+004.png: 2.790s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.78 seconds elapsed
+005.png: 2.776s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.87 seconds elapsed
+006.png: 2.870s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+007.png: 2.769s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.87 seconds elapsed
+008.png: 2.866s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+009.png: 2.773s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.86 seconds elapsed
+010.png: 2.863s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_inner_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.14 seconds elapsed
+2.77 seconds elapsed
+001.png: 2.770s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.75 seconds elapsed
+002.png: 2.748s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.75 seconds elapsed
+003.png: 2.753s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.78 seconds elapsed
+004.png: 2.780s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.79 seconds elapsed
+005.png: 2.785s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.75 seconds elapsed
+006.png: 2.751s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.77 seconds elapsed
+007.png: 2.769s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.76 seconds elapsed
+008.png: 2.763s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.76 seconds elapsed
+009.png: 2.762s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.72 seconds elapsed
+010.png: 2.725s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.74 seconds elapsed
+011.png: 2.740s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.76 seconds elapsed
+012.png: 2.755s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.77 seconds elapsed
+013.png: 2.772s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_outer_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.12 seconds elapsed
+3.07 seconds elapsed
+001.png: 3.071s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.78 seconds elapsed
+002.png: 2.781s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.77 seconds elapsed
+003.png: 2.766s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.78 seconds elapsed
+004.png: 2.776s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+3.08 seconds elapsed
+005.png: 3.084s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.76 seconds elapsed
+006.png: 2.755s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+3.05 seconds elapsed
+007.png: 3.048s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.78 seconds elapsed
+008.png: 2.779s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+009.png: 2.767s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.10 seconds elapsed
+2.78 seconds elapsed
+001.png: 2.777s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.78 seconds elapsed
+002.png: 2.779s (cache_n=1437, prompt_n=127)
+0.16 seconds elapsed
+2.75 seconds elapsed
+003.png: 2.753s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.78 seconds elapsed
+004.png: 2.779s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.79 seconds elapsed
+005.png: 2.791s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.76 seconds elapsed
+006.png: 2.759s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.77 seconds elapsed
+007.png: 2.772s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.79 seconds elapsed
+008.png: 2.786s (cache_n=1437, prompt_n=127)
+0.16 seconds elapsed
+2.77 seconds elapsed
+009.png: 2.767s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.76 seconds elapsed
+010.png: 2.755s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.78 seconds elapsed
+011.png: 2.784s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.78 seconds elapsed
+012.png: 2.785s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+013.png: 2.765s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.81 seconds elapsed
+014.png: 2.808s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.79 seconds elapsed
+015.png: 2.790s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.75 seconds elapsed
+016.png: 2.752s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.79 seconds elapsed
+017.png: 2.791s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.76 seconds elapsed
+018.png: 2.757s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+019.png: 2.767s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+020.png: 2.774s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.76 seconds elapsed
+021.png: 2.757s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+022.png: 2.772s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.80 seconds elapsed
+023.png: 2.795s (cache_n=1437, prompt_n=127)
+0.16 seconds elapsed
+2.73 seconds elapsed
+024.png: 2.732s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.73 seconds elapsed
+025.png: 2.732s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.76 seconds elapsed
+026.png: 2.765s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.78 seconds elapsed
+027.png: 2.779s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.76 seconds elapsed
+028.png: 2.757s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+029.png: 2.766s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.76 seconds elapsed
+030.png: 2.765s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.73 seconds elapsed
+031.png: 2.732s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.77 seconds elapsed
+032.png: 2.767s (cache_n=1437, prompt_n=127)
+0.11 seconds elapsed
+2.79 seconds elapsed
+033.png: 2.789s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.74 seconds elapsed
+034.png: 2.739s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.75 seconds elapsed
+035.png: 2.755s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.76 seconds elapsed
+036.png: 2.757s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.77 seconds elapsed
+037.png: 2.775s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.77 seconds elapsed
+038.png: 2.768s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+039.png: 2.763s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.78 seconds elapsed
+040.png: 2.781s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+041.png: 2.763s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.75 seconds elapsed
+042.png: 2.754s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.75 seconds elapsed
+043.png: 2.754s (cache_n=1437, prompt_n=127)
+0.10 seconds elapsed
+2.77 seconds elapsed
+044.png: 2.774s (cache_n=1437, prompt_n=127)
+0.13 seconds elapsed
+2.80 seconds elapsed
+045.png: 2.797s (cache_n=1437, prompt_n=127)
+0.15 seconds elapsed
+2.77 seconds elapsed
+046.png: 2.766s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.80 seconds elapsed
+047.png: 2.804s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.78 seconds elapsed
+048.png: 2.780s (cache_n=1437, prompt_n=127)
+0.14 seconds elapsed
+2.76 seconds elapsed
+049.png: 2.758s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.79 seconds elapsed
+050.png: 2.789s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.74 seconds elapsed
+051.png: 2.741s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+052.png: 2.760s (cache_n=1437, prompt_n=127)
+0.12 seconds elapsed
+2.75 seconds elapsed
+053.png: 2.749s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.79 seconds elapsed
+054.png: 2.785s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.79 seconds elapsed
+055.png: 2.788s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+056.png: 2.764s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.77 seconds elapsed
+057.png: 2.774s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_cable model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.89 seconds elapsed
+001.png: 2.891s (cache_n=1437, prompt_n=127)
+0.07 seconds elapsed
+3.04 seconds elapsed
+002.png: 3.040s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.87 seconds elapsed
+003.png: 2.866s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.89 seconds elapsed
+004.png: 2.889s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.92 seconds elapsed
+005.png: 2.920s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.89 seconds elapsed
+006.png: 2.886s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.87 seconds elapsed
+007.png: 2.873s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+3.05 seconds elapsed
+008.png: 3.054s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.88 seconds elapsed
+009.png: 2.884s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.90 seconds elapsed
+010.png: 2.899s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.89 seconds elapsed
+011.png: 2.891s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.79 seconds elapsed
+001.png: 2.789s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.74 seconds elapsed
+002.png: 2.740s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.77 seconds elapsed
+003.png: 2.773s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.74 seconds elapsed
+004.png: 2.735s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.77 seconds elapsed
+005.png: 2.775s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.78 seconds elapsed
+006.png: 2.779s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.81 seconds elapsed
+007.png: 2.806s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+008.png: 2.765s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+009.png: 2.763s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/poke_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.74 seconds elapsed
+001.png: 2.745s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.79 seconds elapsed
+002.png: 2.786s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+003.png: 2.756s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.75 seconds elapsed
+004.png: 2.748s (cache_n=1437, prompt_n=127)
+0.09 seconds elapsed
+2.76 seconds elapsed
+005.png: 2.759s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+006.png: 2.758s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+007.png: 2.763s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.79 seconds elapsed
+008.png: 2.785s (cache_n=1437, prompt_n=127)
+0.08 seconds elapsed
+2.76 seconds elapsed
+009.png: 2.762s (cache_n=1437, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=4185, cache_n=219)
+0.07 seconds elapsed
+5.36 seconds elapsed
+001.png: 5.360s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.36 seconds elapsed
+002.png: 5.362s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+003.png: 5.263s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+004.png: 5.301s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+005.png: 5.270s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+006.png: 5.309s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+007.png: 5.279s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+008.png: 5.284s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+009.png: 5.290s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+010.png: 5.283s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.24 seconds elapsed
+011.png: 5.239s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+012.png: 5.291s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cable_swap model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.29 seconds elapsed
+001.png: 5.287s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+002.png: 5.319s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+003.png: 5.285s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+004.png: 5.286s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+005.png: 5.267s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+006.png: 5.299s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+007.png: 5.263s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+008.png: 5.272s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+009.png: 5.303s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+010.png: 5.305s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+011.png: 5.279s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/combined model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.31 seconds elapsed
+001.png: 5.308s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+002.png: 5.275s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+003.png: 5.270s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+004.png: 5.260s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+005.png: 5.320s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+006.png: 5.248s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+007.png: 5.290s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+008.png: 5.281s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+009.png: 5.275s (cache_n=4317, prompt_n=447)
+0.06 seconds elapsed
+5.26 seconds elapsed
+010.png: 5.258s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_inner_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.34 seconds elapsed
+001.png: 5.336s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+002.png: 5.286s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+003.png: 5.254s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+004.png: 5.273s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+005.png: 5.300s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+006.png: 5.291s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+007.png: 5.301s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+008.png: 5.312s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+009.png: 5.319s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.23 seconds elapsed
+010.png: 5.235s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+011.png: 5.297s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+012.png: 5.295s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.33 seconds elapsed
+013.png: 5.332s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_outer_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.25 seconds elapsed
+001.png: 5.252s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+002.png: 5.313s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+003.png: 5.315s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+004.png: 5.307s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+005.png: 5.273s (cache_n=4317, prompt_n=447)
+0.08 seconds elapsed
+5.30 seconds elapsed
+006.png: 5.296s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+007.png: 5.254s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+008.png: 5.270s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+009.png: 5.300s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.32 seconds elapsed
+001.png: 5.320s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+002.png: 5.278s (cache_n=4317, prompt_n=447)
+0.06 seconds elapsed
+5.31 seconds elapsed
+003.png: 5.312s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+004.png: 5.274s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+005.png: 5.282s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+006.png: 5.248s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+007.png: 5.321s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+008.png: 5.278s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+009.png: 5.295s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+010.png: 5.259s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.77 seconds elapsed
+011.png: 5.773s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.24 seconds elapsed
+012.png: 5.243s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+013.png: 5.272s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+014.png: 5.284s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+015.png: 5.301s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+016.png: 5.252s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+017.png: 5.309s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+018.png: 5.268s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+019.png: 5.305s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.24 seconds elapsed
+020.png: 5.241s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+021.png: 5.321s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+022.png: 5.272s (cache_n=4317, prompt_n=447)
+0.06 seconds elapsed
+5.27 seconds elapsed
+023.png: 5.275s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+024.png: 5.293s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+025.png: 5.302s (cache_n=4317, prompt_n=447)
+0.06 seconds elapsed
+5.25 seconds elapsed
+026.png: 5.248s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+027.png: 5.305s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+028.png: 5.296s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+029.png: 5.307s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+030.png: 5.259s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+031.png: 5.292s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+032.png: 5.300s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+033.png: 5.322s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+034.png: 5.274s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+035.png: 5.289s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+036.png: 5.263s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+037.png: 5.287s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+038.png: 5.281s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.34 seconds elapsed
+039.png: 5.336s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+040.png: 5.267s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+041.png: 5.269s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+042.png: 5.259s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+043.png: 5.304s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+044.png: 5.263s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+045.png: 5.304s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+046.png: 5.276s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+047.png: 5.311s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+048.png: 5.260s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+049.png: 5.295s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+050.png: 5.276s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+051.png: 5.299s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.23 seconds elapsed
+052.png: 5.235s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.33 seconds elapsed
+053.png: 5.331s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+054.png: 5.266s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+055.png: 5.284s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+056.png: 5.252s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+057.png: 5.299s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_cable model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.27 seconds elapsed
+001.png: 5.272s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.34 seconds elapsed
+002.png: 5.340s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+003.png: 5.254s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+004.png: 5.304s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+005.png: 5.276s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+006.png: 5.281s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+007.png: 5.274s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.33 seconds elapsed
+008.png: 5.335s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+009.png: 5.264s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+010.png: 5.285s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.27 seconds elapsed
+011.png: 5.273s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_wire model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.30 seconds elapsed
+001.png: 5.299s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+002.png: 5.278s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+003.png: 5.308s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.31 seconds elapsed
+004.png: 5.306s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+005.png: 5.303s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.24 seconds elapsed
+006.png: 5.245s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+007.png: 5.315s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.32 seconds elapsed
+008.png: 5.317s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+009.png: 5.298s (cache_n=4317, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/poke_insulation model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+5.24 seconds elapsed
+001.png: 5.242s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+002.png: 5.288s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.29 seconds elapsed
+003.png: 5.294s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+004.png: 5.283s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.25 seconds elapsed
+005.png: 5.246s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+006.png: 5.299s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.28 seconds elapsed
+007.png: 5.282s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.30 seconds elapsed
+008.png: 5.298s (cache_n=4317, prompt_n=447)
+0.07 seconds elapsed
+5.26 seconds elapsed
+009.png: 5.262s (cache_n=4317, prompt_n=447)
+Both workflows completed. Results: test/test-result/15W-multimodel-with-2B-models-optimized/cable/model-1-ggml-org_gemma-4-E2B-it-GGUF_Q4_0
+Finished [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on [cable] in 1566s.
+Running model [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on product [transistor] (all folders & resolutions in one batch)...
+Running MVTec folder analysis workflow...
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/bent_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=740, cache_n=12)
+0.08 seconds elapsed
+2.37 seconds elapsed
+001.png: 2.372s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.37 seconds elapsed
+002.png: 2.367s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.36 seconds elapsed
+003.png: 2.357s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.36 seconds elapsed
+004.png: 2.356s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+005.png: 2.367s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.35 seconds elapsed
+006.png: 2.353s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.35 seconds elapsed
+007.png: 2.353s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.39 seconds elapsed
+008.png: 2.388s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.34 seconds elapsed
+009.png: 2.337s (cache_n=665, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/cut_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.11 seconds elapsed
+2.37 seconds elapsed
+001.png: 2.366s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.36 seconds elapsed
+002.png: 2.357s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.36 seconds elapsed
+003.png: 2.361s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.36 seconds elapsed
+004.png: 2.357s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.35 seconds elapsed
+005.png: 2.352s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.40 seconds elapsed
+006.png: 2.396s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+007.png: 2.346s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+008.png: 2.354s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.34 seconds elapsed
+009.png: 2.344s (cache_n=665, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/damaged_case model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.07 seconds elapsed
+2.48 seconds elapsed
+001.png: 2.482s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.38 seconds elapsed
+002.png: 2.376s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.49 seconds elapsed
+003.png: 2.492s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+004.png: 2.352s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.39 seconds elapsed
+005.png: 2.393s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.38 seconds elapsed
+006.png: 2.377s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.37 seconds elapsed
+007.png: 2.370s (cache_n=665, prompt_n=87)
+0.09 seconds elapsed
+2.37 seconds elapsed
+008.png: 2.371s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.49 seconds elapsed
+009.png: 2.488s (cache_n=665, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.10 seconds elapsed
+2.36 seconds elapsed
+001.png: 2.360s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.36 seconds elapsed
+002.png: 2.355s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+003.png: 2.360s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.39 seconds elapsed
+004.png: 2.386s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.33 seconds elapsed
+005.png: 2.330s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.34 seconds elapsed
+006.png: 2.343s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+007.png: 2.355s (cache_n=665, prompt_n=87)
+0.09 seconds elapsed
+2.35 seconds elapsed
+008.png: 2.352s (cache_n=665, prompt_n=87)
+0.09 seconds elapsed
+2.38 seconds elapsed
+009.png: 2.381s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.34 seconds elapsed
+010.png: 2.341s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.35 seconds elapsed
+011.png: 2.348s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.37 seconds elapsed
+012.png: 2.375s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.34 seconds elapsed
+013.png: 2.339s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.38 seconds elapsed
+014.png: 2.380s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.36 seconds elapsed
+015.png: 2.357s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.35 seconds elapsed
+016.png: 2.347s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+017.png: 2.369s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.34 seconds elapsed
+018.png: 2.341s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.39 seconds elapsed
+019.png: 2.387s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+020.png: 2.371s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+021.png: 2.348s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+022.png: 2.359s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.34 seconds elapsed
+023.png: 2.341s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.37 seconds elapsed
+024.png: 2.367s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+025.png: 2.349s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.36 seconds elapsed
+026.png: 2.356s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.36 seconds elapsed
+027.png: 2.362s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+028.png: 2.368s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+029.png: 2.353s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+030.png: 2.372s (cache_n=665, prompt_n=87)
+0.09 seconds elapsed
+2.38 seconds elapsed
+031.png: 2.380s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+032.png: 2.354s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.35 seconds elapsed
+033.png: 2.348s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.34 seconds elapsed
+034.png: 2.344s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.34 seconds elapsed
+035.png: 2.343s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.36 seconds elapsed
+036.png: 2.358s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.34 seconds elapsed
+037.png: 2.343s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.37 seconds elapsed
+038.png: 2.372s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.37 seconds elapsed
+039.png: 2.368s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.34 seconds elapsed
+040.png: 2.343s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+041.png: 2.358s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.32 seconds elapsed
+042.png: 2.324s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.35 seconds elapsed
+043.png: 2.351s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+044.png: 2.365s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.33 seconds elapsed
+045.png: 2.326s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.39 seconds elapsed
+046.png: 2.386s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+047.png: 2.364s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+048.png: 2.350s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.35 seconds elapsed
+049.png: 2.346s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.37 seconds elapsed
+050.png: 2.371s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.35 seconds elapsed
+051.png: 2.350s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+052.png: 2.365s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+053.png: 2.355s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+054.png: 2.351s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+055.png: 2.355s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.36 seconds elapsed
+056.png: 2.360s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.35 seconds elapsed
+057.png: 2.354s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.37 seconds elapsed
+058.png: 2.369s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.40 seconds elapsed
+059.png: 2.399s (cache_n=665, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/misplaced model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=256
+0.08 seconds elapsed
+2.35 seconds elapsed
+001.png: 2.353s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.34 seconds elapsed
+002.png: 2.339s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.35 seconds elapsed
+003.png: 2.352s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.35 seconds elapsed
+004.png: 2.352s (cache_n=665, prompt_n=87)
+0.11 seconds elapsed
+2.38 seconds elapsed
+005.png: 2.381s (cache_n=665, prompt_n=87)
+0.08 seconds elapsed
+2.35 seconds elapsed
+006.png: 2.351s (cache_n=665, prompt_n=87)
+0.09 seconds elapsed
+2.37 seconds elapsed
+007.png: 2.368s (cache_n=665, prompt_n=87)
+0.10 seconds elapsed
+2.36 seconds elapsed
+008.png: 2.364s (cache_n=665, prompt_n=87)
+0.07 seconds elapsed
+2.37 seconds elapsed
+009.png: 2.371s (cache_n=665, prompt_n=87)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/bent_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=759, cache_n=193)
+0.08 seconds elapsed
+2.56 seconds elapsed
+001.png: 2.562s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+002.png: 2.600s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+003.png: 2.582s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+004.png: 2.583s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+005.png: 2.593s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+006.png: 2.597s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+007.png: 2.578s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+008.png: 2.573s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+009.png: 2.570s (cache_n=865, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/cut_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.59 seconds elapsed
+001.png: 2.594s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+002.png: 2.611s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+003.png: 2.607s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+004.png: 2.591s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+005.png: 2.561s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+006.png: 2.604s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.55 seconds elapsed
+007.png: 2.553s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.62 seconds elapsed
+008.png: 2.617s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+009.png: 2.588s (cache_n=865, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/damaged_case model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.70 seconds elapsed
+001.png: 2.703s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+002.png: 2.572s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.72 seconds elapsed
+003.png: 2.721s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.69 seconds elapsed
+004.png: 2.693s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+005.png: 2.574s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+006.png: 2.586s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+007.png: 2.577s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.66 seconds elapsed
+008.png: 2.659s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.68 seconds elapsed
+009.png: 2.677s (cache_n=865, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.55 seconds elapsed
+001.png: 2.547s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+002.png: 2.594s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+003.png: 2.556s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+004.png: 2.611s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+005.png: 2.605s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+006.png: 2.575s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+007.png: 2.598s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+008.png: 2.541s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+009.png: 2.593s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+010.png: 2.583s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+011.png: 2.602s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+012.png: 2.599s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+013.png: 2.579s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+014.png: 2.574s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+015.png: 2.544s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+016.png: 2.601s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+017.png: 2.598s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+018.png: 2.601s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+019.png: 2.611s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+020.png: 2.570s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+021.png: 2.603s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+022.png: 2.558s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+023.png: 2.587s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+024.png: 2.602s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+025.png: 2.606s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+026.png: 2.612s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+027.png: 2.539s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+028.png: 2.573s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+029.png: 2.556s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+030.png: 2.596s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+031.png: 2.609s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+032.png: 2.603s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+033.png: 2.613s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+034.png: 2.579s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+035.png: 2.556s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.55 seconds elapsed
+036.png: 2.551s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+037.png: 2.604s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+038.png: 2.601s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+039.png: 2.576s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+040.png: 2.585s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+041.png: 2.572s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+042.png: 2.572s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+043.png: 2.596s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+044.png: 2.608s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+045.png: 2.572s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+046.png: 2.593s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+047.png: 2.537s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+048.png: 2.557s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+049.png: 2.589s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+050.png: 2.593s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+051.png: 2.602s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+052.png: 2.575s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+053.png: 2.543s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.55 seconds elapsed
+054.png: 2.553s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.61 seconds elapsed
+055.png: 2.610s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+056.png: 2.588s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.58 seconds elapsed
+057.png: 2.582s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.57 seconds elapsed
+058.png: 2.573s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.56 seconds elapsed
+059.png: 2.560s (cache_n=865, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/misplaced model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=512
+0.08 seconds elapsed
+2.57 seconds elapsed
+001.png: 2.572s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+002.png: 2.590s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+003.png: 2.602s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+004.png: 2.590s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.60 seconds elapsed
+005.png: 2.600s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.59 seconds elapsed
+006.png: 2.589s (cache_n=865, prompt_n=127)
+0.07 seconds elapsed
+2.58 seconds elapsed
+007.png: 2.576s (cache_n=865, prompt_n=127)
+0.07 seconds elapsed
+2.71 seconds elapsed
+008.png: 2.709s (cache_n=865, prompt_n=127)
+0.08 seconds elapsed
+2.54 seconds elapsed
+009.png: 2.544s (cache_n=865, prompt_n=127)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/bent_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=2359, cache_n=193)
+0.07 seconds elapsed
+4.75 seconds elapsed
+001.png: 4.754s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.73 seconds elapsed
+002.png: 4.730s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+003.png: 4.717s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+004.png: 4.698s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+005.png: 4.701s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.73 seconds elapsed
+006.png: 4.730s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+007.png: 4.714s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.77 seconds elapsed
+008.png: 4.774s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+009.png: 4.695s (cache_n=2465, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/cut_lead model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+4.73 seconds elapsed
+001.png: 4.725s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+002.png: 4.713s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+003.png: 4.697s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+004.png: 4.719s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.73 seconds elapsed
+005.png: 4.732s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+006.png: 4.718s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+007.png: 4.707s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.73 seconds elapsed
+008.png: 4.735s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+009.png: 4.711s (cache_n=2465, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/damaged_case model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.08 seconds elapsed
+4.83 seconds elapsed
+001.png: 4.829s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+002.png: 4.695s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.82 seconds elapsed
+003.png: 4.822s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.79 seconds elapsed
+004.png: 4.791s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+005.png: 4.704s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+006.png: 4.689s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+007.png: 4.693s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.80 seconds elapsed
+008.png: 4.801s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.83 seconds elapsed
+009.png: 4.830s (cache_n=2465, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/good model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+4.73 seconds elapsed
+001.png: 4.728s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.70 seconds elapsed
+002.png: 4.696s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+003.png: 4.723s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+004.png: 4.707s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+005.png: 4.703s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.71 seconds elapsed
+006.png: 4.706s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+007.png: 4.700s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+008.png: 4.688s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+009.png: 4.699s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.70 seconds elapsed
+010.png: 4.696s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+011.png: 4.684s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+012.png: 4.694s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.67 seconds elapsed
+013.png: 4.666s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+014.png: 4.711s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.67 seconds elapsed
+015.png: 4.673s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+016.png: 4.689s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+5.20 seconds elapsed
+017.png: 5.204s (cache_n=2465, prompt_n=447)
+0.09 seconds elapsed
+4.71 seconds elapsed
+018.png: 4.708s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.67 seconds elapsed
+019.png: 4.669s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+020.png: 4.690s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+021.png: 4.704s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+022.png: 4.720s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.67 seconds elapsed
+023.png: 4.672s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+024.png: 4.694s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+025.png: 4.722s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+026.png: 4.717s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+027.png: 4.710s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+028.png: 4.705s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+029.png: 4.705s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+030.png: 4.699s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+031.png: 4.710s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+032.png: 4.690s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+5.21 seconds elapsed
+033.png: 5.212s (cache_n=2465, prompt_n=447)
+0.09 seconds elapsed
+4.68 seconds elapsed
+034.png: 4.679s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.72 seconds elapsed
+035.png: 4.716s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+036.png: 4.684s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+037.png: 4.677s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+038.png: 4.699s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+039.png: 4.701s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+040.png: 4.698s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.66 seconds elapsed
+041.png: 4.659s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+042.png: 4.690s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+043.png: 4.693s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+044.png: 4.700s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+045.png: 4.680s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.73 seconds elapsed
+046.png: 4.729s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+047.png: 4.696s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+048.png: 4.702s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+049.png: 4.706s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+050.png: 4.718s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+051.png: 4.718s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+052.png: 4.676s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.71 seconds elapsed
+053.png: 4.707s (cache_n=2465, prompt_n=447)
+0.08 seconds elapsed
+4.69 seconds elapsed
+054.png: 4.692s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+055.png: 4.690s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+056.png: 4.703s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.68 seconds elapsed
+057.png: 4.685s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+058.png: 4.705s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.66 seconds elapsed
+059.png: 4.662s (cache_n=2465, prompt_n=447)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/transistor/test/misplaced model=ggml-org/gemma-4-E2B-it-GGUF:Q4_0 @resolution=1024
+0.07 seconds elapsed
+4.70 seconds elapsed
+001.png: 4.700s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.67 seconds elapsed
+002.png: 4.675s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.72 seconds elapsed
+003.png: 4.718s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+004.png: 4.691s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+005.png: 4.700s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.70 seconds elapsed
+006.png: 4.699s (cache_n=2465, prompt_n=447)
+0.06 seconds elapsed
+4.83 seconds elapsed
+007.png: 4.829s (cache_n=2465, prompt_n=447)
+0.06 seconds elapsed
+4.68 seconds elapsed
+008.png: 4.675s (cache_n=2465, prompt_n=447)
+0.07 seconds elapsed
+4.69 seconds elapsed
+009.png: 4.695s (cache_n=2465, prompt_n=447)
+Both workflows completed. Results: test/test-result/15W-multimodel-with-2B-models-optimized/transistor/model-1-ggml-org_gemma-4-E2B-it-GGUF_Q4_0
+Finished [ggml-org/gemma-4-E2B-it-GGUF:Q4_0] on [transistor] in 967s.
+Running model [unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL] on product [bottle] (all folders & resolutions in one batch)...
+Running MVTec folder analysis workflow...
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=500, cache_n=0)
+0.05 seconds elapsed
+2.20 seconds elapsed
+001.png: 2.205s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.18 seconds elapsed
+002.png: 2.181s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.14 seconds elapsed
+003.png: 2.136s (cache_n=485, prompt_n=70)
+0.09 seconds elapsed
+2.17 seconds elapsed
+004.png: 2.168s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.18 seconds elapsed
+005.png: 2.185s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.20 seconds elapsed
+006.png: 2.202s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.10 seconds elapsed
+007.png: 2.100s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.18 seconds elapsed
+008.png: 2.182s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.12 seconds elapsed
+009.png: 2.117s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+010.png: 2.186s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.11 seconds elapsed
+011.png: 2.110s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.17 seconds elapsed
+012.png: 2.175s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.16 seconds elapsed
+013.png: 2.165s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.20 seconds elapsed
+014.png: 2.200s (cache_n=485, prompt_n=70)
+0.06 seconds elapsed
+2.16 seconds elapsed
+015.png: 2.158s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.17 seconds elapsed
+016.png: 2.169s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+017.png: 2.165s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.17 seconds elapsed
+018.png: 2.172s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.17 seconds elapsed
+019.png: 2.172s (cache_n=485, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.05 seconds elapsed
+2.21 seconds elapsed
+001.png: 2.210s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.13 seconds elapsed
+002.png: 2.130s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+003.png: 2.192s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+004.png: 2.155s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+005.png: 2.158s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+006.png: 2.191s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.15 seconds elapsed
+007.png: 2.150s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.15 seconds elapsed
+008.png: 2.147s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.16 seconds elapsed
+009.png: 2.156s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.17 seconds elapsed
+010.png: 2.168s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.17 seconds elapsed
+011.png: 2.170s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.18 seconds elapsed
+012.png: 2.175s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.16 seconds elapsed
+013.png: 2.156s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.09 seconds elapsed
+014.png: 2.095s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.17 seconds elapsed
+015.png: 2.166s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+016.png: 2.163s (cache_n=485, prompt_n=70)
+0.18 seconds elapsed
+2.18 seconds elapsed
+017.png: 2.177s (cache_n=485, prompt_n=70)
+0.06 seconds elapsed
+2.08 seconds elapsed
+018.png: 2.079s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.18 seconds elapsed
+019.png: 2.176s (cache_n=485, prompt_n=70)
+0.06 seconds elapsed
+2.18 seconds elapsed
+020.png: 2.177s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.21 seconds elapsed
+021.png: 2.215s (cache_n=485, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.08 seconds elapsed
+2.09 seconds elapsed
+001.png: 2.095s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.11 seconds elapsed
+002.png: 2.109s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.08 seconds elapsed
+003.png: 2.083s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.10 seconds elapsed
+004.png: 2.101s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+005.png: 2.191s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.11 seconds elapsed
+006.png: 2.107s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.16 seconds elapsed
+007.png: 2.161s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.08 seconds elapsed
+008.png: 2.079s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.06 seconds elapsed
+009.png: 2.056s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.09 seconds elapsed
+010.png: 2.095s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.07 seconds elapsed
+011.png: 2.071s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.09 seconds elapsed
+012.png: 2.086s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+013.png: 2.156s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+014.png: 2.156s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.13 seconds elapsed
+015.png: 2.126s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.11 seconds elapsed
+016.png: 2.106s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.19 seconds elapsed
+017.png: 2.194s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.17 seconds elapsed
+018.png: 2.173s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.10 seconds elapsed
+019.png: 2.104s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.10 seconds elapsed
+020.png: 2.102s (cache_n=485, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.07 seconds elapsed
+2.10 seconds elapsed
+001.png: 2.104s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.11 seconds elapsed
+002.png: 2.108s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.10 seconds elapsed
+003.png: 2.099s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.09 seconds elapsed
+004.png: 2.089s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.08 seconds elapsed
+005.png: 2.078s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.10 seconds elapsed
+006.png: 2.102s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.07 seconds elapsed
+007.png: 2.069s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.11 seconds elapsed
+008.png: 2.107s (cache_n=485, prompt_n=70)
+0.06 seconds elapsed
+2.12 seconds elapsed
+009.png: 2.119s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.11 seconds elapsed
+010.png: 2.112s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.07 seconds elapsed
+011.png: 2.075s (cache_n=485, prompt_n=70)
+0.06 seconds elapsed
+2.12 seconds elapsed
+012.png: 2.125s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.10 seconds elapsed
+013.png: 2.095s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.13 seconds elapsed
+014.png: 2.128s (cache_n=485, prompt_n=70)
+0.08 seconds elapsed
+2.12 seconds elapsed
+015.png: 2.123s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.11 seconds elapsed
+016.png: 2.113s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.11 seconds elapsed
+017.png: 2.107s (cache_n=485, prompt_n=70)
+0.05 seconds elapsed
+2.11 seconds elapsed
+018.png: 2.106s (cache_n=485, prompt_n=70)
+0.07 seconds elapsed
+2.10 seconds elapsed
+019.png: 2.099s (cache_n=485, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=1091, cache_n=177)
+0.06 seconds elapsed
+2.83 seconds elapsed
+001.png: 2.827s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.86 seconds elapsed
+002.png: 2.859s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.85 seconds elapsed
+003.png: 2.850s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.87 seconds elapsed
+004.png: 2.866s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.83 seconds elapsed
+005.png: 2.834s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.83 seconds elapsed
+006.png: 2.832s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.89 seconds elapsed
+007.png: 2.891s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.81 seconds elapsed
+008.png: 2.807s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.84 seconds elapsed
+009.png: 2.835s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.84 seconds elapsed
+010.png: 2.842s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.76 seconds elapsed
+011.png: 2.764s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.76 seconds elapsed
+012.png: 2.761s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.84 seconds elapsed
+013.png: 2.842s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.85 seconds elapsed
+014.png: 2.854s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.85 seconds elapsed
+015.png: 2.854s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.82 seconds elapsed
+016.png: 2.817s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.84 seconds elapsed
+017.png: 2.840s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.87 seconds elapsed
+018.png: 2.874s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.86 seconds elapsed
+019.png: 2.862s (cache_n=1253, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.08 seconds elapsed
+2.87 seconds elapsed
+001.png: 2.871s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.84 seconds elapsed
+002.png: 2.842s (cache_n=1253, prompt_n=262)
+0.10 seconds elapsed
+2.81 seconds elapsed
+003.png: 2.808s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.89 seconds elapsed
+004.png: 2.894s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.77 seconds elapsed
+005.png: 2.771s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.83 seconds elapsed
+006.png: 2.826s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.81 seconds elapsed
+007.png: 2.814s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.84 seconds elapsed
+008.png: 2.843s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.84 seconds elapsed
+009.png: 2.842s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.80 seconds elapsed
+010.png: 2.796s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.75 seconds elapsed
+011.png: 2.754s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.80 seconds elapsed
+012.png: 2.804s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.86 seconds elapsed
+013.png: 2.859s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.76 seconds elapsed
+014.png: 2.762s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.83 seconds elapsed
+015.png: 2.831s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.80 seconds elapsed
+016.png: 2.799s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.85 seconds elapsed
+017.png: 2.845s (cache_n=1253, prompt_n=262)
+0.09 seconds elapsed
+2.76 seconds elapsed
+018.png: 2.757s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.86 seconds elapsed
+019.png: 2.856s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.82 seconds elapsed
+020.png: 2.824s (cache_n=1253, prompt_n=262)
+0.08 seconds elapsed
+2.85 seconds elapsed
+021.png: 2.846s (cache_n=1253, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.06 seconds elapsed
+2.73 seconds elapsed
+001.png: 2.734s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+002.png: 2.745s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.72 seconds elapsed
+003.png: 2.720s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+004.png: 2.739s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.83 seconds elapsed
+005.png: 2.830s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.71 seconds elapsed
+006.png: 2.714s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.84 seconds elapsed
+007.png: 2.843s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.79 seconds elapsed
+008.png: 2.791s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.80 seconds elapsed
+009.png: 2.805s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.76 seconds elapsed
+010.png: 2.757s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.72 seconds elapsed
+011.png: 2.722s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+012.png: 2.737s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.73 seconds elapsed
+013.png: 2.727s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.85 seconds elapsed
+014.png: 2.847s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.79 seconds elapsed
+015.png: 2.788s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.77 seconds elapsed
+016.png: 2.771s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.83 seconds elapsed
+017.png: 2.828s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.81 seconds elapsed
+018.png: 2.812s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+019.png: 2.741s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+020.png: 2.740s (cache_n=1253, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.05 seconds elapsed
+2.78 seconds elapsed
+001.png: 2.779s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.77 seconds elapsed
+002.png: 2.770s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.78 seconds elapsed
+003.png: 2.778s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.78 seconds elapsed
+004.png: 2.784s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+005.png: 2.737s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.75 seconds elapsed
+006.png: 2.748s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+007.png: 2.744s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.72 seconds elapsed
+008.png: 2.716s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.75 seconds elapsed
+009.png: 2.751s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.77 seconds elapsed
+010.png: 2.772s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.79 seconds elapsed
+011.png: 2.795s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.77 seconds elapsed
+012.png: 2.765s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.78 seconds elapsed
+013.png: 2.784s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.77 seconds elapsed
+014.png: 2.768s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.76 seconds elapsed
+015.png: 2.762s (cache_n=1253, prompt_n=262)
+0.07 seconds elapsed
+2.72 seconds elapsed
+016.png: 2.718s (cache_n=1253, prompt_n=262)
+0.06 seconds elapsed
+2.72 seconds elapsed
+017.png: 2.722s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.74 seconds elapsed
+018.png: 2.742s (cache_n=1253, prompt_n=262)
+0.05 seconds elapsed
+2.72 seconds elapsed
+019.png: 2.723s (cache_n=1253, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_large model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=1024
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=3203, cache_n=177)
+0.04 seconds elapsed
+5.14 seconds elapsed
+001.png: 5.141s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.22 seconds elapsed
+002.png: 5.219s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.11 seconds elapsed
+003.png: 5.112s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.21 seconds elapsed
+004.png: 5.206s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.06 seconds elapsed
+005.png: 5.057s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.05 seconds elapsed
+006.png: 5.047s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.07 seconds elapsed
+007.png: 5.069s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.18 seconds elapsed
+008.png: 5.179s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.11 seconds elapsed
+009.png: 5.108s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.08 seconds elapsed
+010.png: 5.078s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.02 seconds elapsed
+011.png: 5.019s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.12 seconds elapsed
+012.png: 5.115s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.10 seconds elapsed
+013.png: 5.100s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.07 seconds elapsed
+014.png: 5.067s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.08 seconds elapsed
+015.png: 5.077s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.09 seconds elapsed
+016.png: 5.091s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.12 seconds elapsed
+017.png: 5.117s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.10 seconds elapsed
+018.png: 5.101s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.08 seconds elapsed
+019.png: 5.081s (cache_n=3365, prompt_n=790)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/broken_small model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=1024
+0.04 seconds elapsed
+5.04 seconds elapsed
+001.png: 5.045s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.12 seconds elapsed
+002.png: 5.116s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.13 seconds elapsed
+003.png: 5.127s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.11 seconds elapsed
+004.png: 5.112s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.07 seconds elapsed
+005.png: 5.073s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.10 seconds elapsed
+006.png: 5.104s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.11 seconds elapsed
+007.png: 5.108s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.13 seconds elapsed
+008.png: 5.128s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.13 seconds elapsed
+009.png: 5.128s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.08 seconds elapsed
+010.png: 5.079s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.11 seconds elapsed
+011.png: 5.111s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+012.png: 5.014s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.11 seconds elapsed
+013.png: 5.105s (cache_n=3365, prompt_n=790)
+0.07 seconds elapsed
+5.01 seconds elapsed
+014.png: 5.013s (cache_n=3365, prompt_n=790)
+0.08 seconds elapsed
+5.10 seconds elapsed
+015.png: 5.104s (cache_n=3365, prompt_n=790)
+0.07 seconds elapsed
+5.07 seconds elapsed
+016.png: 5.067s (cache_n=3365, prompt_n=790)
+0.06 seconds elapsed
+5.12 seconds elapsed
+017.png: 5.120s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.09 seconds elapsed
+018.png: 5.087s (cache_n=3365, prompt_n=790)
+0.07 seconds elapsed
+5.12 seconds elapsed
+019.png: 5.118s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.09 seconds elapsed
+020.png: 5.087s (cache_n=3365, prompt_n=790)
+0.07 seconds elapsed
+5.07 seconds elapsed
+021.png: 5.073s (cache_n=3365, prompt_n=790)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/contamination model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=1024
+0.06 seconds elapsed
+5.12 seconds elapsed
+001.png: 5.125s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+002.png: 5.009s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+003.png: 4.998s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+004.png: 5.008s (cache_n=3365, prompt_n=790)
+0.06 seconds elapsed
+5.10 seconds elapsed
+005.png: 5.102s (cache_n=3365, prompt_n=790)
+0.06 seconds elapsed
+4.98 seconds elapsed
+006.png: 4.980s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.08 seconds elapsed
+007.png: 5.076s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+008.png: 4.991s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+009.png: 4.991s (cache_n=3365, prompt_n=790)
+0.06 seconds elapsed
+4.98 seconds elapsed
+010.png: 4.982s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.98 seconds elapsed
+011.png: 4.982s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+012.png: 5.000s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+013.png: 5.003s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.09 seconds elapsed
+014.png: 5.086s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+5.09 seconds elapsed
+015.png: 5.090s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+016.png: 4.993s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+017.png: 4.993s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.02 seconds elapsed
+018.png: 5.015s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+019.png: 4.995s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+020.png: 5.011s (cache_n=3365, prompt_n=790)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/bottle/test/good model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=1024
+0.05 seconds elapsed
+4.98 seconds elapsed
+001.png: 4.980s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+002.png: 4.990s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+003.png: 4.999s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+004.png: 4.986s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+005.png: 4.990s (cache_n=3365, prompt_n=790)
+0.04 seconds elapsed
+4.97 seconds elapsed
+006.png: 4.973s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+007.png: 5.008s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.03 seconds elapsed
+008.png: 5.034s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.01 seconds elapsed
+009.png: 5.008s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+010.png: 4.989s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.96 seconds elapsed
+011.png: 4.958s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+012.png: 5.001s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+013.png: 4.997s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.00 seconds elapsed
+014.png: 5.002s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.02 seconds elapsed
+015.png: 5.024s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+5.02 seconds elapsed
+016.png: 5.021s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+017.png: 4.995s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.99 seconds elapsed
+018.png: 4.993s (cache_n=3365, prompt_n=790)
+0.05 seconds elapsed
+4.98 seconds elapsed
+019.png: 4.984s (cache_n=3365, prompt_n=790)
+Both workflows completed. Results: test/test-result/15W-multimodel-with-2B-models-optimized/bottle/model-2-unsloth_Qwen3-VL-2B-Instruct-GGUF_Q8_K_XL
+Finished [unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL] on [bottle] in 884s.
+Running model [unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL] on product [cable] (all folders & resolutions in one batch)...
+Running MVTec folder analysis workflow...
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=913, cache_n=9)
+0.14 seconds elapsed
+2.21 seconds elapsed
+001.png: 2.212s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.34 seconds elapsed
+002.png: 2.341s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.34 seconds elapsed
+003.png: 2.339s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.36 seconds elapsed
+004.png: 2.359s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.35 seconds elapsed
+005.png: 2.355s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+006.png: 2.333s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.32 seconds elapsed
+007.png: 2.325s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.20 seconds elapsed
+008.png: 2.195s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.32 seconds elapsed
+009.png: 2.325s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.33 seconds elapsed
+010.png: 2.332s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.33 seconds elapsed
+011.png: 2.330s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.31 seconds elapsed
+012.png: 2.312s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cable_swap model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.10 seconds elapsed
+2.16 seconds elapsed
+001.png: 2.165s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+002.png: 2.184s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+003.png: 2.179s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+004.png: 2.191s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.17 seconds elapsed
+005.png: 2.175s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+006.png: 2.161s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+007.png: 2.190s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.22 seconds elapsed
+008.png: 2.216s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.34 seconds elapsed
+009.png: 2.339s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+010.png: 2.179s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+011.png: 2.176s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/combined model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.10 seconds elapsed
+2.35 seconds elapsed
+001.png: 2.348s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.39 seconds elapsed
+002.png: 2.393s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.40 seconds elapsed
+003.png: 2.405s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.40 seconds elapsed
+004.png: 2.404s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.34 seconds elapsed
+005.png: 2.340s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+006.png: 2.333s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.41 seconds elapsed
+007.png: 2.414s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.32 seconds elapsed
+008.png: 2.325s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.17 seconds elapsed
+009.png: 2.175s (cache_n=907, prompt_n=70)
+0.07 seconds elapsed
+2.40 seconds elapsed
+010.png: 2.400s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_inner_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.11 seconds elapsed
+2.16 seconds elapsed
+001.png: 2.162s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+002.png: 2.180s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.20 seconds elapsed
+003.png: 2.199s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+004.png: 2.181s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.17 seconds elapsed
+005.png: 2.175s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.15 seconds elapsed
+006.png: 2.149s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+007.png: 2.193s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+008.png: 2.190s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.36 seconds elapsed
+009.png: 2.361s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+010.png: 2.329s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.34 seconds elapsed
+011.png: 2.344s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.34 seconds elapsed
+012.png: 2.345s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.32 seconds elapsed
+013.png: 2.320s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_outer_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.08 seconds elapsed
+2.18 seconds elapsed
+001.png: 2.181s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+002.png: 2.177s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.16 seconds elapsed
+003.png: 2.161s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+004.png: 2.183s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.41 seconds elapsed
+005.png: 2.410s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.16 seconds elapsed
+006.png: 2.165s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.19 seconds elapsed
+007.png: 2.187s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.21 seconds elapsed
+008.png: 2.208s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+009.png: 2.190s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/good model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.08 seconds elapsed
+2.18 seconds elapsed
+001.png: 2.177s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+002.png: 2.158s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+003.png: 2.187s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+004.png: 2.194s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.20 seconds elapsed
+005.png: 2.199s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+006.png: 2.188s (cache_n=907, prompt_n=70)
+0.12 seconds elapsed
+2.19 seconds elapsed
+007.png: 2.193s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+008.png: 2.158s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+009.png: 2.194s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+010.png: 2.161s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+011.png: 2.169s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+012.png: 2.164s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+013.png: 2.190s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+014.png: 2.167s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+015.png: 2.186s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+016.png: 2.181s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+017.png: 2.176s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.17 seconds elapsed
+018.png: 2.165s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.32 seconds elapsed
+019.png: 2.317s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+020.png: 2.192s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+021.png: 2.173s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+022.png: 2.160s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.22 seconds elapsed
+023.png: 2.223s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+024.png: 2.183s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+025.png: 2.180s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.16 seconds elapsed
+026.png: 2.164s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.33 seconds elapsed
+027.png: 2.329s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+028.png: 2.182s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+029.png: 2.189s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+030.png: 2.176s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.17 seconds elapsed
+031.png: 2.167s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+032.png: 2.186s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+033.png: 2.193s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+034.png: 2.186s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+035.png: 2.182s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.31 seconds elapsed
+036.png: 2.310s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.22 seconds elapsed
+037.png: 2.217s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+038.png: 2.169s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+039.png: 2.182s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.15 seconds elapsed
+040.png: 2.148s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+041.png: 2.170s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+042.png: 2.183s (cache_n=907, prompt_n=70)
+0.12 seconds elapsed
+2.19 seconds elapsed
+043.png: 2.185s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+044.png: 2.173s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+045.png: 2.171s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+046.png: 2.182s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.19 seconds elapsed
+047.png: 2.186s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+048.png: 2.185s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.16 seconds elapsed
+049.png: 2.161s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+050.png: 2.176s (cache_n=907, prompt_n=70)
+0.08 seconds elapsed
+2.19 seconds elapsed
+051.png: 2.194s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+052.png: 2.175s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.14 seconds elapsed
+053.png: 2.141s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.16 seconds elapsed
+054.png: 2.165s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.18 seconds elapsed
+055.png: 2.181s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.17 seconds elapsed
+056.png: 2.171s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.20 seconds elapsed
+057.png: 2.200s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_cable model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.10 seconds elapsed
+2.18 seconds elapsed
+001.png: 2.176s (cache_n=907, prompt_n=70)
+0.07 seconds elapsed
+2.36 seconds elapsed
+002.png: 2.362s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+003.png: 2.332s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+004.png: 2.328s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.35 seconds elapsed
+005.png: 2.347s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.16 seconds elapsed
+006.png: 2.161s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+007.png: 2.332s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.36 seconds elapsed
+008.png: 2.360s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.31 seconds elapsed
+009.png: 2.309s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.30 seconds elapsed
+010.png: 2.299s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.32 seconds elapsed
+011.png: 2.319s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_wire model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.10 seconds elapsed
+2.15 seconds elapsed
+001.png: 2.154s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.24 seconds elapsed
+002.png: 2.243s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.45 seconds elapsed
+003.png: 2.448s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.41 seconds elapsed
+004.png: 2.405s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.39 seconds elapsed
+005.png: 2.393s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.17 seconds elapsed
+006.png: 2.174s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+007.png: 2.194s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.40 seconds elapsed
+008.png: 2.403s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.41 seconds elapsed
+009.png: 2.407s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/poke_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=256
+0.08 seconds elapsed
+2.18 seconds elapsed
+001.png: 2.179s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.20 seconds elapsed
+002.png: 2.202s (cache_n=907, prompt_n=70)
+0.09 seconds elapsed
+2.17 seconds elapsed
+003.png: 2.167s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.19 seconds elapsed
+004.png: 2.190s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.31 seconds elapsed
+005.png: 2.311s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.33 seconds elapsed
+006.png: 2.331s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.18 seconds elapsed
+007.png: 2.179s (cache_n=907, prompt_n=70)
+0.10 seconds elapsed
+2.18 seconds elapsed
+008.png: 2.178s (cache_n=907, prompt_n=70)
+0.11 seconds elapsed
+2.32 seconds elapsed
+009.png: 2.318s (cache_n=907, prompt_n=70)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+pre-warming KV prefix cache in slot 0...
+warmup complete (prompt_n=2442, cache_n=208)
+0.12 seconds elapsed
+3.01 seconds elapsed
+001.png: 3.011s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.27 seconds elapsed
+002.png: 3.269s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.15 seconds elapsed
+003.png: 3.152s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.19 seconds elapsed
+004.png: 3.190s (cache_n=2635, prompt_n=262)
+0.09 seconds elapsed
+3.21 seconds elapsed
+005.png: 3.212s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+3.01 seconds elapsed
+006.png: 3.010s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.15 seconds elapsed
+007.png: 3.148s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.16 seconds elapsed
+008.png: 3.164s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.12 seconds elapsed
+009.png: 3.123s (cache_n=2635, prompt_n=262)
+0.09 seconds elapsed
+3.17 seconds elapsed
+010.png: 3.168s (cache_n=2635, prompt_n=262)
+0.08 seconds elapsed
+3.18 seconds elapsed
+011.png: 3.177s (cache_n=2635, prompt_n=262)
+0.14 seconds elapsed
+3.18 seconds elapsed
+012.png: 3.180s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cable_swap model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.11 seconds elapsed
+3.02 seconds elapsed
+001.png: 3.017s (cache_n=2635, prompt_n=262)
+0.09 seconds elapsed
+2.99 seconds elapsed
+002.png: 2.986s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.98 seconds elapsed
+003.png: 2.982s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.06 seconds elapsed
+004.png: 3.059s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+005.png: 3.001s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+006.png: 3.019s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+007.png: 3.022s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+008.png: 3.004s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+009.png: 3.002s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+010.png: 2.985s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+011.png: 3.006s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/combined model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.12 seconds elapsed
+3.19 seconds elapsed
+001.png: 3.186s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.29 seconds elapsed
+002.png: 3.291s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.25 seconds elapsed
+003.png: 3.252s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+004.png: 3.001s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.15 seconds elapsed
+005.png: 3.154s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.20 seconds elapsed
+006.png: 3.203s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.29 seconds elapsed
+007.png: 3.293s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.19 seconds elapsed
+008.png: 3.189s (cache_n=2635, prompt_n=262)
+0.14 seconds elapsed
+3.23 seconds elapsed
+009.png: 3.230s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.25 seconds elapsed
+010.png: 3.253s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_inner_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.12 seconds elapsed
+2.98 seconds elapsed
+001.png: 2.981s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+002.png: 3.018s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+003.png: 2.993s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+3.20 seconds elapsed
+004.png: 3.200s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+005.png: 2.997s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.99 seconds elapsed
+006.png: 2.991s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.22 seconds elapsed
+007.png: 3.218s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+3.01 seconds elapsed
+008.png: 3.013s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.26 seconds elapsed
+009.png: 3.259s (cache_n=2635, prompt_n=262)
+0.09 seconds elapsed
+3.03 seconds elapsed
+010.png: 3.028s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.18 seconds elapsed
+011.png: 3.178s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.29 seconds elapsed
+012.png: 3.293s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+013.png: 2.985s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/cut_outer_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.09 seconds elapsed
+3.27 seconds elapsed
+001.png: 3.267s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.25 seconds elapsed
+002.png: 3.251s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.26 seconds elapsed
+003.png: 3.257s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.05 seconds elapsed
+004.png: 3.051s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.03 seconds elapsed
+005.png: 3.028s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.24 seconds elapsed
+006.png: 3.242s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.26 seconds elapsed
+007.png: 3.265s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+008.png: 3.003s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.28 seconds elapsed
+009.png: 3.281s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/good model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.11 seconds elapsed
+2.97 seconds elapsed
+001.png: 2.974s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+002.png: 2.996s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+003.png: 3.014s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.99 seconds elapsed
+004.png: 2.993s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+005.png: 3.019s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+006.png: 2.997s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+007.png: 3.004s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.01 seconds elapsed
+008.png: 3.012s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+009.png: 3.005s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.03 seconds elapsed
+010.png: 3.029s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.02 seconds elapsed
+011.png: 3.019s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+2.97 seconds elapsed
+012.png: 2.974s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+013.png: 2.996s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.03 seconds elapsed
+014.png: 3.027s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.06 seconds elapsed
+015.png: 3.058s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.99 seconds elapsed
+016.png: 2.987s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+017.png: 3.019s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.01 seconds elapsed
+018.png: 3.006s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.98 seconds elapsed
+019.png: 2.981s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.06 seconds elapsed
+020.png: 3.062s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+021.png: 3.005s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+022.png: 3.002s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.02 seconds elapsed
+023.png: 3.022s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.97 seconds elapsed
+024.png: 2.968s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.02 seconds elapsed
+025.png: 3.018s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.01 seconds elapsed
+026.png: 3.010s (cache_n=2635, prompt_n=262)
+0.14 seconds elapsed
+3.00 seconds elapsed
+027.png: 3.001s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.00 seconds elapsed
+028.png: 3.002s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+029.png: 2.999s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+2.98 seconds elapsed
+030.png: 2.984s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+2.98 seconds elapsed
+031.png: 2.975s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+2.99 seconds elapsed
+032.png: 2.989s (cache_n=2635, prompt_n=262)
+0.14 seconds elapsed
+2.97 seconds elapsed
+033.png: 2.972s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.01 seconds elapsed
+034.png: 3.015s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+035.png: 2.998s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.01 seconds elapsed
+036.png: 3.013s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+2.99 seconds elapsed
+037.png: 2.986s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+038.png: 3.002s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+039.png: 3.011s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.04 seconds elapsed
+040.png: 3.038s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+041.png: 3.009s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+042.png: 2.997s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+2.97 seconds elapsed
+043.png: 2.974s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.99 seconds elapsed
+044.png: 2.986s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.98 seconds elapsed
+045.png: 2.981s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.99 seconds elapsed
+046.png: 2.994s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+047.png: 2.998s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+048.png: 3.011s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+049.png: 3.011s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+050.png: 2.987s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.03 seconds elapsed
+051.png: 3.027s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.01 seconds elapsed
+052.png: 3.014s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+2.98 seconds elapsed
+053.png: 2.985s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+054.png: 2.989s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+055.png: 3.009s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.00 seconds elapsed
+056.png: 3.002s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+057.png: 2.993s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_cable model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.09 seconds elapsed
+3.24 seconds elapsed
+001.png: 3.239s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.27 seconds elapsed
+002.png: 3.267s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.25 seconds elapsed
+003.png: 3.247s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.25 seconds elapsed
+004.png: 3.246s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.23 seconds elapsed
+005.png: 3.234s (cache_n=2635, prompt_n=262)
+0.09 seconds elapsed
+3.00 seconds elapsed
+006.png: 3.003s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.15 seconds elapsed
+007.png: 3.155s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.27 seconds elapsed
+008.png: 3.268s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.17 seconds elapsed
+009.png: 3.167s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.16 seconds elapsed
+010.png: 3.159s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.17 seconds elapsed
+011.png: 3.166s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/missing_wire model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.11 seconds elapsed
+3.24 seconds elapsed
+001.png: 3.239s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.08 seconds elapsed
+002.png: 3.084s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.19 seconds elapsed
+003.png: 3.186s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.26 seconds elapsed
+004.png: 3.256s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.15 seconds elapsed
+005.png: 3.148s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.23 seconds elapsed
+006.png: 3.234s (cache_n=2635, prompt_n=262)
+0.10 seconds elapsed
+2.98 seconds elapsed
+007.png: 2.984s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.15 seconds elapsed
+008.png: 3.149s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.25 seconds elapsed
+009.png: 3.249s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/poke_insulation model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=512
+0.10 seconds elapsed
+3.26 seconds elapsed
+001.png: 3.255s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.98 seconds elapsed
+002.png: 2.975s (cache_n=2635, prompt_n=262)
+0.08 seconds elapsed
+3.01 seconds elapsed
+003.png: 3.013s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+3.01 seconds elapsed
+004.png: 3.010s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.16 seconds elapsed
+005.png: 3.157s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.99 seconds elapsed
+006.png: 2.985s (cache_n=2635, prompt_n=262)
+0.12 seconds elapsed
+2.98 seconds elapsed
+007.png: 2.981s (cache_n=2635, prompt_n=262)
+0.13 seconds elapsed
+3.03 seconds elapsed
+008.png: 3.032s (cache_n=2635, prompt_n=262)
+0.11 seconds elapsed
+3.00 seconds elapsed
+009.png: 3.003s (cache_n=2635, prompt_n=262)
+beginning processing folder=/home/jetson_orin_nano_3/mvtec-dataset/cable/test/bent_wire model=unsloth/Qwen3-VL-2B-Instruct-GGUF:Q8_K_XL @resolution=1024
+pre-warming KV prefix cache in slot 0...
+Traceback (most recent call last):
+  File "/home/jetson_orin_nano_3/jetson-test/src/mvtec_ad/run_test_folder_analysis.py", line 154, in <module>
+    main()
+  File "/home/jetson_orin_nano_3/jetson-test/src/mvtec_ad/run_test_folder_analysis.py", line 141, in main
+    for scenario in inference.run_inference():
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/src/run_inference.py", line 405, in run_inference
+    _, warm_timings = self.request_completion(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/src/run_inference.py", line 336, in request_completion
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/venv/lib/python3.12/site-packages/openai/_utils/_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1318, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1440, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jetson_orin_nano_3/jetson-test/venv/lib/python3.12/site-packages/openai/_base_client.py", line 1213, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: proxy error: Could not establish connection
