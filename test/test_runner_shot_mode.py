@@ -37,13 +37,15 @@ class RunnerShotModeTests(unittest.TestCase):
             (root / 'bin').mkdir()
             for name in ('run_first_model_power.sh', 'run_first_model_power_zeroshot.sh'):
                 shutil.copy(source / 'test' / name, root / 'test' / name)
-            folder = root / 'res/mvtec-ad/transistor/test/good'
-            folder.mkdir(parents=True)
-            (folder / 'image.png').touch()
-            prompts = root / 'res/prompts/transistor'
-            prompts.mkdir(parents=True)
-            for shot in ('one', 'zero'):
-                (prompts / f'transistor_prompt_{shot}shot.md').touch()
+            for product in ('transistor', 'bottle'):
+                for case in ('good', 'defect'):
+                    folder = root / 'res/mvtec-ad' / product / 'test' / case
+                    folder.mkdir(parents=True)
+                    (folder / 'image.png').touch()
+                prompts = root / 'res/prompts' / product
+                prompts.mkdir(parents=True)
+                for shot in ('one', 'zero'):
+                    (prompts / f'{product}_prompt_{shot}shot.md').touch()
             for name, content in {
                 'sudo': ':', 'docker': ':', 'python': 'echo model',
                 'run_tests.sh': 'printf "%s\\n" "$*" >> "$TRACE"',
@@ -57,11 +59,27 @@ class RunnerShotModeTests(unittest.TestCase):
             for script, shot in (('run_first_model_power.sh', 'one'),
                                  ('run_first_model_power_zeroshot.sh', 'zero')):
                 trace.write_text('')
-                subprocess.run([str(root / 'test' / script)], env=env, check=True,
+                subprocess.run([str(root / 'test' / script), '--category', 'transistor',
+                                '--category', 'bottle'], env=env, check=True,
                                capture_output=True, text=True)
                 calls = trace.read_text().splitlines()
-                self.assertEqual(len(calls), 3)
+                self.assertEqual(len(calls), 6)
                 self.assertTrue(all(f'--shot-mode {shot}' in call for call in calls))
+                for product in ('transistor', 'bottle'):
+                    product_calls = [line for line in calls if f'/{product}_prompt_' in line]
+                    self.assertEqual(len(product_calls), 3)
+                    for call in product_calls:
+                        self.assertIn(f'/{product}/test/good', call)
+                        self.assertIn(f'/{product}/test/defect', call)
+                        self.assertIn(f'/{product}', call.split('--output-dir ')[1])
+                        self.assertTrue(all(f'--resolution {n}' in call for n in (256, 512, 1024)))
+                    self.assertEqual({call.split('--power-mode ')[1].split()[0] for call in product_calls},
+                                     {'15w', '25w', 'maxn'})
+                trace.write_text('')
+                result = subprocess.run([str(root / 'test' / script), '--category', 'missing'],
+                                        env=env, capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(trace.read_text(), '')
 
 
 if __name__ == '__main__':

@@ -3,12 +3,14 @@ set -Eeuo pipefail
 
 usage() {
     cat <<'HELP'
-Run the first served model on every transistor test category at 256, 512,
+Run the first served model on all test cases of selected products at 256, 512,
 and 1024 pixels in Jetson power modes 0 (15W), 1 (25W), and 2 (MAXN).
 
 Usage: ./test/run_first_model_power.sh [--shot-mode one|zero] [--dataset-dir DIR]
                                   [--output-dir DIR] [--category NAME ...]
-Repeat --category to select test folders; by default all categories are tested.
+Repeat --category to select products (for example, transistor or bottle).
+Every image test folder under each selected product is tested.
+If omitted, the default product is transistor.
 Defaults: one-shot (zero-shot wrapper: zero), res/mvtec-ad, and a
 timestamped test/test-result directory.
 Requires Docker Compose, NVIDIA runtime, a configured model server, the OpenAI
@@ -40,30 +42,28 @@ done
 [[ "$shot_mode" == one || "$shot_mode" == zero ]] || fail 'Shot mode must be one or zero.'
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$script_dir"
-prompt="res/prompts/transistor/transistor_prompt_${shot_mode}shot.md"
-[[ -f "$prompt" ]] || fail "Prompt not found: $prompt"
-test_dir="$dataset_dir/transistor/test"
-[[ -d "$test_dir" ]] || fail "Dataset directory not found: $test_dir"
-folders=()
-if ((${#categories[@]})); then
-    for category in "${categories[@]}"; do
-        [[ -n "$category" && "$category" != . && "$category" != .. && "$category" != */* ]] \
-            || fail "Category must be a single folder name: $category"
-        folder="$test_dir/$category"
-        [[ -d "$folder" ]] || fail "Category directory not found: $folder"
-        if ! find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
-            fail "No images found in category: $folder"
-        fi
-        folders+=(--folder "$folder")
-    done
-else
+# Validate every requested product before changing the Jetson power mode.
+((${#categories[@]})) || categories=(transistor)
+declare -A seen_categories=()
+for category in "${categories[@]}"; do
+    [[ -n "$category" && "$category" != . && "$category" != .. && "$category" != */* ]] \
+        || fail "Category must be a single product folder name: $category"
+    [[ ! ${seen_categories[$category]+set} ]] || fail "Duplicate product category: $category"
+    seen_categories[$category]=1
+    prompt="res/prompts/$category/${category}_prompt_${shot_mode}shot.md"
+    [[ -f "$prompt" ]] || fail "Prompt not found for product $category: $prompt"
+    test_dir="$dataset_dir/$category/test"
+    [[ -d "$test_dir" ]] || fail "Product test directory not found: $test_dir"
+    found_images=0
     while IFS= read -r -d '' folder; do
         if find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
-            folders+=(--folder "$folder")
+            found_images=1
+        elif [[ "$shot_mode" == one ]]; then
+            fail "One-shot requires an image in every test case folder: $folder"
         fi
     done < <(find -L "$test_dir" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
-fi
-((${#folders[@]})) || fail "No image categories found in $test_dir"
+    ((found_images)) || fail "No image test folders found in $test_dir"
+done
 [[ -n "$output_dir" ]] || output_dir="test/test-result/first-model-${shot_mode}shot-$(date +%Y%m%d-%H%M%S)"
 if [[ -z "${PYTHON:-}" ]]; then
     if [[ -x .venv/bin/python ]]; then PYTHON="$script_dir/.venv/bin/python"; else PYTHON=python3; fi
@@ -115,8 +115,19 @@ for mode in 0 1 2; do
     elif [[ "$MODEL_ID" != "$model" ]]; then
         fail "First served model changed after restart ($model -> $MODEL_ID)."
     fi
-    ./run_tests.sh "${folders[@]}" --resolution 256 --resolution 512 --resolution 1024 \
-        --prompt-file "$prompt" --shot-mode "$shot_mode" --model "$model" --power-mode "$label" \
-        --output-dir "$output_dir/$label"
+    for category in "${categories[@]}"; do
+        test_dir="$dataset_dir/$category/test"
+        prompt="res/prompts/$category/${category}_prompt_${shot_mode}shot.md"
+        folders=()
+        while IFS= read -r -d '' folder; do
+            if find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
+                folders+=(--folder "$folder")
+            fi
+        done < <(find -L "$test_dir" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
+        ((${#folders[@]})) || fail "No image test folders found in $test_dir"
+        ./run_tests.sh "${folders[@]}" --resolution 256 --resolution 512 --resolution 1024 \
+            --prompt-file "$prompt" --shot-mode "$shot_mode" --model "$model" --power-mode "$label" \
+            --output-dir "$output_dir/$label/$category"
+    done
 done
 printf 'All power-mode benchmarks completed: %s\n' "$output_dir"

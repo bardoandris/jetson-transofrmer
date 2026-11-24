@@ -52,11 +52,11 @@ Replace `.venv/bin/python` if using another environment. Repeat `--folder`, `--r
 ./test/run_first_model_power_zeroshot.sh --dataset-dir /path/to/mvtec-ad --output-dir test/test-result/zero-shot
 ```
 
-Pass `--category good --category bent_lead` to either script to test only those category folders. Repeat the option for each category; if omitted, all nonempty categories are selected. One-shot reference images are still drawn from every category under `transistor/test`.
+Pass `--category transistor --category bottle` to either script to select products. Repeat `--category` for each product; the default is `transistor`. Each selected product runs every nonempty test-case folder under `<dataset>/<product>/test` with its matching prompt. One-shot reference images are drawn from every test-case folder for that product.
 
-These scripts discover transistor category folders, select the first served model, and test resolutions 256, 512, and 1024 in each power mode. They start the Compose service if needed, restart it between modes, and wait for the API after each start. `MODEL_READY_TIMEOUT` sets the readiness timeout in seconds (default 300). Run `./test/run_first_model_power.sh --help` for options. Relative dataset and output paths are interpreted from the repository root.
+These scripts discover the selected products’ test-case folders, select the first served model, and test resolutions 256, 512, and 1024 in each power mode. They start the Compose service if needed, restart it between modes, and wait for the API after each start. `MODEL_READY_TIMEOUT` sets the readiness timeout in seconds (default 300). Run `./test/run_first_model_power.sh --help` for options. Relative dataset and output paths are interpreted from the repository root.
 
-The sweep scripts call `./run_tests.sh`, which runs folder analysis and writes `folder-analysis.csv` under each power-mode output directory.
+The sweep scripts call `./run_tests.sh`, which runs folder analysis and writes `folder-analysis.csv` under each power-mode and product output directory (`<output>/<power-mode>/<product>/folder-analysis.csv`).
 
 Inference pauses when temperature reaches 85°C and checks every 30 seconds until it falls below 70°C.
 
