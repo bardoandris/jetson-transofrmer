@@ -7,7 +7,8 @@ Run the first served model on every transistor test category at 256, 512,
 and 1024 pixels in Jetson power modes 0 (15W), 1 (25W), and 2 (MAXN).
 
 Usage: ./test/run_first_model_power.sh [--shot-mode one|zero] [--dataset-dir DIR]
-                                  [--output-dir DIR]
+                                  [--output-dir DIR] [--category NAME ...]
+Repeat --category to select test folders; by default all categories are tested.
 Defaults: one-shot, res/mvtec-ad, and a timestamped test/test-result directory.
 Requires Docker Compose, NVIDIA runtime, a configured model server, the OpenAI
 Python package, and non-interactive sudo for nvpmodel and jetson_clocks.
@@ -19,14 +20,16 @@ fail() { printf 'Error: %s\n' "$*" >&2; exit 1; }
 shot_mode=one
 dataset_dir=res/mvtec-ad
 output_dir=""
+categories=()
 while (($#)); do
     case "$1" in
-        --shot-mode|--dataset-dir|--output-dir)
+        --shot-mode|--dataset-dir|--output-dir|--category)
             (($# >= 2)) || fail "Missing value for $1"
             case "$1" in
                 --shot-mode) shot_mode="$2" ;;
                 --dataset-dir) dataset_dir="$2" ;;
                 --output-dir) output_dir="$2" ;;
+                --category) categories+=("$2") ;;
             esac
             shift 2 ;;
         -h|--help) usage; exit 0 ;;
@@ -41,11 +44,24 @@ prompt="res/prompts/transistor/transistor_prompt_${shot_mode}shot.md"
 test_dir="$dataset_dir/transistor/test"
 [[ -d "$test_dir" ]] || fail "Dataset directory not found: $test_dir"
 folders=()
-while IFS= read -r -d '' folder; do
-    if find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
+if ((${#categories[@]})); then
+    for category in "${categories[@]}"; do
+        [[ -n "$category" && "$category" != . && "$category" != .. && "$category" != */* ]] \
+            || fail "Category must be a single folder name: $category"
+        folder="$test_dir/$category"
+        [[ -d "$folder" ]] || fail "Category directory not found: $folder"
+        if ! find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
+            fail "No images found in category: $folder"
+        fi
         folders+=(--folder "$folder")
-    fi
-done < <(find -L "$test_dir" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
+    done
+else
+    while IFS= read -r -d '' folder; do
+        if find -L "$folder" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print -quit | grep -q .; then
+            folders+=(--folder "$folder")
+        fi
+    done < <(find -L "$test_dir" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
+fi
 ((${#folders[@]})) || fail "No image categories found in $test_dir"
 [[ -n "$output_dir" ]] || output_dir="test/test-result/first-model-${shot_mode}shot-$(date +%Y%m%d-%H%M%S)"
 if [[ -z "${PYTHON:-}" ]]; then
