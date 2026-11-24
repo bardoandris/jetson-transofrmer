@@ -9,21 +9,19 @@ import run_inference
 
 
 class ThermalControlTests(unittest.TestCase):
-    def test_waits_until_temperature_is_at_most_70c(self) -> None:
+    def test_waits_at_85_until_temperature_is_below_70c(self) -> None:
         with (
-            patch(
-                "run_inference.read_system_temperature",
-                side_effect=[72.5, 70.0],
-            ),
+            patch("run_inference.read_system_temperature", side_effect=[85.0, 75.0, 70.0, 69.9]),
             patch("run_inference.time.sleep") as sleep,
         ):
             run_inference.wait_for_safe_temperature()
 
-        sleep.assert_called_once_with(30)
+        self.assertEqual(sleep.call_count, 3)
+        sleep.assert_called_with(30)
 
-    def test_does_not_wait_at_70c(self) -> None:
+    def test_does_not_wait_below_activation_temperature(self) -> None:
         with (
-            patch("run_inference.read_system_temperature", return_value=70.0),
+            patch("run_inference.read_system_temperature", return_value=84.9),
             patch("run_inference.time.sleep") as sleep,
         ):
             run_inference.wait_for_safe_temperature()

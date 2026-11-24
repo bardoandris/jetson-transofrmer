@@ -20,7 +20,8 @@ import utils.timer_ctx.timer_ctx as timer_ctx
 import utils.vlm_schemas as vlm_schemas
 
 
-THERMAL_LIMIT_C = 70.0
+THERMAL_ACTIVATION_C = 85.0
+THERMAL_RESUME_C = 70.0
 THERMAL_CHECK_INTERVAL_SECONDS = 30
 THERMAL_MONITOR_SCRIPT = (
     Path(__file__).resolve().parents[1] / "conf" / "tegra-thermal.sh"
@@ -176,10 +177,12 @@ def read_system_temperature() -> float:
 
 def wait_for_safe_temperature() -> None:
     temperature = read_system_temperature()
-    while temperature > THERMAL_LIMIT_C:
+    if temperature < THERMAL_ACTIVATION_C:
+        return
+    while temperature >= THERMAL_RESUME_C:
         print(
             f"System temperature is {temperature:.1f}C; "
-            f"pausing inference until it is at or below {THERMAL_LIMIT_C:.0f}C."
+            f"pausing inference until it falls below {THERMAL_RESUME_C:.0f}C."
         )
         time.sleep(THERMAL_CHECK_INTERVAL_SECONDS)
         temperature = read_system_temperature()
