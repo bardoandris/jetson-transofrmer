@@ -33,6 +33,8 @@ class InferenceResult(TypedDict):
     image_path: str
     response: str
     inference_time: str
+    prompt_ms: float | None
+    predicted_ms: float | None
     processing_time: str
     width: int
     height: int
@@ -447,6 +449,8 @@ class RunInference:
                                 .replace("\n", " ")
                             ),
                             "inference_time": str(inference_timer.elapsed_time),
+                            "prompt_ms": timings.get("prompt_ms"),
+                            "predicted_ms": timings.get("predicted_ms"),
                             "processing_time": str(processing_timer.elapsed_time),
                             "width": width,
                             "height": height,
@@ -485,6 +489,8 @@ def main() -> None:
             "image_path",
             "response",
             "inference_time",
+            "prompt_ms",
+            "predicted_ms",
             "processing_time",
             "width",
             "height",

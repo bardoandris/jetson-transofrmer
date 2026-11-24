@@ -41,7 +41,7 @@ PYTHONPATH=src .venv/bin/python src/mvtec_ad/run_test_folder_analysis.py \
   --power-mode 15w --csv test/test-result/example/results.csv
 ```
 
-Replace `.venv/bin/python` if using another environment. Repeat `--folder`, `--resolution`, or `--prompt-file` to test combinations. Add `--model MODEL_ID` to select a model; otherwise the first model returned by the API is used. `--power-mode` records a label in the CSV; this direct command does **not** change the Jetson power mode. The CSV contains per-image categories, timings, model, resolution, and prompt information.
+Replace `.venv/bin/python` if using another environment. Repeat `--folder`, `--resolution`, or `--prompt-file` to test combinations. Add `--model MODEL_ID` to select a model; otherwise the first model returned by the API is used. `--power-mode` records a label in the CSV; this direct command does **not** change the Jetson power mode. The CSV contains per-image categories, timings, model, resolution, and prompt information. `request_time` is the client-observed request duration in seconds; `prompt_ms` and `predicted_ms` are the server-reported prompt processing and token generation times in milliseconds. Server timing fields are empty when unavailable.
 
 ## Run the power sweep
 

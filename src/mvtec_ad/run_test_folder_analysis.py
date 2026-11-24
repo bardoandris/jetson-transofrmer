@@ -58,7 +58,7 @@ def build_analysis_row(
     model: str,
     power_mode: str,
     result: run_inference.InferenceResult,
-) -> dict[str, str | int]:
+) -> dict[str, str | int | float | None]:
     response_text = result["response"]
     if not isinstance(response_text, str):
         raise TypeError(f"Expected a string response for {result['image_path']}.")
@@ -74,6 +74,8 @@ def build_analysis_row(
         "test_image": result["image_path"],
         "processing_time": result["processing_time"],
         "request_time": result["inference_time"],
+        "prompt_ms": result["prompt_ms"],
+        "predicted_ms": result["predicted_ms"],
         "answer_category": answer_category,
         "width": result["width"],
         "height": result["height"],
@@ -100,6 +102,8 @@ def write_results_csv(
         "test_image",
         "processing_time",
         "request_time",
+        "prompt_ms",
+        "predicted_ms",
         "answer_category",
         "width",
         "height",
