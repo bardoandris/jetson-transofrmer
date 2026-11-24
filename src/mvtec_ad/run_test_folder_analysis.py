@@ -38,6 +38,10 @@ def parse_args() -> argparse.Namespace:
         help="Model ID to use; defaults to the first model available from the API.",
     )
     parser.add_argument(
+        "--shot-mode", choices=("one", "zero"),
+        help="Override shot mode inferred from the prompt filename.",
+    )
+    parser.add_argument(
         "--power-mode",
         required=True,
         help="Power mode used during inference.",
@@ -58,6 +62,7 @@ def build_analysis_row(
     model: str,
     power_mode: str,
     result: run_inference.InferenceResult,
+    shot_mode: str | None = None,
 ) -> dict[str, str | int | float | None]:
     response_text = result["response"]
     if not isinstance(response_text, str):
@@ -85,7 +90,7 @@ def build_analysis_row(
         "power_mode": power_mode,
         "shot_mode": (
             "one-shot"
-            if run_inference.prompt_uses_one_shot_examples(prompt_file)
+            if run_inference.prompt_uses_one_shot_examples(prompt_file, shot_mode)
             else "zero-shot"
         ),
     }
@@ -96,6 +101,7 @@ def write_results_csv(
     scenarios: list[tuple[str, int, str, list[run_inference.InferenceResult]]],
     model: str,
     power_mode: str,
+    shot_mode: str | None = None,
 ) -> None:
     fieldnames = [
         "true_category",
@@ -121,7 +127,7 @@ def write_results_csv(
             for result in results:
                 writer.writerow(
                     build_analysis_row(
-                        folder, resolution, prompt_file, model, power_mode, result
+                        folder, resolution, prompt_file, model, power_mode, result, shot_mode
                     )
                 )
 
@@ -136,7 +142,7 @@ def main() -> None:
         inference = run_inference.RunInference(
             prompt,
             model,
-            run_inference.prompt_uses_one_shot_examples(prompt_file),
+            run_inference.prompt_uses_one_shot_examples(prompt_file, args.shot_mode),
         )
         for folder in args.folder:
             inference.add_folder(folder)
@@ -151,7 +157,7 @@ def main() -> None:
                     scenario["results"],
                 )
             )
-    write_results_csv(args.csv, scenarios, model, args.power_mode)
+    write_results_csv(args.csv, scenarios, model, args.power_mode, args.shot_mode)
 
 
 if __name__ == "__main__":

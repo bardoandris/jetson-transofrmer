@@ -25,7 +25,9 @@ res/mvtec-ad/transistor/test/
 
 Use PNG, JPG, or JPEG images. The folder name is recorded as the true category; use labels supported by the product prompt and schema. The transistor prompts are in `res/prompts/transistor/`.
 
-For one-shot tests, the first image in sorted filename order from **each** category is used as a labeled reference and excluded from inference. Each category must contain an image; provide at least two per category to also obtain a result for it. Zero-shot tests do not reserve reference images.
+Prompt and reference preparation is centralized in `src/prompt_preparation.py`. Folder analysis accepts `--shot-mode one` or `--shot-mode zero` to override the filename convention; without it, filenames ending in `_oneshot` select one-shot and all others select zero-shot. The power sweep passes its chosen mode explicitly.
+
+For one-shot tests, the first image in sorted filename order from **each** category is used as a labeled reference and excluded from inference. Each category must contain an image; provide at least two per category to also obtain a result for it. Zero-shot tests do not reserve reference images. Both modes request server-side prompt caching and perform a dummy-image warm-up; zero-shot means no labeled reference images, not an uncached run. Actual cache reuse depends on the server.
 
 ## Run a single test case
 

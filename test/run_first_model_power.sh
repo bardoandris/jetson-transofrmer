@@ -9,7 +9,8 @@ and 1024 pixels in Jetson power modes 0 (15W), 1 (25W), and 2 (MAXN).
 Usage: ./test/run_first_model_power.sh [--shot-mode one|zero] [--dataset-dir DIR]
                                   [--output-dir DIR] [--category NAME ...]
 Repeat --category to select test folders; by default all categories are tested.
-Defaults: one-shot, res/mvtec-ad, and a timestamped test/test-result directory.
+Defaults: one-shot (zero-shot wrapper: zero), res/mvtec-ad, and a
+timestamped test/test-result directory.
 Requires Docker Compose, NVIDIA runtime, a configured model server, the OpenAI
 Python package, and non-interactive sudo for nvpmodel and jetson_clocks.
 OPENAI_BASE_URL and OPENAI_API_KEY configure the model API; PYTHON selects Python.
@@ -115,7 +116,7 @@ for mode in 0 1 2; do
         fail "First served model changed after restart ($model -> $MODEL_ID)."
     fi
     ./run_tests.sh "${folders[@]}" --resolution 256 --resolution 512 --resolution 1024 \
-        --prompt-file "$prompt" --model "$model" --power-mode "$label" \
+        --prompt-file "$prompt" --shot-mode "$shot_mode" --model "$model" --power-mode "$label" \
         --output-dir "$output_dir/$label"
 done
 printf 'All power-mode benchmarks completed: %s\n' "$output_dir"

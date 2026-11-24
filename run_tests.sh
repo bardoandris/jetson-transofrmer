@@ -7,7 +7,7 @@ Run both inference test workflows from the project root.
 
 Usage:
   ./run_tests.sh --folder DIR... --resolution PIXELS... --prompt-file FILE... \
-    --power-mode MODE [--model MODEL_ID] [--output-dir DIR]
+    --power-mode MODE [--model MODEL_ID] [--shot-mode one|zero] [--output-dir DIR]
 
 Options:
   -f, --folder DIR          Image folder to test; repeat for each folder.
@@ -15,6 +15,7 @@ Options:
   -p, --prompt-file FILE    Prompt file; repeat for each prompt.
   -m, --model MODEL_ID      Override the first model returned by the inference API.
       --power-mode MODE     Power mode recorded in the results.
+      --shot-mode MODE      Override the prompt filename: one or zero.
   -o, --output-dir DIR      Results directory (default: a timestamped directory
                             under test/test-result).
   -h, --help                Show this help and exit.
@@ -48,6 +49,7 @@ prompt_files=()
 model=""
 model_set=0
 power_mode=""
+shot_mode=""
 output_dir=""
 
 while (($#)); do
@@ -72,6 +74,12 @@ while (($#)); do
     (($# >= 2)) || fail "Missing value for $1."
     model="$2"
     model_set=1
+    shift 2
+    ;;
+  --shot-mode)
+    (($# >= 2)) || fail "Missing value for $1."
+    [[ "$2" == one || "$2" == zero ]] || fail "Shot mode must be one or zero."
+    shot_mode="$2"
     shift 2
     ;;
   --power-mode)
@@ -150,6 +158,7 @@ if ((model_set)); then
   common_args+=(--model "$model")
 fi
 common_args+=(--power-mode "$power_mode")
+if [[ -n "$shot_mode" ]]; then common_args+=(--shot-mode "$shot_mode"); fi
 
 printf 'Running MVTec folder analysis workflow...\n'
 PYTHONPATH="$script_dir/src${PYTHONPATH:+:$PYTHONPATH}" \
