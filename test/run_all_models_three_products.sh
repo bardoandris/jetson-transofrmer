@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 usage() {
     cat <<'HELP'
-Run bottle, transistor, and cable benchmarks at 256, 512, and 1024 pixels
+Run bottle, transistor, and cable benchmarks at 256 and 512 pixels
 for every served model in one-shot, then zero-shot mode. Each shot mode
 covers Jetson power modes 0 (15W), 1 (25W), and 2 (MAXN). The llama Compose
 service is started if needed and restarted after every later power change.
@@ -121,7 +121,7 @@ for shot in one zero; do
                 while IFS= read -r -d '' folder; do folders+=(--folder "$folder"); done \
                     < <(find -L "$dataset_dir/$product/test" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
                 ((${#folders[@]})) || fail "No test-case folders found for $product"
-                ./run_tests.sh "${folders[@]}" --resolution 256 --resolution 512 --resolution 1024 \
+                ./run_tests.sh "${folders[@]}" --resolution 256 --resolution 512 \
                     --prompt-file "res/prompts/$product/${product}_prompt_${shot}shot.md" \
                     --shot-mode "$shot" --model "$model" --power-mode "$label" \
                     --output-dir "$output_dir/${shot}shot/$label/model-$((index + 1))-$slug/$product"
