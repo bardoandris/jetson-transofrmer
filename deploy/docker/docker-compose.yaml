@@ -38,6 +38,6 @@ services:
       - "-b"
       - "2048"
       - "-ub"
-      - "512"
+      - "1024"
       - "--reasoning-budget"
       - "0"
