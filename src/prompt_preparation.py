@@ -12,11 +12,16 @@ import utils.vlm_schemas as vlm_schemas
 
 
 def load_image(image_path: str, resolution: int = 0) -> PIL.Image.Image:
+    return load_image_with_original_size(image_path, resolution)[0]
+
+
+def load_image_with_original_size(image_path: str, resolution: int = 0) -> tuple[PIL.Image.Image, tuple[int, int]]:
     with PIL.Image.open(image_path) as source:
+        original_size = source.size
         img = source.convert("RGB")
         if resolution != 0:
             img.thumbnail((resolution, resolution), PIL.Image.Resampling.BICUBIC)
-    return img
+    return img, original_size
 
 
 def encode_pil_jpeg_b64(image: PIL.Image.Image) -> str:
@@ -92,8 +97,9 @@ def fixed_example_images_for_folder(folder: str) -> list[tuple[str, Path]]:
 
 
 class PromptPreparation:
-    def __init__(self, one_shot: bool):
+    def __init__(self, one_shot: bool, exclude_reference_images: bool = False):
         self.one_shot = one_shot
+        self.exclude_reference_images = exclude_reference_images
         self._encoded_example_cache: dict[tuple[str, int], str] = {}
         self._warmed_prefix_key: tuple[str, int] | None = None
 
@@ -151,9 +157,10 @@ class PromptPreparation:
         schema = category_schema_for_folder(folder)
         support_paths: set[Path] = set()
         examples = None
-        if self.one_shot:
+        if self.one_shot or self.exclude_reference_images:
             fixed = fixed_example_images_for_folder(folder)
             support_paths = {path for _, path in fixed}
+        if self.one_shot:
             examples = [
                 (label, self._encode_example(path, resolution)) for label, path in fixed
             ]

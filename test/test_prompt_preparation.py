@@ -8,9 +8,28 @@ from unittest.mock import patch
 from PIL import Image
 
 from mvtec_ad import run_test_folder_analysis
+from prompt_preparation import PromptPreparation
 
 
 class PromptPreparationTests(unittest.TestCase):
+    def test_shared_evaluation_excludes_references_from_both_modes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / 'bottle' / 'test'
+            for category in ('good', 'broken'):
+                folder = root / category
+                folder.mkdir(parents=True)
+                for name in ('00.png', '01.png'):
+                    Image.new('RGB', (2, 2)).save(folder / name)
+            zero = PromptPreparation(False, exclude_reference_images=True)
+            one = PromptPreparation(True, exclude_reference_images=True)
+            for category in ('good', 'broken'):
+                _, zero_prefix, zero_images, _ = zero.prepare(str(root / category), 256)
+                _, one_prefix, one_images, _ = one.prepare(str(root / category), 256)
+                self.assertEqual(zero_images, one_images)
+                self.assertEqual([Path(image).name for image in one_images], ['01.png'])
+                self.assertFalse(any(part['type'] == 'image_url' for part in zero_prefix))
+                self.assertEqual(sum(part['type'] == 'image_url' for part in one_prefix), 2)
+
     def test_explicit_zero_shot_overrides_one_shot_filename(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

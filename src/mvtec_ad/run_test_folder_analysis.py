@@ -41,6 +41,8 @@ def parse_args() -> argparse.Namespace:
         "--shot-mode", choices=("one", "zero"),
         help="Override shot mode inferred from the prompt filename.",
     )
+    parser.add_argument("--exclude-reference-images", action="store_true",
+                        help="Exclude fixed one-shot reference images from zero-shot evaluation too.")
     parser.add_argument(
         "--power-mode",
         required=True,
@@ -93,6 +95,8 @@ def build_analysis_row(
             if run_inference.prompt_uses_one_shot_examples(prompt_file, shot_mode)
             else "zero-shot"
         ),
+        **{key: result.get(key) for key in ("original_width", "original_height", "request_start_utc",
+              "request_end_utc", "cache_n", "prompt_n", "predicted_n")},
     }
 
 
@@ -118,6 +122,8 @@ def write_results_csv(
         "model",
         "power_mode",
         "shot_mode",
+        "original_width", "original_height", "request_start_utc", "request_end_utc",
+        "cache_n", "prompt_n", "predicted_n",
     ]
 
     with open(output_path, "w", encoding="utf-8", newline="") as output_file:
@@ -143,6 +149,7 @@ def main() -> None:
             prompt,
             model,
             run_inference.prompt_uses_one_shot_examples(prompt_file, args.shot_mode),
+            args.exclude_reference_images,
         )
         for folder in args.folder:
             inference.add_folder(folder)

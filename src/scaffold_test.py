@@ -104,9 +104,18 @@ def main() -> None:
             "image_path",
             "response",
             "inference_time",
+            "prompt_ms",
+            "predicted_ms",
             "processing_time",
             "width",
             "height",
+            "original_width",
+            "original_height",
+            "request_start_utc",
+            "request_end_utc",
+            "cache_n",
+            "prompt_n",
+            "predicted_n",
         ]
         with open(args.csv_output, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)

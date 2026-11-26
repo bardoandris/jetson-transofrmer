@@ -27,7 +27,7 @@ Use PNG, JPG, or JPEG images. The folder name is recorded as the true category; 
 
 Prompt and reference preparation is centralized in `src/prompt_preparation.py`. Folder analysis accepts `--shot-mode one` or `--shot-mode zero` to override the filename convention; without it, filenames ending in `_oneshot` select one-shot and all others select zero-shot. The power sweep passes its chosen mode explicitly.
 
-For one-shot tests, the first image in sorted filename order from **each** category is used as a labeled reference and excluded from inference. Each category must contain an image; provide at least two per category to also obtain a result for it. Zero-shot tests do not reserve reference images. Both modes request server-side prompt caching and perform a dummy-image warm-up; zero-shot means no labeled reference images, not an uncached run. Actual cache reuse depends on the server.
+For one-shot tests, the first image in sorted filename order from **each** category is used as a labeled reference and excluded from inference. Each category must contain an image; provide at least two per category to also obtain a result for it. Zero-shot tests normally do not reserve reference images; use `--exclude-reference-images` in folder analysis or `run_tests.sh` to exclude the same references in both modes. The three-product runner always uses this shared evaluation set. Both modes request server-side prompt caching and perform a dummy-image warm-up; zero-shot means no labeled reference images, not an uncached run. Actual cache reuse depends on the server.
 
 ## Run a single test case
 
@@ -59,6 +59,23 @@ These scripts discover the selected products’ test-case folders, select the fi
 The sweep scripts call `./run_tests.sh`, which runs folder analysis and writes `folder-analysis.csv` under each power-mode and product output directory (`<output>/<power-mode>/<product>/folder-analysis.csv`).
 
 Inference pauses when temperature reaches 85°C and checks every 30 seconds until it falls below 70°C.
+
+## Run the three-product benchmark
+
+The all-model runner tests bottle, cable and transistor using every model exposed by the server, in both shot modes and all three power modes. Configure the model roster on the server before starting it. By default it runs once at 256, 384 and 512 pixels. The maximum accepted resolution is 512; `0` (original size) is not accepted.
+
+```bash
+./test/run_all_models_three_products.sh --dataset-dir /path/to/mvtec-ad
+./test/run_all_models_three_products.sh --dataset-dir /path/to/mvtec-ad \
+  --output-dir test/test-result/repeated-run --repetitions 3 \
+  --resolution 256 --resolution 512
+```
+
+Each explicit `--resolution` replaces the default list. Repetitions rotate the order of the power modes and write separate result directories. Each category needs at least two images: its first sorted image is the fixed reference, excluded from both modes' evaluation set. `references.csv` records the selected paths and SHA-256 hashes.
+
+The runner requires `tegrastats` and records its raw output with UTC receipt timestamps in each repetition's `tegrastats.csv`. It stops and marks the run incomplete if the collector is missing, does not start, or exits unexpectedly. `run-status.txt` is `complete` only after all repetitions and telemetry collection finish; an existing output path is rejected to prevent overwriting results. Per-image CSVs include UTC request start/end times, original and resized dimensions, and server-reported `cache_n`, `prompt_n`, and `predicted_n` when provided. `run-metadata.txt`, `models.txt`, power-mode output and a Compose configuration copy record run context without storing API credentials.
+
+The raw telemetry is not itself a joules-per-image measurement: check the reported rail and units, sensor sampling interval and idle baseline before integrating power. The sample timestamp is when the collector received a line, not a hardware measurement timestamp. Warmups, power changes, restarts and thermal pauses can extend the total elapsed time substantially. The existing plotting scripts should be pointed at an individual `repetition-N` directory to avoid treating repetitions as independent images or duplicate pairs.
 
 ## Run unit tests
 

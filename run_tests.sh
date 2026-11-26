@@ -16,6 +16,7 @@ Options:
   -m, --model MODEL_ID      Override the first model returned by the inference API.
       --power-mode MODE     Power mode recorded in the results.
       --shot-mode MODE      Override the prompt filename: one or zero.
+      --exclude-reference-images  Exclude fixed references from both shot modes.
   -o, --output-dir DIR      Results directory (default: a timestamped directory
                             under test/test-result).
   -h, --help                Show this help and exit.
@@ -51,6 +52,7 @@ model_set=0
 power_mode=""
 shot_mode=""
 output_dir=""
+exclude_reference_images=0
 
 while (($#)); do
   case "$1" in
@@ -81,6 +83,10 @@ while (($#)); do
     [[ "$2" == one || "$2" == zero ]] || fail "Shot mode must be one or zero."
     shot_mode="$2"
     shift 2
+    ;;
+  --exclude-reference-images)
+    exclude_reference_images=1
+    shift
     ;;
   --power-mode)
     (($# >= 2)) || fail "Missing value for $1."
@@ -159,6 +165,7 @@ if ((model_set)); then
 fi
 common_args+=(--power-mode "$power_mode")
 if [[ -n "$shot_mode" ]]; then common_args+=(--shot-mode "$shot_mode"); fi
+if ((exclude_reference_images)); then common_args+=(--exclude-reference-images); fi
 
 printf 'Running MVTec folder analysis workflow...\n'
 PYTHONPATH="$script_dir/src${PYTHONPATH:+:$PYTHONPATH}" \

@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import TypedDict
 
@@ -16,7 +17,7 @@ import utils.timer_ctx.timer_ctx as timer_ctx
 from prompt_preparation import (
     PromptPreparation,
     encode_pil_jpeg_b64,
-    load_image,
+    load_image_with_original_size,
     make_dummy_jpeg_b64,
     prompt_uses_one_shot_examples,
 )
@@ -40,6 +41,13 @@ class InferenceResult(TypedDict):
     processing_time: str
     width: int
     height: int
+    original_width: int
+    original_height: int
+    request_start_utc: str
+    request_end_utc: str
+    cache_n: int | None
+    prompt_n: int | None
+    predicted_n: int | None
 
 
 class InferenceScenario(TypedDict):
@@ -173,7 +181,7 @@ def wait_for_safe_temperature() -> None:
 
 
 class RunInference:
-    def __init__(self, prompt: str, model: str, one_shot: bool = False):
+    def __init__(self, prompt: str, model: str, one_shot: bool = False, exclude_reference_images: bool = False):
         if not model:
             raise ValueError("model must not be empty.")
         self.prompt = prompt
@@ -181,7 +189,7 @@ class RunInference:
         self.one_shot = one_shot
         self.folders: list[str] = []
         self.resolutions: list[int] = []
-        self.preparation = PromptPreparation(one_shot)
+        self.preparation = PromptPreparation(one_shot, exclude_reference_images)
         base_url = os.getenv("OPENAI_BASE_URL", "http://localhost:8080/v1")
         api_key = os.getenv("OPENAI_API_KEY", "ollama")
         self.client = OpenAI(base_url=base_url, api_key=api_key)
@@ -286,11 +294,12 @@ class RunInference:
                     processing_timer = timer_ctx.Timer()
                     inference_timer = timer_ctx.Timer()
                     with processing_timer:
-                        image = load_image(image_path, resolution)
+                        image, (original_width, original_height) = load_image_with_original_size(image_path, resolution)
                         image_base64 = encode_pil_jpeg_b64(image)
                         width, height = image.size
 
                     wait_for_safe_temperature()
+                    request_start_utc = datetime.now(timezone.utc).isoformat()
                     with inference_timer:
                         response_text, timings = self.request_completion(
                             static_user_prefix,
@@ -298,6 +307,7 @@ class RunInference:
                             category_schema,
                             max_tokens=2048,
                         )
+                    request_end_utc = datetime.now(timezone.utc).isoformat()
 
                     print(
                         f"{Path(image_path).name}: {inference_timer.elapsed_time:.3f}s "
@@ -317,6 +327,13 @@ class RunInference:
                             "processing_time": str(processing_timer.elapsed_time),
                             "width": width,
                             "height": height,
+                            "original_width": original_width,
+                            "original_height": original_height,
+                            "request_start_utc": request_start_utc,
+                            "request_end_utc": request_end_utc,
+                            "cache_n": timings.get("cache_n"),
+                            "prompt_n": timings.get("prompt_n"),
+                            "predicted_n": timings.get("predicted_n"),
                         }
                     )
 
@@ -357,6 +374,13 @@ def main() -> None:
             "processing_time",
             "width",
             "height",
+            "original_width",
+            "original_height",
+            "request_start_utc",
+            "request_end_utc",
+            "cache_n",
+            "prompt_n",
+            "predicted_n",
         ]
         with open(args.csv, "w", encoding="utf-8", newline="") as output_file:
             writer = csv.DictWriter(output_file, fieldnames=fieldnames)
