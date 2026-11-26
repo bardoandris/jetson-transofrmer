@@ -1,0 +1,2 @@
+Qwen/Qwen3-VL-4B-Instruct-GGUF:Q4_K_M
+unsloth/gemma-4-E2B-it-GGUF:Q4_K_XL

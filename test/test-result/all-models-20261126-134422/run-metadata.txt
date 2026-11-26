@@ -1,0 +1,7 @@
+started_utc=2026-11-26T12:44:24Z
+dataset_dir=/home/jetson_orin_nano_3/mvtec-dataset
+repetitions=1
+resolutions=256 384 512
+git_commit=67bdf6e707765c287b0e86d8a81a84f0a665250e
+host=localhost.localdomain
+uname=Linux localhost.localdomain 6.8.12-1021-tegra #1 SMP PREEMPT Thu Aug  6 21:56:04 PDT 2026 aarch64 aarch64 aarch64 GNU/Linux

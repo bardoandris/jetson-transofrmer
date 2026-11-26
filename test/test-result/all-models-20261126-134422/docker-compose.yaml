@@ -1,0 +1,43 @@
+services:
+  llama:
+    build: .
+    runtime: nvidia
+    network_mode: host
+    volumes:
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      - ${HOME}/.model-config:/root/.model-config
+      
+    # Pass your custom llama-server arguments here
+    command: 
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8080"
+      - "-s"
+      - "865"
+      - "-cram"
+      - "256"
+      - "-np"
+      - "1"
+      - "--temp"
+      - "0"
+      - "--cache-prompt"
+      - "--swa-full"
+      - "--models-max"
+      - "1"
+      - "-fa"
+      - "on"
+      - "-c"
+      - "16000"
+      - "-ctv"
+      - "q8_0"      
+      - "-ctk"
+      - "q8_0"
+      - "--verbosity"
+      - "4"
+      - "-b"
+      - "2048"
+      - "-ub"
+      - "1024"
+      - "--reasoning-budget"
+      - "0"
